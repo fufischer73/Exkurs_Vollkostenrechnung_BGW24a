@@ -1,0 +1,50 @@
+---
+titel: "Meilenstein 1: Kostenartenplan Montelli für August"
+minuten: 45
+meilenstein: true
+review: entwurf
+abgabe:
+  titel: Kostenartenplan August abgeben
+  text: Lade deinen ausgefüllten Kostenartenplan als **PDF** (Scan oder Foto deines Arbeitsblatts) oder als **Excel-Datei** hoch.
+  dateitypen: .pdf,.xlsx,.jpg,.png
+  dateien: 3
+  punkte: 100
+raster:
+  - {kriterium: Neutrale Posten, erreicht: Alle neutralen Konten sind erkannt und mit der Art (betriebsfremd/periodenfremd) benannt., besonders_gut: Zu jedem neutralen Konto steht eine kurze Begründung.}
+  - {kriterium: Kostenarten und Zuordnung, erreicht: Alle Kostenarten stehen im Plan. Einzel- und Gemeinkosten sind richtig zugeordnet. Kalkulatorische Werte sind eingesetzt., besonders_gut: Du begründest die Zuordnung von Löhnen und Gehältern in einem Satz.}
+  - {kriterium: Rechnung, erreicht: Alle Summen stimmen. Die Probe (Einzelkosten + Gemeinkosten = Gesamtkosten) ist gemacht., besonders_gut: Du erklärst, warum die Gesamtkosten niedriger sind als im Juli.}
+  - {kriterium: Darstellung, erreicht: Der Plan ist lesbar und vollständig., besonders_gut: Der Rechenweg ist nachvollziehbar notiert.}
+quellen: [q-lehrwerk]
+---
+## Auftrag
+
+Im **August** haben weniger Mitarbeiter:innen gearbeitet (Urlaubszeit), die Produktion lief auf niedrigerem Niveau. Frau Petersen bittet dich um den **Kostenartenplan für August**. Er ist die Grundlage für den Betriebsabrechnungsbogen in Stufe 2.
+
+:::material material/AB-gm-guv-august.docx Arbeitsblatt Meilenstein 1: GuV August und Kostenartenplan
+Zum Ausdrucken. Enthält die GuV August und einen leeren Kostenartenplan.
+:::
+
+:::material material/kostenartenplan-august.xlsx Excel-Vorlage: Kostenartenplan August
+Gelbe Felder ausfüllen. Die Tabelle rechnet Summen und Probe.
+:::
+
+**So gehst du vor:**
+
+1. **Neutrale Posten:** Kennzeichne in der GuV August alle neutralen Konten und gib die Art an.
+2. **Kosten übernehmen:** Alle übrigen Zweckaufwendungen sind Kosten. Statt der Konten **6520** und **7510** setzt du die kalkulatorischen Werte ein: **Abschreibungen 65.000,00 €**, **Zinsen 30.000,00 €**.
+3. **Kostenartenplan:** Trage Gesamtkosten, Einzelkosten und Gemeinkosten ein und bilde die Summen.
+4. **Probe:** Einzelkosten + Gemeinkosten = Gesamtkosten.
+5. **Kurze Erklärung (2–3 Sätze):** Warum sind die Gesamtkosten im August niedriger als im Juli (Vergleich mit 543.425,00 €)? Welche Kosten sinken, welche bleiben gleich?
+
+:::checkliste Checkliste vor der Abgabe
+- Ich habe die neutralen Konten gekennzeichnet.
+- Statt der Konten 6520 und 7510 stehen die kalkulatorischen Werte im Plan.
+- Löhne sind Einzelkosten, Gehälter Gemeinkosten.
+- Die Probe stimmt (Einzelkosten + Gemeinkosten = Gesamtkosten).
+- Meine Erklärung zum Vergleich mit Juli ist dabei.
+- Name und Datum stehen auf dem Blatt.
+:::
+
+:::notiz Bewertung
+Die Kriterien oben siehst du vorher. Wer alles geschafft hat, erfährt die Lösung im Unterricht, bevor du in Stufe 2 den BAB für August erstellst.
+:::

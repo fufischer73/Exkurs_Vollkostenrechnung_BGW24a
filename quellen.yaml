@@ -1,0 +1,23 @@
+# Quellen mit Prüfstatus – siehe referenzen/qualitaet.md im Lernpfad-Baukasten
+- id: q-lehrwerk
+  titel: Westermann-Lehrwerksmaterial „Praxisfall Crome KG“ (Kostenartenrechnung, Kostenstellenrechnung) – von der Lehrkraft bereitgestellt
+  url: ""
+  art: fachliteratur
+  lizenz: "Nur als Strukturvorlage genutzt; Texte und Zahlen sind für die Montelli GmbH neu erstellt"
+  status: verifiziert
+  geprueft_am: 2026-11-04
+  belegt: Ablauf GuV → neutrale Posten → Kostenartenplan (Einzel-/Gemeinkosten) → BAB → Kalkulationssätze; Begriffe Kostenarten, Einzel- und Gemeinkosten, kalkulatorische Kosten
+- id: q-lernsituation
+  titel: Lernsituation „Preise kalkulieren (Teil 1)“, Montelli GmbH (Lehrkraft, eigenes Material)
+  url: ""
+  art: eigene
+  status: verifiziert
+  geprueft_am: 2026-11-04
+  belegt: Montelli-Fallbeispiel, Kalkulationsschema, Zuschlagssätze 20/80/30/20 %, Maschinenstundensatz 80 €/h, Ergebnis 149,28 € (Lösung nachgerechnet)
+- id: q-einfuehrung
+  titel: Einführung Absatzprozesse – Darstellung der Montelli GmbH (BGW24a, Lehrkraft, eigenes Material)
+  url: ""
+  art: eigene
+  status: verifiziert
+  geprueft_am: 2026-11-04
+  belegt: Unternehmensprofil, Organigramm, Artikelliste

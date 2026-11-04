@@ -1,0 +1,28 @@
+# Kursbeschreibung – Exkurs Vollkostenrechnung (Montelli GmbH)
+# Aufbau und alle Felder: referenzen/schema.md im Lernpfad-Baukasten
+titel: Exkurs Vollkostenrechnung
+kurzname: exkurs-vollkostenrechnung
+ueberschrift: Von der GuV zum Verkaufspreis – Vollkostenrechnung bei der Montelli GmbH
+untertitel: Du lernst, wie aus den Zahlen der GuV Kostenarten, ein Betriebsabrechnungsbogen und am Ende der Verkaufspreis des Rucksacks „Business Deluxe“ entstehen.
+badges: [BGW24a · BRC, Montelli GmbH, Stufe 1 von 3 in Arbeit]
+fusszeile: Exkurs Vollkostenrechnung · BGW24a · Entwurf Stand 11/2026
+logo_zeichen: "€"
+einleitung: |
+  :::notiz 👉 Bevor du startest
+  1. Du arbeitest an der **Montelli GmbH** (Taschenhersteller in Bremen). Wir rechnen mit dem Geschäftsbereich **Outdoor** (Rucksäcke).
+  2. Arbeite die Module der Reihe nach durch. Rechne **mit der Hand** auf den Arbeitsblättern (docx zum Ausdrucken). Wer mag, nutzt die Excel-Vorlage.
+  3. Am Ende jeder Stufe gibst du einen **Meilenstein** ab (PDF oder Foto/Scan deiner handschriftlichen Lösung).
+  4. Module mit „(H)“ im Titel eignen sich als Hausaufgabe.
+  :::
+
+stufen:
+  - id: von-guv-zu-kosten
+    name: Von der GuV zu den Kosten
+    icon: "🌱"
+    text: Aufwand und Kosten unterscheiden, neutrale Posten erkennen, Kostenarten gliedern, Einzel- und Gemeinkosten trennen.
+    module: [g1, g2, gm]
+
+moodle:
+  version: 5                 # 5 = mit Unterabschnitten und H5P (Standard)
+  freischaltung: einstufung  # Stufe frei nach Meilenstein ODER Einstufungstest
+  reihenfolge: nacheinander
