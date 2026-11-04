@@ -19,7 +19,7 @@ stufen:
   - id: von-guv-zu-kosten
     name: Von der GuV zu den Kosten
     icon: "🌱"
-    text: Aufwand und Kosten unterscheiden, neutrale Posten erkennen, Kostenarten gliedern, Einzel- und Gemeinkosten trennen.
+    text: Aufwand und Kosten unterscheiden, Einzel- und Gemeinkosten trennen, Kostenarten gliedern und den Weg zu den Kostenstellen finden.
     module: [g1, g2, gm]
 
 moodle:
