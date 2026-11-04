@@ -25,7 +25,7 @@ stufen:
     name: Der Betriebsabrechnungsbogen
     icon: "🚀"
     text: Gemeinkosten auf Kostenstellen verteilen, Zuschlagssätze und den Maschinenstundensatz berechnen, Herstellkosten ermitteln.
-    module: [b1, b2, b3, b4, bm]
+    module: [b1, b2, b3, b4, bm, bx]
   - id: kostentraeger
     name: Von den Kosten zum Verkaufspreis
     icon: "🏆"

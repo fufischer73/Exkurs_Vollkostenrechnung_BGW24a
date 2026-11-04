@@ -167,6 +167,48 @@ def auswerten(m):
             "masch": mask, "saetze": r, "guv": erg, "fm": fm}
 
 
+# --- Erweiterung: Vorkostenstellen (Fuhrpark, Fertigungsplanung) mit Umlage im Treppenstufenverfahren ----------------
+VK_STELLEN = ["Fuhrpark", "Material", "Fertigungsplanung", "Fertigung I", "Fertigung II", "Verwaltung", "Vertrieb"]
+# Ergebnis von Schritt 1 (Verteilung der Gemeinkostenarten), Juli – Spalten wie VK_STELLEN
+VK_BAB = {
+    "Hilfsstoffe":          [0, 0, 0, 7200, 800, 0, 0],
+    "Betriebsstoffe":       [3000, 1200, 0, 3800, 8000, 800, 1200],
+    "Gehälter":             [1000, 25500, 6500, 15900, 2200, 46000, 27000],
+    "Kalk. Abschreibungen": [5000, 3200, 0, 8000, 43000, 4000, 1800],
+    "Kalk. Zinsen":         [0, 3000, 1500, 4000, 17750, 2250, 1500],
+    "Fremdinstandhaltung":  [1500, 300, 0, 0, 6250, 0, 0],
+    "Leasing":              [1500, 1500, 0, 3600, 1200, 1200, 1200],
+    "Büromaterial":         [0, 700, 0, 125, 0, 1750, 1000],
+}
+# Umlageschlüssel (Teile je Kostenstelle)
+VK_SCHL_FUHRPARK = {"Material": 4, "Fertigungsplanung": 1, "Fertigung I": 3, "Fertigung II": 2, "Verwaltung": 0, "Vertrieb": 2}
+VK_SCHL_PLANUNG = {"Fertigung I": 5, "Fertigung II": 4}
+
+
+def vorkostenumlage():
+    """Treppenstufenverfahren: erst Fuhrpark auf alle anderen Stellen, dann Fertigungsplanung auf die Fertigung."""
+    prim = [sum(v[i] for v in VK_BAB.values()) for i in range(7)]
+    z = dict(zip(VK_STELLEN, prim))
+    teile = sum(VK_SCHL_FUHRPARK.values())
+    u1 = {k: z["Fuhrpark"] * t / teile for k, t in VK_SCHL_FUHRPARK.items()}
+    zw = {k: z[k] + u1.get(k, 0) for k in VK_STELLEN}
+    zw["Fuhrpark"] = 0
+    teile2 = sum(VK_SCHL_PLANUNG.values())
+    u2 = {k: zw["Fertigungsplanung"] * t / teile2 for k, t in VK_SCHL_PLANUNG.items()}
+    end = {k: zw[k] + u2.get(k, 0) for k in VK_STELLEN}
+    end["Fertigungsplanung"] = 0
+    return prim, u1, zw, u2, end
+
+
+def pruefe_vorkosten():
+    for art, vals in VK_BAB.items():
+        assert sum(vals) == sum(JULI["bab"][art]), art
+    prim, u1, zw, u2, end = vorkostenumlage()
+    sp = auswerten(JULI)["spalten"]
+    assert [end["Material"], end["Fertigung I"], end["Fertigung II"], end["Verwaltung"], end["Vertrieb"]] == sp, (end, sp)
+    assert sum(prim) == 266925 and abs(sum(end.values()) - 266925) < 1e-9
+
+
 # --- Stufe 3: Ist-Sätze der letzten vier Monate und daraus gebildete Normalsätze ---------------------------------
 ISTSAETZE = {  # Monat: (MGK %, FGK I %, Maschinenstundensatz €/h, Rest %, VwGK %, VtGK %)
     "April": (20.3, 79.5, 79.5, 29.5, 11.6, 8.2),
@@ -240,6 +282,7 @@ if __name__ == "__main__":
     pruefe_schluessel(JULI)
     pruefe_schluessel(AUGUST)
     pruefe_normal()
+    pruefe_vorkosten()
     k = kalkulation(**BUSINESS_DELUXE)
     assert (k["Selbstkosten"], k["Barverkaufspreis"], k["Zielverkaufspreis"], k["Listenverkaufspreis"]) == (108.60, 130.32, 134.35, 149.28), k
     print("Business Deluxe:", {a: b for a, b in k.items() if a in ("Herstellkosten", "Selbstkosten", "Listenverkaufspreis")})
