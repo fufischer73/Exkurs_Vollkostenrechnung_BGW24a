@@ -4,7 +4,7 @@ titel: Exkurs Vollkostenrechnung
 kurzname: exkurs-vollkostenrechnung
 ueberschrift: Von der GuV zum Verkaufspreis – Vollkostenrechnung bei der Montelli GmbH
 untertitel: Du lernst, wie aus den Zahlen der GuV Kostenarten, ein Betriebsabrechnungsbogen und am Ende der Verkaufspreis des Rucksacks „Business Deluxe“ entstehen.
-badges: [BGW24a · BRC, Montelli GmbH, Stufe 1 und 2 von 3 in Arbeit]
+badges: [BGW24a · BRC, Montelli GmbH, 3 Stufen · Entwurf]
 fusszeile: Exkurs Vollkostenrechnung · BGW24a · Entwurf Stand 11/2026
 logo_zeichen: "€"
 einleitung: |
@@ -26,6 +26,11 @@ stufen:
     icon: "🚀"
     text: Gemeinkosten auf Kostenstellen verteilen, Zuschlagssätze und den Maschinenstundensatz berechnen, Herstellkosten ermitteln.
     module: [b1, b2, b3, b4, bm]
+  - id: kostentraeger
+    name: Von den Kosten zum Verkaufspreis
+    icon: "🏆"
+    text: Ist- und Normalsätze verstehen, die Zuschlagskalkulation durchführen und den Listenverkaufspreis berechnen.
+    module: [t1, t2, t3, tm]
 
 einstufung: {bestehen: 80}   # Einstufungstests aus den Kurz-Checks der vorigen Stufe
 
@@ -33,3 +38,14 @@ moodle:
   version: 5                 # 5 = mit Unterabschnitten und H5P (Standard)
   freischaltung: einstufung  # Stufe frei nach Meilenstein ODER Einstufungstest
   reihenfolge: nacheinander
+
+tests:
+  - id: test-abschluss
+    titel: "Lernerfolgskontrolle: Von der GuV zum Verkaufspreis"
+    stufe: kostentraeger     # ans Ende der letzten Stufe
+    fragen: abschluss
+    punkte: 10
+    bestehen: 60
+    versuche: 0
+    feedback: nachher
+    text: Zehn Fragen zu allen drei Stufen. Die Rechenaufgaben haben bei jedem Versuch andere Zahlen. Du kannst den Test wiederholen.

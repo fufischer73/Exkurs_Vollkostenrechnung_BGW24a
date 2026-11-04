@@ -167,6 +167,66 @@ def auswerten(m):
             "masch": mask, "saetze": r, "guv": erg, "fm": fm}
 
 
+# --- Stufe 3: Ist-Sätze der letzten vier Monate und daraus gebildete Normalsätze ---------------------------------
+ISTSAETZE = {  # Monat: (MGK %, FGK I %, Maschinenstundensatz €/h, Rest %, VwGK %, VtGK %)
+    "April": (20.3, 79.5, 79.5, 29.5, 11.6, 8.2),
+    "Mai":   (20.1, 80.5, 80.0, 30.5, 12.2, 7.8),
+    "Juni":  (19.9, 79.0, 79.5, 30.0, 11.8, 8.1),
+    "Juli":  (19.7, 81.0, 81.0, 30.0, 12.4, 7.9),
+}
+NORMAL = (20.0, 80.0, 80.0, 30.0, 12.0, 8.0)   # MGK, FGK I, Maschinenstundensatz, Rest, VwGK, VtGK
+SAETZE_NAMEN = ["MGK-Satz (%)", "FGK-Satz Fertigung I (%)", "Maschinenstundensatz (€ je h)",
+                "Restgemeinkosten-Satz (%)", "VwGK-Satz (%)", "VtGK-Satz (%)"]
+
+
+def pruefe_normal():
+    for i, soll in enumerate(NORMAL):
+        mittel = sum(v[i] for v in ISTSAETZE.values()) / len(ISTSAETZE)
+        assert abs(mittel - soll) < 1e-9, (SAETZE_NAMEN[i], mittel, soll)
+    # Juli-Ist muss zur Auswertung von Stufe 2 passen (zwei Dezimalstellen)
+    r = auswerten(JULI)["saetze"]
+    j = ISTSAETZE["Juli"]
+    assert round(r["MGK %"], 2) == j[0] and round(r["FGK I %"], 2) == j[1] and round(r["Maschinenstundensatz"], 2) == j[2]
+    assert round(r["Rest %"], 2) == j[3] and round(r["VwGK %"], 1) == j[4] and round(r["VtGK %"], 1) == j[5]
+
+
+def runden(x):
+    from decimal import Decimal, ROUND_HALF_UP
+    return float(Decimal(str(x)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP))
+
+
+def kalkulation(fm, lohn, masch_std, masch_lohn_satz, gewinn=20, skonto=3, rabatt=10):
+    """Zuschlagskalkulation mit den Normalsätzen. lohn = Fertigungslöhne Handarbeit (Summe je Stück)."""
+    mgk_s, fgk_s, mss, rest_s, vw_s, vt_s = NORMAL
+    z = {}
+    z["Fertigungsmaterial"] = runden(fm)
+    z["MGK"] = runden(z["Fertigungsmaterial"] * mgk_s / 100)
+    z["Materialkosten"] = runden(z["Fertigungsmaterial"] + z["MGK"])
+    z["Fertigungslöhne"] = runden(lohn)
+    z["FGK"] = runden(z["Fertigungslöhne"] * fgk_s / 100)
+    z["Fertigungskosten I"] = runden(z["Fertigungslöhne"] + z["FGK"])
+    z["Maschinenkosten"] = runden(masch_std * mss)
+    z["Maschinenlöhne"] = runden(masch_std * masch_lohn_satz)
+    z["Restgemeinkosten"] = runden(z["Maschinenlöhne"] * rest_s / 100)
+    z["Fertigungskosten II"] = runden(z["Maschinenkosten"] + z["Maschinenlöhne"] + z["Restgemeinkosten"])
+    z["Herstellkosten"] = runden(z["Materialkosten"] + z["Fertigungskosten I"] + z["Fertigungskosten II"])
+    z["Verwaltung/Vertrieb"] = runden(z["Herstellkosten"] * (vw_s + vt_s) / 100)
+    z["Selbstkosten"] = runden(z["Herstellkosten"] + z["Verwaltung/Vertrieb"])
+    z["Gewinn"] = runden(z["Selbstkosten"] * gewinn / 100)
+    z["Barverkaufspreis"] = runden(z["Selbstkosten"] + z["Gewinn"])
+    z["Zielverkaufspreis"] = runden(z["Barverkaufspreis"] / (1 - skonto / 100))
+    z["Skonto"] = runden(z["Zielverkaufspreis"] - z["Barverkaufspreis"])
+    z["Listenverkaufspreis"] = runden(z["Zielverkaufspreis"] / (1 - rabatt / 100))
+    z["Rabatt"] = runden(z["Listenverkaufspreis"] - z["Zielverkaufspreis"])
+    return z
+
+
+# Business Deluxe (Lernsituation „Preise kalkulieren“, Info 2)
+BUSINESS_DELUXE = dict(fm=40.00, lohn=0.30 * 13 + 0.40 * 14 + 0.20 * 16, masch_std=0.20, masch_lohn_satz=14.0)
+# Zweiter Rucksack für Meilenstein 3 (eigene Zahlen)
+EXPLORER = dict(fm=36.50, lohn=0.25 * 13 + 0.35 * 14 + 0.15 * 16, masch_std=0.15, masch_lohn_satz=14.0)
+
+
 def pruefe_schluessel(m):
     for art, (_, teile) in SCHLUESSEL.items():
         vals = m["bab"][art]
@@ -179,6 +239,11 @@ def pruefe_schluessel(m):
 if __name__ == "__main__":
     pruefe_schluessel(JULI)
     pruefe_schluessel(AUGUST)
+    pruefe_normal()
+    k = kalkulation(**BUSINESS_DELUXE)
+    assert (k["Selbstkosten"], k["Barverkaufspreis"], k["Zielverkaufspreis"], k["Listenverkaufspreis"]) == (108.60, 130.32, 134.35, 149.28), k
+    print("Business Deluxe:", {a: b for a, b in k.items() if a in ("Herstellkosten", "Selbstkosten", "Listenverkaufspreis")})
+    print("Explorer:", kalkulation(**EXPLORER))
     for m in (JULI, AUGUST):
         a = auswerten(m)
         print("==", m["name"])

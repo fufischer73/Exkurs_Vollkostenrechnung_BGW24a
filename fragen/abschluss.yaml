@@ -1,0 +1,111 @@
+# Lernerfolgskontrolle am Ende des Exkurses (Moodle-Test, automatisch bewertet)
+- id: ab-01
+  typ: single_choice
+  niveau: 1
+  review: entwurf
+  aufgabe: "Was sind Einzelkosten?"
+  optionen:
+    - {text: "Kosten, die sich einem einzelnen Produkt direkt zurechnen lassen.", korrekt: true}
+    - {text: "Kosten, die nur einmal im Jahr anfallen.", korrekt: false, feedback: "Entscheidend ist die direkte Zurechenbarkeit, nicht der Zeitpunkt."}
+    - {text: "Kosten, die nur in der Verwaltung entstehen.", korrekt: false, feedback: "Die Abteilung spielt keine Rolle, sondern ob die Kosten einem Produkt direkt zurechenbar sind."}
+  erklaerung: "Einzelkosten sind direkt zurechenbar, z. B. Fertigungsmaterial und Fertigungslöhne."
+
+- id: ab-02
+  typ: zuordnung
+  niveau: 1
+  review: entwurf
+  aufgabe: "Ordne die Kosten zu: Einzelkosten oder Gemeinkosten?"
+  kategorien: ["Einzelkosten", "Gemeinkosten"]
+  elemente:
+    - {text: "Fertigungsmaterial (Gewebe für einen Rucksack)", kategorie: "Einzelkosten"}
+    - {text: "Lohn der Näherin am Rucksack", kategorie: "Einzelkosten"}
+    - {text: "Frachtkosten für einen einzelnen Kundenauftrag", kategorie: "Einzelkosten"}
+    - {text: "Nähgarn (Hilfsstoff)", kategorie: "Gemeinkosten"}
+    - {text: "Gehalt der Buchhalterin", kategorie: "Gemeinkosten"}
+    - {text: "Leasing für das Gebäude", kategorie: "Gemeinkosten"}
+
+- id: ab-03
+  typ: zahl
+  niveau: 2
+  review: entwurf
+  aufgabe: "Die Betriebsstoffkosten von {{k}} € werden im Verhältnis 3 : 12 : 25 : 2 : 3 auf die Kostenstellen Material, Fertigung I, Fertigung II, Verwaltung und Vertrieb verteilt. Wie viel € erhält die Kostenstelle Fertigung II?"
+  parameter:
+    k: {min: 9000, max: 22500, schritt: 4500}
+  antworten:
+    - {id: fert2, label: "Fertigung II", formel: "k / 45 * 25", runden: 2, toleranz: 0.01, einheit: "€"}
+  loesungsweg: "Summe der Schlüsselzahlen: 45. Je Teil {{k}} € ÷ 45. Fertigung II: 25 Teile = {{fert2}} €."
+
+- id: ab-04
+  typ: zahl
+  niveau: 2
+  review: entwurf
+  aufgabe: "Das Fertigungsmaterial eines Auftrags kostet {{fm}} €. Der Materialgemeinkosten-Zuschlagssatz beträgt {{p}} %. Wie hoch sind die Materialgemeinkosten?"
+  parameter:
+    fm: {min: 10000, max: 20000, schritt: 2500}
+    p: {min: 10, max: 30, schritt: 5}
+  antworten:
+    - {id: mgk, label: "Materialgemeinkosten", formel: "fm * p / 100", runden: 2, toleranz: 0.01, einheit: "€"}
+  loesungsweg: "{{fm}} € × {{p}} ÷ 100 = {{mgk}} €"
+
+- id: ab-05
+  typ: zahl
+  niveau: 2
+  review: entwurf
+  aufgabe: "Die maschinenabhängigen Gemeinkosten eines Maschinenplatzes betragen {{mk}} € bei {{h}} Maschinenstunden. Wie hoch ist der Maschinenstundensatz (€ je Stunde)?"
+  parameter:
+    mk: {min: 20000, max: 60000, schritt: 10000}
+    h: {min: 250, max: 500, schritt: 250}
+  antworten:
+    - {id: satz, label: "Maschinenstundensatz", formel: "mk / h", runden: 2, toleranz: 0.01, einheit: "€ je h"}
+  loesungsweg: "{{mk}} € ÷ {{h}} h = {{satz}} € je h"
+
+- id: ab-06
+  typ: reihenfolge
+  niveau: 2
+  review: entwurf
+  aufgabe: "Bring die Zeilen des Kalkulationsschemas in die richtige Reihenfolge (von oben nach unten)."
+  elemente: ["Selbstkosten", "Gewinnzuschlag", "Barverkaufspreis", "Kundenskonto", "Zielverkaufspreis", "Kundenrabatt", "Listenverkaufspreis (netto)"]
+  feedback_richtig: "Richtig. Vom Selbstkostenpreis geht es über Gewinn, Skonto und Rabatt zum Listenverkaufspreis."
+  feedback_falsch: "Denke an den Weg vom Selbstkostenpreis zum Listenverkaufspreis: Gewinn, dann Skonto, dann Rabatt."
+
+- id: ab-07
+  typ: lueckentext
+  niveau: 2
+  review: entwurf
+  aufgabe: "Ergänze den Satz."
+  text: "Die Gemeinkosten der Verwaltung und des Vertriebs werden auf die {{a}} bezogen."
+  luecken:
+    a: {akzeptiert: ["Herstellkosten", "Herstellkosten des Umsatzes", "HKdU"], hinweis: "Grundlage für Verwaltung und Vertrieb"}
+
+- id: ab-08
+  typ: zahl
+  niveau: 3
+  review: entwurf
+  aufgabe: "Der Barverkaufspreis beträgt {{bar}} €. Der Kunde erhält 3 % Skonto (im Hundert). Wie hoch ist der Zielverkaufspreis?"
+  parameter:
+    bar: {min: 97, max: 291, schritt: 97}
+  antworten:
+    - {id: ziel, label: "Zielverkaufspreis", formel: "bar / 0.97", runden: 2, toleranz: 0.01, einheit: "€"}
+  loesungsweg: "{{bar}} € ÷ 0,97 = {{ziel}} €"
+
+- id: ab-09
+  typ: single_choice
+  niveau: 2
+  review: entwurf
+  aufgabe: "Warum kalkuliert ein Betrieb mit Normalsätzen und nicht mit den Istsätzen des letzten Monats?"
+  optionen:
+    - {text: "Weil Normalsätze Durchschnittswerte sind, die Schwankungen einzelner Monate ausgleichen.", korrekt: true}
+    - {text: "Weil Istsätze nicht berechnet werden dürfen.", korrekt: false, feedback: "Istsätze werden berechnet, sie schwanken aber."}
+    - {text: "Weil Normalsätze immer niedriger sind.", korrekt: false, feedback: "Normalsätze sind Durchschnittswerte, nicht automatisch niedriger."}
+
+- id: ab-10
+  typ: multiple_choice
+  niveau: 2
+  review: entwurf
+  aufgabe: "Welche Kosten gehören zu den maschinenabhängigen Gemeinkosten des Maschinenplatzes? (mehrere Antworten möglich)"
+  optionen:
+    - {text: "Kalkulatorische Abschreibungen der Maschine", korrekt: true}
+    - {text: "Strom (Betriebsstoffe) für die Maschine", korrekt: true}
+    - {text: "Fremdinstandhaltung (Reparatur) der Maschine", korrekt: true}
+    - {text: "Gehälter der Verwaltung", korrekt: false, feedback: "Das sind Gemeinkosten der Verwaltung, nicht des Maschinenplatzes."}
+    - {text: "Büromaterial", korrekt: false, feedback: "Büromaterial gehört zu den Restgemeinkosten bzw. zur Verwaltung."}
