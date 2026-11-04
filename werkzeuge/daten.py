@@ -88,6 +88,17 @@ AUGUST = {
     },
 }
 
+ORDER = ["Hilfsstoffe", "Betriebsstoffe", "Gehälter", "Kalk. Abschreibungen", "Kalk. Zinsen",
+         "Fremdinstandhaltung", "Leasing", "Büromaterial"]
+
+# Verteilungsschlüssel (gelten in Juli und August unverändert); alle übrigen Zeilen werden direkt (per Beleg) zugeordnet
+SCHLUESSEL = {
+    "Betriebsstoffe": ("Verbrauch in kWh (Schlüsselzahlen)", [3, 12, 25, 2, 3]),
+    "Kalk. Zinsen": ("Anteil am gebundenen Kapital (Schlüsselzahlen)", [4, 6, 25, 3, 2]),
+    "Leasing": ("genutzte Fläche in m²", [100, 120, 40, 40, 40]),
+}
+
+# Bezugsgrößen je Monat (aus dem Kostenartenplan, der Lohnbuchhaltung und dem Arbeitsplan)
 MASCHINENABHAENGIG = ["Betriebsstoffe", "Kalk. Abschreibungen", "Kalk. Zinsen", "Fremdinstandhaltung"]
 REST_FERTIGUNG2 = ["Hilfsstoffe", "Gehälter", "Leasing", "Büromaterial"]
 
@@ -156,7 +167,18 @@ def auswerten(m):
             "masch": mask, "saetze": r, "guv": erg, "fm": fm}
 
 
+def pruefe_schluessel(m):
+    for art, (_, teile) in SCHLUESSEL.items():
+        vals = m["bab"][art]
+        summe = sum(vals)
+        assert summe % sum(teile) == 0, (m["name"], art)
+        je = summe // sum(teile)
+        assert vals == [t * je for t in teile], (m["name"], art, vals, teile)
+
+
 if __name__ == "__main__":
+    pruefe_schluessel(JULI)
+    pruefe_schluessel(AUGUST)
     for m in (JULI, AUGUST):
         a = auswerten(m)
         print("==", m["name"])

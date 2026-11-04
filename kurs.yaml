@@ -4,7 +4,7 @@ titel: Exkurs Vollkostenrechnung
 kurzname: exkurs-vollkostenrechnung
 ueberschrift: Von der GuV zum Verkaufspreis – Vollkostenrechnung bei der Montelli GmbH
 untertitel: Du lernst, wie aus den Zahlen der GuV Kostenarten, ein Betriebsabrechnungsbogen und am Ende der Verkaufspreis des Rucksacks „Business Deluxe“ entstehen.
-badges: [BGW24a · BRC, Montelli GmbH, Stufe 1 von 3 in Arbeit]
+badges: [BGW24a · BRC, Montelli GmbH, Stufe 1 und 2 von 3 in Arbeit]
 fusszeile: Exkurs Vollkostenrechnung · BGW24a · Entwurf Stand 11/2026
 logo_zeichen: "€"
 einleitung: |
@@ -21,6 +21,13 @@ stufen:
     icon: "🌱"
     text: Aufwand und Kosten unterscheiden, Einzel- und Gemeinkosten trennen, Kostenarten gliedern und den Weg zu den Kostenstellen finden.
     module: [g1, g2, gm]
+  - id: bab
+    name: Der Betriebsabrechnungsbogen
+    icon: "🚀"
+    text: Gemeinkosten auf Kostenstellen verteilen, Zuschlagssätze und den Maschinenstundensatz berechnen, Herstellkosten ermitteln.
+    module: [b1, b2, b3, b4, bm]
+
+einstufung: {bestehen: 80}   # Einstufungstests aus den Kurz-Checks der vorigen Stufe
 
 moodle:
   version: 5                 # 5 = mit Unterabschnitten und H5P (Standard)

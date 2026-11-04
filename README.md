@@ -3,7 +3,7 @@
 Lernpfad für Moodle (Abschnitt mit Unterabschnitten) und Web-Version, gebaut mit dem
 [Lernpfad-Baukasten](https://github.com/dclausen01/Lernpfad-baukasten).
 
-**Stand:** Stufe 1 „Von der GuV zu den Kosten“ (Entwurf). Stufe 2 (BAB) und Stufe 3 (Kostenträgerrechnung) folgen.
+**Stand:** Stufe 1 „Von der GuV zu den Kosten“ und Stufe 2 „Der Betriebsabrechnungsbogen“ (Entwurf). Stufe 3 (Kostenträgerrechnung) folgt.
 
 | Ordner | Inhalt |
 | --- | --- |
@@ -13,4 +13,4 @@ Lernpfad für Moodle (Abschnitt mit Unterabschnitten) und Web-Version, gebaut mi
 | `werkzeuge/` | Zahlengrundlage der Montelli GmbH (`daten.py`, rechnet und prüft alle Summen) und Erzeugung der Materialien |
 
 Alle Zahlen sind für die Montelli GmbH neu konstruiert. Das Westermann-Material (Crome KG) diente nur als Strukturvorlage.
-Neu bauen: `python3 werkzeuge/material_stufe1.py`, dann `python3 <baukasten>/skripte/alles.py .`
+Neu bauen: `python3 werkzeuge/material_stufe1.py` und `werkzeuge/material_stufe2.py`, dann `python3 <baukasten>/skripte/alles.py .`
