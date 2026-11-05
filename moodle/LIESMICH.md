@@ -1,13 +1,14 @@
-# Moodle-Kurs: Stand Stufe 1 bis 3
+# Moodle-Kurs: Stand Stufe 1 bis 3 mit Lernerfolgskontrolle
 
-`exkurs-vollkostenrechnung_STUFE1-3_moodle5.mbz` enthält nur die **freigegebenen** Module:
+`exkurs-vollkostenrechnung_STUFE1-3-mit-Test_moodle5.mbz` enthält nur die **freigegebenen** Module:
 
 - Startseite „Mein Lernpfad“ und Einstufungstests zu Stufe 2 und 3
 - **Stufe 1:** G1, G2, Meilenstein 1 (mit Abgabe)
 - **Stufe 2:** B1 bis B5, Meilenstein 2 (mit Abgabe)
 - **Stufe 3:** T1 bis T3, Meilenstein 3 (mit Abgabe)
+- **Lernerfolgskontrolle:** Moodle-Test mit 10 Fragen am Ende von Stufe 3 (Rechenaufgaben mit Zufallszahlen, automatisch bewertet)
 
-Die Lernerfolgskontrolle (Test), Stufe 4 (Übungen) und der Übungstest folgen nach der Freigabe.
+Stufe 4 (Übungen) und der Übungstest folgen nach der Freigabe.
 
 ## Einspielen (Moodle 5)
 

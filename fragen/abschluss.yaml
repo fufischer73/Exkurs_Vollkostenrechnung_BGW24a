@@ -2,7 +2,7 @@
 - id: ab-01
   typ: single_choice
   niveau: 1
-  review: geprueft
+  review: freigegeben
   aufgabe: "Was sind Einzelkosten?"
   optionen:
     - {text: "Kosten, die sich einem einzelnen Produkt direkt zurechnen lassen.", korrekt: true}
@@ -13,7 +13,7 @@
 - id: ab-02
   typ: zuordnung
   niveau: 1
-  review: geprueft
+  review: freigegeben
   aufgabe: "Ordne die Kosten zu: Einzelkosten oder Gemeinkosten?"
   kategorien: ["Einzelkosten", "Gemeinkosten"]
   elemente:
@@ -27,7 +27,7 @@
 - id: ab-03
   typ: zahl
   niveau: 2
-  review: geprueft
+  review: freigegeben
   aufgabe: "Die Betriebsstoffkosten von {{k}} € werden im Verhältnis 3 : 12 : 25 : 2 : 3 auf die Kostenstellen Material, Fertigung I, Fertigung II, Verwaltung und Vertrieb verteilt. Wie viel € erhält die Kostenstelle Fertigung II?"
   parameter:
     k: {min: 9000, max: 22500, schritt: 4500}
@@ -38,7 +38,7 @@
 - id: ab-04
   typ: zahl
   niveau: 2
-  review: geprueft
+  review: freigegeben
   aufgabe: "Das Fertigungsmaterial eines Auftrags kostet {{fm}} €. Der Materialgemeinkosten-Zuschlagssatz beträgt {{p}} %. Wie hoch sind die Materialgemeinkosten?"
   parameter:
     fm: {min: 10000, max: 20000, schritt: 2500}
@@ -50,7 +50,7 @@
 - id: ab-05
   typ: zahl
   niveau: 2
-  review: geprueft
+  review: freigegeben
   aufgabe: "Die maschinenabhängigen Gemeinkosten eines Maschinenplatzes betragen {{mk}} € bei {{h}} Maschinenstunden. Wie hoch ist der Maschinenstundensatz (€ je Stunde)?"
   parameter:
     mk: {min: 20000, max: 60000, schritt: 10000}
@@ -62,7 +62,7 @@
 - id: ab-06
   typ: reihenfolge
   niveau: 2
-  review: geprueft
+  review: freigegeben
   aufgabe: "Bring die Zeilen des Kalkulationsschemas in die richtige Reihenfolge (von oben nach unten)."
   elemente: ["Selbstkosten", "Gewinnzuschlag", "Barverkaufspreis", "Kundenskonto", "Zielverkaufspreis", "Kundenrabatt", "Listenverkaufspreis (netto)"]
   feedback_richtig: "Richtig. Vom Selbstkostenpreis geht es über Gewinn, Skonto und Rabatt zum Listenverkaufspreis."
@@ -71,7 +71,7 @@
 - id: ab-07
   typ: lueckentext
   niveau: 2
-  review: geprueft
+  review: freigegeben
   aufgabe: "Ergänze den Satz."
   text: "Die Gemeinkosten der Verwaltung und des Vertriebs werden auf die {{a}} bezogen."
   luecken:
@@ -80,7 +80,7 @@
 - id: ab-08
   typ: zahl
   niveau: 3
-  review: geprueft
+  review: freigegeben
   aufgabe: "Der Barverkaufspreis beträgt {{bar}} €. Der Kunde erhält 3 % Skonto (im Hundert). Wie hoch ist der Zielverkaufspreis?"
   parameter:
     bar: {min: 97, max: 291, schritt: 97}
@@ -91,7 +91,7 @@
 - id: ab-09
   typ: single_choice
   niveau: 2
-  review: geprueft
+  review: freigegeben
   aufgabe: "Warum kalkuliert ein Betrieb mit Normalsätzen und nicht mit den Istsätzen des letzten Monats?"
   optionen:
     - {text: "Weil Normalsätze Durchschnittswerte sind, die Schwankungen einzelner Monate ausgleichen.", korrekt: true}
@@ -101,7 +101,7 @@
 - id: ab-10
   typ: multiple_choice
   niveau: 2
-  review: geprueft
+  review: freigegeben
   aufgabe: "Welche Kosten gehören zu den maschinenabhängigen Gemeinkosten des Maschinenplatzes? (mehrere Antworten möglich)"
   optionen:
     - {text: "Kalkulatorische Abschreibungen der Maschine", korrekt: true}
