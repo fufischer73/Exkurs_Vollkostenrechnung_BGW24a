@@ -88,7 +88,7 @@ def kopfzeile(d, fach="Absatzprozesse", thema="Preiskalkulation", gruppe="BGW24a
             p0._p.pPr.remove(tabs)
         for pos in (4680, 9360):
             p0.paragraph_format.tab_stops.add_tab_stop(Twips(pos), WD_TAB_ALIGNMENT.CLEAR)
-        p0.paragraph_format.tab_stops.add_tab_stop(breite, WD_TAB_ALIGNMENT.RIGHT)
+        p0.paragraph_format.tab_stops.add_tab_stop(breite - Cm(0.25), WD_TAB_ALIGNMENT.RIGHT)
         run = p0.add_run(f"{gruppe}\t{kurs}")
         run.font.size = Pt(9)
         run.font.name = "Calibri"

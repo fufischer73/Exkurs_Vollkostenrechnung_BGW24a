@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Übungs-BAB 2: Produktion Textil – Exkurs Vollkostenrechnung</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="u2">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>Entwurf</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>eine Hilfskostenstelle im Treppenstufenverfahren umlegen,</li><li>Fertigungsgemeinkosten für zwei Fertigungsstellen getrennt berechnen.</li></ul></div><div class="box note"><div class="box-title">Freiwillige Übung</div><p>Dieses Modul gehört zum Übungsbereich. Du brauchst es nicht für die Meilensteine. Wer sicherer werden möchte, übt hier an neuen Zahlen.</p>
+</div><h2>Die Situation</h2>
+<p>Frau Petersen: „Auch für die <strong>Produktion Textil</strong> brauche ich den BAB für den <strong>September</strong>. Die Gemeinkosten stammen aus dem Kostenartenplan. Die Lagerbestände sind unverändert. Hier gibt es eine Hilfskostenstelle, die <strong>Werkstatt</strong>.“</p>
+<h2>Dein Arbeitsauftrag</h2>
+<p>a) <strong>Verteile</strong> die Gemeinkosten auf die Kostenstellen.
+b) <strong>Verrechne</strong> die innerbetrieblichen Leistungen (Fuhrpark und Werkstatt).
+c) <strong>Ermittle</strong> die Kalkulationssätze und die Herstellkosten des Umsatzes.</p>
+<p><strong>Angaben:</strong></p>
+<ul>
+<li>Fertigungsmaterial: 100.000 €</li>
+<li>Fertigungslöhne Fertigung I: 42.000 €</li>
+<li>Fertigungslöhne Fertigung II: 56.000 €</li>
+<li>Bestandsveränderungen: keine</li>
+</ul>
+<p><strong>Verteilung der Gemeinkosten im Monat September.</strong> Bei Belegen, Gehaltsliste und Anlagendatei stehen <strong>Beträge in €</strong>, bei „Schlüssel“ und „m²“ <strong>Schlüsselzahlen</strong>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Gemeinkostenart</th>
+<th>Verteilungsgrundlage</th>
+<th>Fuhrpark</th>
+<th>Material</th>
+<th>Werkstatt</th>
+<th>Fertigung I</th>
+<th>Fertigung II</th>
+<th>Verwaltung</th>
+<th>Vertrieb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hilfsstoffe</td>
+<td>Belege</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>12.000</td>
+<td>18.000</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Energie</td>
+<td>Schlüssel (kWh)</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>9</td>
+<td>8</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Gehälter</td>
+<td>Gehaltsliste</td>
+<td>2.000</td>
+<td>5.500</td>
+<td>3.200</td>
+<td>4.000</td>
+<td>4.500</td>
+<td>12.800</td>
+<td>6.000</td>
+</tr>
+<tr>
+<td>Kalk. Abschreibungen</td>
+<td>Anlagendatei</td>
+<td>1.200</td>
+<td>1.800</td>
+<td>2.500</td>
+<td>9.000</td>
+<td>11.500</td>
+<td>3.000</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>Kalk. Zinsen</td>
+<td>Schlüssel (Kapital)</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>5</td>
+<td>6</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Miete</td>
+<td>m²</td>
+<td>30</td>
+<td>90</td>
+<td>40</td>
+<td>200</td>
+<td>240</td>
+<td>100</td>
+<td>50</td>
+</tr>
+<tr>
+<td>Büromaterial</td>
+<td>Belege</td>
+<td>200</td>
+<td>300</td>
+<td>100</td>
+<td>200</td>
+<td>200</td>
+<td>900</td>
+<td>450</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Schlüssel zur Verrechnung innerbetrieblicher Leistungen</strong> (Teile je Kostenstelle):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Vorkostenstelle</th>
+<th>Umlagegrundlage</th>
+<th>Fuhrpark</th>
+<th>Material</th>
+<th>Werkstatt</th>
+<th>Fertigung I</th>
+<th>Fertigung II</th>
+<th>Verwaltung</th>
+<th>Vertrieb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fuhrpark</td>
+<td>Transportaufträge</td>
+<td>–</td>
+<td>2</td>
+<td>1</td>
+<td>6</td>
+<td>5</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Werkstatt</td>
+<td>Wartungsstunden</td>
+<td>–</td>
+<td>–</td>
+<td>–</td>
+<td>6</td>
+<td>5</td>
+<td>–</td>
+<td>–</td>
+</tr>
+</tbody>
+</table></div>
+<div class="box download"><div class="box-title">📥 Arbeitsblatt Übungs-BAB 2: Produktion Textil (Querformat, PDF)</div><p>Mit BAB-Formular, Nebenrechnung und Rechenkästen. Als Word: <a href="material/AB-u2-textil.docx">AB-u2-textil.docx</a></p>
+<p><a class="btn" href="material/AB-u2-textil.pdf" download>AB-u2-textil.pdf herunterladen</a></p></div><div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · BAB erstellen</h3><span class="lvl time">35 min</span></div><p>Erstelle den BAB im Formular, berechne die Kalkulationssätze und die Nebenrechnung.</p>
+<details><summary>Hilfe: Info-Seiten</summary><p>Wenn du nicht weiterkommst: Info 4 (Verteilen), Info 5 (Umlage) und Info 6 (Kalkulationssätze) unter „Extras“ oder als PDF: <a href="material/Info-4-verteilung.pdf">Info 4</a> · <a href="material/Info-5-umlage.pdf">Info 5</a> · <a href="material/Info-6-kalkulationssaetze.pdf">Info 6</a></p>
+</details><details><summary>Lösung</summary><p><strong>Schritt 1: Verteilung</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Gemeinkostenart</th>
+<th>Summe</th>
+<th>Fuhrpark</th>
+<th>Material</th>
+<th>Werkstatt</th>
+<th>Fertigung I</th>
+<th>Fertigung II</th>
+<th>Verwaltung</th>
+<th>Vertrieb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hilfsstoffe</td>
+<td>30.000</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>12.000</td>
+<td>18.000</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Energie</td>
+<td>28.000</td>
+<td>1.000</td>
+<td>3.000</td>
+<td>2.000</td>
+<td>9.000</td>
+<td>8.000</td>
+<td>3.000</td>
+<td>2.000</td>
+</tr>
+<tr>
+<td>Gehälter</td>
+<td>38.000</td>
+<td>2.000</td>
+<td>5.500</td>
+<td>3.200</td>
+<td>4.000</td>
+<td>4.500</td>
+<td>12.800</td>
+<td>6.000</td>
+</tr>
+<tr>
+<td>Kalk. Abschreibungen</td>
+<td>30.000</td>
+<td>1.200</td>
+<td>1.800</td>
+<td>2.500</td>
+<td>9.000</td>
+<td>11.500</td>
+<td>3.000</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>Kalk. Zinsen</td>
+<td>20.000</td>
+<td>1.000</td>
+<td>2.000</td>
+<td>1.000</td>
+<td>5.000</td>
+<td>6.000</td>
+<td>3.000</td>
+<td>2.000</td>
+</tr>
+<tr>
+<td>Miete</td>
+<td>15.000</td>
+<td>600</td>
+<td>1.800</td>
+<td>800</td>
+<td>4.000</td>
+<td>4.800</td>
+<td>2.000</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>Büromaterial</td>
+<td>2.350</td>
+<td>200</td>
+<td>300</td>
+<td>100</td>
+<td>200</td>
+<td>200</td>
+<td>900</td>
+<td>450</td>
+</tr>
+<tr>
+<td><strong>Summe</strong></td>
+<td><strong>163.350</strong></td>
+<td><strong>6.000</strong></td>
+<td><strong>14.400</strong></td>
+<td><strong>9.600</strong></td>
+<td><strong>43.200</strong></td>
+<td><strong>53.000</strong></td>
+<td><strong>24.700</strong></td>
+<td><strong>12.450</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Schritt 2: Umlage</strong></p>
+<ul>
+<li>Fuhrpark 6.000 € ÷ 20 Teile = <strong>300 € je Teil</strong> → Material 600 €, Werkstatt 300 €, Fertigung I 1.800 €, Fertigung II 1.500 €, Verwaltung 1.200 €, Vertrieb 600 €</li>
+<li>Werkstatt 9.900 € ÷ 11 Teile = <strong>900 € je Teil</strong> → Fertigung I 5.400 €, Fertigung II 4.500 €</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Endsummen</th>
+<th>Material</th>
+<th>Fertigung I</th>
+<th>Fertigung II</th>
+<th>Verwaltung</th>
+<th>Vertrieb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gemeinkosten nach Umlage</td>
+<td>15.000</td>
+<td>50.400</td>
+<td>59.000</td>
+<td>25.900</td>
+<td>13.050</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Schritt 3: Kalkulationssätze</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Satz</th>
+<th>Rechnung</th>
+<th>Ergebnis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MGK-Zuschlagssatz</td>
+<td>15.000 × 100 ÷ 100.000</td>
+<td>15,00 %</td>
+</tr>
+<tr>
+<td>FGK-Zuschlagssatz (Fertigung I)</td>
+<td>50.400 × 100 ÷ 42.000</td>
+<td>120,00 %</td>
+</tr>
+<tr>
+<td>FGK-Zuschlagssatz (Fertigung II)</td>
+<td>59.000 × 100 ÷ 56.000</td>
+<td>105,36 %</td>
+</tr>
+<tr>
+<td>VwGK-Zuschlagssatz</td>
+<td>25.900 × 100 ÷ 322.400</td>
+<td>8,03 %</td>
+</tr>
+<tr>
+<td>VtGK-Zuschlagssatz</td>
+<td>13.050 × 100 ÷ 322.400</td>
+<td>4,05 %</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Nebenrechnung: Herstellkosten des Umsatzes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeile</th>
+<th>Betrag in €</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fertigungsmaterial</td>
+<td>100.000</td>
+</tr>
+<tr>
+<td>+ Materialgemeinkosten</td>
+<td>15.000</td>
+</tr>
+<tr>
+<td>= Materialkosten</td>
+<td>115.000</td>
+</tr>
+<tr>
+<td>Fertigungslöhne (alle Fertigungsstellen)</td>
+<td>98.000</td>
+</tr>
+<tr>
+<td>+ Fertigungsgemeinkosten (alle Fertigungsstellen)</td>
+<td>109.400</td>
+</tr>
+<tr>
+<td>= Fertigungskosten</td>
+<td>207.400</td>
+</tr>
+<tr>
+<td>= Herstellkosten der Erzeugung</td>
+<td>322.400</td>
+</tr>
+<tr>
+<td>+ Bestandsminderungen</td>
+<td>0</td>
+</tr>
+<tr>
+<td>− Bestandsmehrungen</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>= Herstellkosten des Umsatzes</strong></td>
+<td><strong>322.400</strong></td>
+</tr>
+</tbody>
+</table></div>
+</details></div>
+</main>
+</div>
+<footer class="site">Exkurs Vollkostenrechnung · BGW24a · Entwurf Stand 11/2026</footer>
+</body>
+</html>

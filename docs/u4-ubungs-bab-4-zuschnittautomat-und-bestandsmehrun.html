@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Übungs-BAB 4: Zuschnittautomat und Bestandsmehrung – Exkurs Vollkostenrechnung</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="u4">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>Entwurf</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>Maschinenstundensatz und Restgemeinkosten-Satz im BAB ermitteln,</li><li>die Herstellkosten des Umsatzes bei einer Bestandsmehrung berechnen.</li></ul></div><div class="box note"><div class="box-title">Freiwillige Übung</div><p>Dieses Modul gehört zum Übungsbereich. Du brauchst es nicht für die Meilensteine. Wer sicherer werden möchte, übt hier an neuen Zahlen.</p>
+</div><h2>Die Situation</h2>
+<p>Frau Petersen: „Für die <strong>Produktion Leder</strong> mit dem <strong>Zuschnittautomaten</strong> brauche ich den BAB für den <strong>November</strong>. Die Gemeinkosten stammen aus dem Kostenartenplan. Die Lagerbestände an fertigen Erzeugnissen haben sich gegenüber dem Vormonat um <strong>24.000 € erhöht</strong>. Der Zuschnittautomat lief <strong>400 Stunden</strong>.“</p>
+<h2>Dein Arbeitsauftrag</h2>
+<p>a) <strong>Verteile</strong> die Gemeinkosten auf die Kostenstellen.
+b) <strong>Verrechne</strong> die innerbetrieblichen Leistungen (Fuhrpark).
+c) <strong>Ermittle</strong> die Kalkulationssätze und die Herstellkosten des Umsatzes.</p>
+<p><strong>Angaben:</strong></p>
+<ul>
+<li>Fertigungsmaterial: 180.000 €</li>
+<li>Fertigungslöhne Fertigung: 110.000 €</li>
+<li>Fertigungslöhne Rest Automat: 40.000 €</li>
+<li>Maschinenlaufzeit Zuschnittautomat: 400 Stunden</li>
+<li>Bestandsmehrung: 24.000 €</li>
+</ul>
+<p><strong>Verteilung der Gemeinkosten im Monat November.</strong> Bei Belegen, Gehaltsliste und Anlagendatei stehen <strong>Beträge in €</strong>, bei „Schlüssel“ und „m²“ <strong>Schlüsselzahlen</strong>:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Gemeinkostenart</th>
+<th>Verteilungsgrundlage</th>
+<th>Fuhrpark</th>
+<th>Material</th>
+<th>Fertigung</th>
+<th>Zuschnittautomat</th>
+<th>Rest Automat</th>
+<th>Verwaltung</th>
+<th>Vertrieb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hilfsstoffe</td>
+<td>Belege</td>
+<td>0</td>
+<td>0</td>
+<td>9.000</td>
+<td>2.000</td>
+<td>1.000</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Betriebsstoffe</td>
+<td>Schlüssel (kWh)</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>10</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Gehälter</td>
+<td>Gehaltsliste</td>
+<td>2.000</td>
+<td>4.000</td>
+<td>3.000</td>
+<td>1.500</td>
+<td>2.500</td>
+<td>9.000</td>
+<td>5.000</td>
+</tr>
+<tr>
+<td>Sozialkosten</td>
+<td>Gehaltsliste</td>
+<td>500</td>
+<td>1.000</td>
+<td>750</td>
+<td>375</td>
+<td>625</td>
+<td>2.250</td>
+<td>1.250</td>
+</tr>
+<tr>
+<td>Kalk. Abschreibungen</td>
+<td>Anlagendatei</td>
+<td>1.000</td>
+<td>1.500</td>
+<td>4.000</td>
+<td>18.000</td>
+<td>500</td>
+<td>2.000</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>Kalk. Zinsen</td>
+<td>Schlüssel (Kapital)</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>12</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Miete</td>
+<td>m²</td>
+<td>30</td>
+<td>70</td>
+<td>200</td>
+<td>80</td>
+<td>20</td>
+<td>60</td>
+<td>40</td>
+</tr>
+<tr>
+<td>Fremdinstandhaltung</td>
+<td>Belege</td>
+<td>400</td>
+<td>300</td>
+<td>1.000</td>
+<td>3.000</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Schlüssel zur Verrechnung innerbetrieblicher Leistungen</strong> (Teile je Kostenstelle):</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Vorkostenstelle</th>
+<th>Umlagegrundlage</th>
+<th>Fuhrpark</th>
+<th>Material</th>
+<th>Fertigung</th>
+<th>Zuschnittautomat</th>
+<th>Rest Automat</th>
+<th>Verwaltung</th>
+<th>Vertrieb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fuhrpark</td>
+<td>Transportaufträge</td>
+<td>–</td>
+<td>3</td>
+<td>5</td>
+<td>4</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+</tr>
+</tbody>
+</table></div>
+<div class="box download"><div class="box-title">📥 Arbeitsblatt Übungs-BAB 4: Zuschnittautomat und Bestandsmehrung (Querformat, PDF)</div><p>Mit BAB-Formular, Nebenrechnung und Rechenkästen. Als Word: <a href="material/AB-u4-zuschnittautomat.docx">AB-u4-zuschnittautomat.docx</a></p>
+<p><a class="btn" href="material/AB-u4-zuschnittautomat.pdf" download>AB-u4-zuschnittautomat.pdf herunterladen</a></p></div><div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · BAB erstellen</h3><span class="lvl time">40 min</span></div><p>Erstelle den BAB im Formular, berechne die Kalkulationssätze und die Nebenrechnung.</p>
+<details><summary>Hilfe: Info-Seiten</summary><p>Wenn du nicht weiterkommst: Info 4 (Verteilen), Info 5 (Umlage) und Info 6 (Kalkulationssätze) unter „Extras“ oder als PDF: <a href="material/Info-4-verteilung.pdf">Info 4</a> · <a href="material/Info-5-umlage.pdf">Info 5</a> · <a href="material/Info-6-kalkulationssaetze.pdf">Info 6</a></p>
+</details><details><summary>Lösung</summary><p><strong>Schritt 1: Verteilung</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Gemeinkostenart</th>
+<th>Summe</th>
+<th>Fuhrpark</th>
+<th>Material</th>
+<th>Fertigung</th>
+<th>Zuschnittautomat</th>
+<th>Rest Automat</th>
+<th>Verwaltung</th>
+<th>Vertrieb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hilfsstoffe</td>
+<td>12.000</td>
+<td>0</td>
+<td>0</td>
+<td>9.000</td>
+<td>2.000</td>
+<td>1.000</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Betriebsstoffe</td>
+<td>10.000</td>
+<td>500</td>
+<td>1.000</td>
+<td>2.000</td>
+<td>5.000</td>
+<td>500</td>
+<td>500</td>
+<td>500</td>
+</tr>
+<tr>
+<td>Gehälter</td>
+<td>27.000</td>
+<td>2.000</td>
+<td>4.000</td>
+<td>3.000</td>
+<td>1.500</td>
+<td>2.500</td>
+<td>9.000</td>
+<td>5.000</td>
+</tr>
+<tr>
+<td>Sozialkosten</td>
+<td>6.750</td>
+<td>500</td>
+<td>1.000</td>
+<td>750</td>
+<td>375</td>
+<td>625</td>
+<td>2.250</td>
+<td>1.250</td>
+</tr>
+<tr>
+<td>Kalk. Abschreibungen</td>
+<td>28.000</td>
+<td>1.000</td>
+<td>1.500</td>
+<td>4.000</td>
+<td>18.000</td>
+<td>500</td>
+<td>2.000</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>Kalk. Zinsen</td>
+<td>12.000</td>
+<td>600</td>
+<td>600</td>
+<td>1.800</td>
+<td>7.200</td>
+<td>600</td>
+<td>600</td>
+<td>600</td>
+</tr>
+<tr>
+<td>Miete</td>
+<td>10.000</td>
+<td>600</td>
+<td>1.400</td>
+<td>4.000</td>
+<td>1.600</td>
+<td>400</td>
+<td>1.200</td>
+<td>800</td>
+</tr>
+<tr>
+<td>Fremdinstandhaltung</td>
+<td>4.700</td>
+<td>400</td>
+<td>300</td>
+<td>1.000</td>
+<td>3.000</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>Summe</strong></td>
+<td><strong>110.450</strong></td>
+<td><strong>5.600</strong></td>
+<td><strong>9.800</strong></td>
+<td><strong>25.550</strong></td>
+<td><strong>38.675</strong></td>
+<td><strong>6.125</strong></td>
+<td><strong>15.550</strong></td>
+<td><strong>9.150</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Schritt 2: Umlage</strong></p>
+<ul>
+<li>Fuhrpark 5.600 € ÷ 20 Teile = <strong>280 € je Teil</strong> → Material 840 €, Fertigung 1.400 €, Zuschnittautomat 1.120 €, Rest Automat 560 €, Verwaltung 560 €, Vertrieb 1.120 €</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Endsummen</th>
+<th>Material</th>
+<th>Fertigung</th>
+<th>Zuschnittautomat</th>
+<th>Rest Automat</th>
+<th>Verwaltung</th>
+<th>Vertrieb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gemeinkosten nach Umlage</td>
+<td>10.640</td>
+<td>26.950</td>
+<td>39.795</td>
+<td>6.685</td>
+<td>16.110</td>
+<td>10.270</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Schritt 3: Kalkulationssätze</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Satz</th>
+<th>Rechnung</th>
+<th>Ergebnis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MGK-Zuschlagssatz</td>
+<td>10.640 × 100 ÷ 180.000</td>
+<td>5,91 %</td>
+</tr>
+<tr>
+<td>FGK-Zuschlagssatz (Fertigung)</td>
+<td>26.950 × 100 ÷ 110.000</td>
+<td>24,50 %</td>
+</tr>
+<tr>
+<td>Maschinenstundensatz</td>
+<td>39.795 ÷ 400 h</td>
+<td>99,49 €</td>
+</tr>
+<tr>
+<td>Restgemeinkosten-Satz</td>
+<td>6.685 × 100 ÷ 40.000</td>
+<td>16,71 %</td>
+</tr>
+<tr>
+<td>VwGK-Zuschlagssatz</td>
+<td>16.110 × 100 ÷ 390.070</td>
+<td>4,13 %</td>
+</tr>
+<tr>
+<td>VtGK-Zuschlagssatz</td>
+<td>10.270 × 100 ÷ 390.070</td>
+<td>2,63 %</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Nebenrechnung: Herstellkosten des Umsatzes</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeile</th>
+<th>Betrag in €</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fertigungsmaterial</td>
+<td>180.000</td>
+</tr>
+<tr>
+<td>+ Materialgemeinkosten</td>
+<td>10.640</td>
+</tr>
+<tr>
+<td>= Materialkosten</td>
+<td>190.640</td>
+</tr>
+<tr>
+<td>Fertigungslöhne (alle Fertigungsstellen)</td>
+<td>150.000</td>
+</tr>
+<tr>
+<td>+ Fertigungsgemeinkosten (alle Fertigungsstellen)</td>
+<td>73.430</td>
+</tr>
+<tr>
+<td>= Fertigungskosten</td>
+<td>223.430</td>
+</tr>
+<tr>
+<td>= Herstellkosten der Erzeugung</td>
+<td>414.070</td>
+</tr>
+<tr>
+<td>+ Bestandsminderungen</td>
+<td>0</td>
+</tr>
+<tr>
+<td>− Bestandsmehrungen</td>
+<td>24.000</td>
+</tr>
+<tr>
+<td><strong>= Herstellkosten des Umsatzes</strong></td>
+<td><strong>390.070</strong></td>
+</tr>
+</tbody>
+</table></div>
+</details></div>
+</main>
+</div>
+<footer class="site">Exkurs Vollkostenrechnung · BGW24a · Entwurf Stand 11/2026</footer>
+</body>
+</html>

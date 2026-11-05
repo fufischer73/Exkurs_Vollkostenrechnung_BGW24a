@@ -23,6 +23,12 @@ window.LP_KURS = {
    "name": "Von den Kosten zum Verkaufspreis",
    "icon": "🏆",
    "start": "t1-ist-und-normalsatze.html"
+  },
+  {
+   "id": "uebungen",
+   "name": "Übungen und Vertiefung (freiwillig)",
+   "icon": "⭐",
+   "start": "u1-ubungs-bab-1-produktion-leder.html"
   }
  ],
  "module": [
@@ -129,6 +135,54 @@ window.LP_KURS = {
    "title": "Meilenstein 3: Kalkulation für den Rucksack Explorer",
    "min": 40,
    "milestone": true
+  },
+  {
+   "id": "u1",
+   "level": "uebungen",
+   "file": "u1-ubungs-bab-1-produktion-leder.html",
+   "title": "Übungs-BAB 1: Produktion Leder",
+   "min": 40,
+   "milestone": false
+  },
+  {
+   "id": "u2",
+   "level": "uebungen",
+   "file": "u2-ubungs-bab-2-produktion-textil.html",
+   "title": "Übungs-BAB 2: Produktion Textil",
+   "min": 40,
+   "milestone": false
+  },
+  {
+   "id": "u3",
+   "level": "uebungen",
+   "file": "u3-ubungs-bab-3-produktion-kunststoffe.html",
+   "title": "Übungs-BAB 3: Produktion Kunststoffe",
+   "min": 45,
+   "milestone": false
+  },
+  {
+   "id": "u4",
+   "level": "uebungen",
+   "file": "u4-ubungs-bab-4-zuschnittautomat-und-bestandsmehrun.html",
+   "title": "Übungs-BAB 4: Zuschnittautomat und Bestandsmehrung",
+   "min": 45,
+   "milestone": false
+  },
+  {
+   "id": "u5",
+   "level": "uebungen",
+   "file": "u5-ubung-5-maschinenstundensatz-herleiten.html",
+   "title": "Übung 5: Maschinenstundensatz herleiten",
+   "min": 40,
+   "milestone": false
+  },
+  {
+   "id": "u6",
+   "level": "uebungen",
+   "file": "u6-ubung-6-richtig-oder-falsch.html",
+   "title": "Übung 6: Richtig oder falsch?",
+   "min": 15,
+   "milestone": false
   }
  ],
  "abgabeLink": "",
@@ -164,6 +218,10 @@ window.LP_KURS = {
   {
    "file": "info-8-zuschlagskalkulation.html",
    "title": "Info 8: Zuschlagskalkulation und Verkaufspreis"
+  },
+  {
+   "file": "info-9-maschinenstundensatz.html",
+   "title": "Info 9: Maschinenstundensatz herleiten"
   }
  ],
  "varianten": null,
@@ -171,7 +229,8 @@ window.LP_KURS = {
  "selbstcheck": null,
  "einstufung": {
   "bab": "einstufung-bab.html",
-  "kostentraeger": "einstufung-kostentraeger.html"
+  "kostentraeger": "einstufung-kostentraeger.html",
+  "uebungen": "einstufung-uebungen.html"
  },
  "zugang": null
 };

@@ -94,6 +94,48 @@
    "review": "geprueft"
   },
   {
+   "datei": "u1-ubungs-bab-1-produktion-leder.html",
+   "art": "modul",
+   "id": "u1",
+   "titel": "Übungs-BAB 1: Produktion Leder",
+   "review": "entwurf"
+  },
+  {
+   "datei": "u2-ubungs-bab-2-produktion-textil.html",
+   "art": "modul",
+   "id": "u2",
+   "titel": "Übungs-BAB 2: Produktion Textil",
+   "review": "entwurf"
+  },
+  {
+   "datei": "u3-ubungs-bab-3-produktion-kunststoffe.html",
+   "art": "modul",
+   "id": "u3",
+   "titel": "Übungs-BAB 3: Produktion Kunststoffe",
+   "review": "entwurf"
+  },
+  {
+   "datei": "u4-ubungs-bab-4-zuschnittautomat-und-bestandsmehrun.html",
+   "art": "modul",
+   "id": "u4",
+   "titel": "Übungs-BAB 4: Zuschnittautomat und Bestandsmehrung",
+   "review": "entwurf"
+  },
+  {
+   "datei": "u5-ubung-5-maschinenstundensatz-herleiten.html",
+   "art": "modul",
+   "id": "u5",
+   "titel": "Übung 5: Maschinenstundensatz herleiten",
+   "review": "entwurf"
+  },
+  {
+   "datei": "u6-ubung-6-richtig-oder-falsch.html",
+   "art": "modul",
+   "id": "u6",
+   "titel": "Übung 6: Richtig oder falsch?",
+   "review": "entwurf"
+  },
+  {
    "datei": "info-1-aufwand-kosten.html",
    "art": "seite",
    "titel": "Info 1: Aufwand, Kosten und neutrale Posten"
@@ -134,6 +176,11 @@
    "titel": "Info 8: Zuschlagskalkulation und Verkaufspreis"
   },
   {
+   "datei": "info-9-maschinenstundensatz.html",
+   "art": "seite",
+   "titel": "Info 9: Maschinenstundensatz herleiten"
+  },
+  {
    "datei": "index.html",
    "art": "index",
    "titel": "Übersicht"
@@ -155,6 +202,13 @@
    "art": "einstufung",
    "titel": "🎯 Einstufungstest: direkt zu Von den Kosten zum Verkaufspreis",
    "stufe": "kostentraeger",
+   "bestehen": 80
+  },
+  {
+   "datei": "einstufung-uebungen.html",
+   "art": "einstufung",
+   "titel": "🎯 Einstufungstest: direkt zu Übungen und Vertiefung (freiwillig)",
+   "stufe": "uebungen",
    "bestehen": 80
   }
  ]

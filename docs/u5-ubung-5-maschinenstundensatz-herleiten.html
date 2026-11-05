@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Übung 5: Maschinenstundensatz herleiten – Exkurs Vollkostenrechnung</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-module="u5">
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<div class="box warn"><strong>Entwurf</strong> – dieses Modul ist noch nicht von der Lehrkraft freigegeben.</div><div class="box goals"><div class="box-title">🎯 Das kannst du nach diesem Modul</div><ul><li>die Maschinengemeinkosten einer Maschine nach Kostenarten berechnen,</li><li>die produktive Laufzeit bestimmen,</li><li>den Maschinenstundensatz herleiten und anwenden.</li></ul></div><div class="box note"><div class="box-title">Freiwillige Übung</div><p>Dieses Modul gehört zum Übungsbereich. Du lernst, wie ein Maschinenstundensatz entsteht, der im BAB sonst fertig vorgegeben ist.</p>
+</div><h2>Die Situation</h2>
+<p>Frau Petersen: „Bei Montelli laufen drei Automaten, die jeweils als eigene Kostenstelle geführt werden. Im BAB brauche ich für jede Maschine einen <strong>Maschinenstundensatz</strong>. Die Herstellerangaben und die Infos des Controllings habe ich hier. Rechne die Sätze aus.“</p>
+<h2>Dein Arbeitsauftrag</h2>
+<p>Berechne für die drei Automaten die jährlichen Maschinengemeinkosten und die zugehörigen Maschinenstundensätze für die Angebotskalkulation.</p>
+<p><strong>Herstellerangaben:</strong></p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Zuschnittautomat</th>
+<th>Nähautomat</th>
+<th>Stanzpresse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anschaffungskosten in €</td>
+<td>240.000</td>
+<td>180.000</td>
+<td>120.000</td>
+</tr>
+<tr>
+<td>Wiederbeschaffungskosten in €</td>
+<td>264.000</td>
+<td>198.000</td>
+<td>132.000</td>
+</tr>
+<tr>
+<td>Nutzungsdauer in Jahren</td>
+<td>8</td>
+<td>6</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Platzbedarf in m²</td>
+<td>30</td>
+<td>24</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Maximale Laufzeit (h/Jahr)</td>
+<td>2.000</td>
+<td>2.000</td>
+<td>2.000</td>
+</tr>
+<tr>
+<td>Stillstand/Umrüstung (h/Jahr)</td>
+<td>250</td>
+<td>200</td>
+<td>150</td>
+</tr>
+<tr>
+<td>Instandhaltung (h/Jahr)</td>
+<td>100</td>
+<td>80</td>
+<td>50</td>
+</tr>
+<tr>
+<td>Anschlusswert in kW</td>
+<td>20</td>
+<td>15</td>
+<td>10</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Informationen aus dem Controlling:</strong> Strom 0,15 € je kWh · Platzkosten 20 € je m² und Monat · kalkulatorischer Zinssatz 6 % vom durchschnittlich gebundenen Kapital (halbe Anschaffungskosten) · Instandhaltungskosten 5 % der Wiederbeschaffungskosten je Jahr.</p>
+<div class="box download"><div class="box-title">📥 Arbeitsblatt Übung 5: Maschinenstundensatz herleiten (PDF)</div><p>Mit Formeln und Feldern für die Rechnung. Als Word: <a href="material/AB-u5-maschinenstundensatz.docx">AB-u5-maschinenstundensatz.docx</a> · Info 9: <a href="material/Info-9-maschinenstundensatz.pdf">PDF</a></p>
+<p><a class="btn" href="material/AB-u5-maschinenstundensatz.pdf" download>AB-u5-maschinenstundensatz.pdf herunterladen</a></p></div><div class="box task basis"><div class="task-head"><span class="lvl basis">Basis</span><h3>1 · Maschinenstundensätze berechnen</h3><span class="lvl time">30 min</span></div><p>Fülle die Tabelle auf dem Arbeitsblatt aus: fünf Kostenarten je Jahr, Summe, produktive Laufzeit und Maschinenstundensatz.</p>
+<details><summary>Hilfe: So rechnest du</summary><ul>
+<li><strong>Kalkulatorische Abschreibung</strong> = Wiederbeschaffungskosten ÷ Nutzungsdauer</li>
+<li><strong>Kalkulatorische Zinsen</strong> = durchschnittlich gebundenes Kapital (Anschaffungskosten ÷ 2) × Zinssatz</li>
+<li><strong>Instandhaltungskosten</strong> = Wiederbeschaffungskosten × Satz</li>
+<li><strong>Raumkosten</strong> = m² × Platzkosten × 12 Monate</li>
+<li><strong>Produktive Laufzeit</strong> = maximale Laufzeit − Stillstand − Instandhaltung</li>
+<li><strong>Energiekosten</strong> = Anschlusswert × produktive Laufzeit × Strompreis (vereinfacht: volle Last)</li>
+<li><strong>Maschinenstundensatz</strong> = Summe der Maschinengemeinkosten ÷ produktive Laufzeit</li>
+</ul>
+<p>Mehr dazu: Info 9 unter „Extras“ oder als PDF: <a href="material/Info-9-maschinenstundensatz.pdf">Info 9 (PDF)</a></p>
+</details><details><summary>Lösung</summary><div class="table-wrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Zuschnittautomat</th>
+<th>Nähautomat</th>
+<th>Stanzpresse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kalk. Abschreibung/Jahr</td>
+<td>33.000</td>
+<td>33.000</td>
+<td>13.200</td>
+</tr>
+<tr>
+<td>Kalk. Zinsen/Jahr</td>
+<td>7.200</td>
+<td>5.400</td>
+<td>3.600</td>
+</tr>
+<tr>
+<td>Instandhaltungskosten/Jahr</td>
+<td>13.200</td>
+<td>9.900</td>
+<td>6.600</td>
+</tr>
+<tr>
+<td>Raumkosten/Jahr</td>
+<td>7.200</td>
+<td>5.760</td>
+<td>4.800</td>
+</tr>
+<tr>
+<td>Produktive Laufzeit (h/Jahr)</td>
+<td>1.650</td>
+<td>1.720</td>
+<td>1.800</td>
+</tr>
+<tr>
+<td>Energiekosten/Jahr</td>
+<td>4.950</td>
+<td>3.870</td>
+<td>2.700</td>
+</tr>
+<tr>
+<td><strong>Summe Maschinengemeinkosten/Jahr</strong></td>
+<td><strong>65.550</strong></td>
+<td><strong>57.930</strong></td>
+<td><strong>30.900</strong></td>
+</tr>
+<tr>
+<td><strong>Maschinenstundensatz</strong></td>
+<td><strong>39,73 € je h</strong></td>
+<td><strong>33,68 € je h</strong></td>
+<td><strong>17,17 € je h</strong></td>
+</tr>
+</tbody>
+</table></div>
+</details></div><div class="box task plus"><div class="task-head"><span class="lvl plus">Plus</span><h3>2 · Ein Auftrag</h3><span class="lvl time">10 min</span></div><p>Ein Auftrag braucht <strong>3 Stunden am Zuschnittautomaten</strong> und <strong>2 Stunden am Nähautomaten</strong>. Wie hoch sind die Maschinenkosten des Auftrags?</p>
+<details><summary>Lösung</summary><p>3 h × 39,73 € + 2 h × 33,68 € = <strong>186,55 €</strong></p>
+</details></div>
+</main>
+</div>
+<footer class="site">Exkurs Vollkostenrechnung · BGW24a · Entwurf Stand 11/2026</footer>
+</body>
+</html>

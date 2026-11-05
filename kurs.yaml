@@ -4,7 +4,7 @@ titel: Exkurs Vollkostenrechnung
 kurzname: exkurs-vollkostenrechnung
 ueberschrift: Von der GuV zum Verkaufspreis – Vollkostenrechnung bei der Montelli GmbH
 untertitel: Du lernst, wie aus den Zahlen der GuV Kostenarten, ein Betriebsabrechnungsbogen und am Ende der Verkaufspreis des Rucksacks „Business Deluxe“ entstehen.
-badges: [BGW24a · BRC, Montelli GmbH, 3 Stufen · Entwurf]
+badges: [BGW24a · BRC, Montelli GmbH, 3 Stufen + Übungen · Entwurf]
 fusszeile: Exkurs Vollkostenrechnung · BGW24a · Entwurf Stand 11/2026
 logo_zeichen: "€"
 einleitung: |
@@ -31,6 +31,11 @@ stufen:
     icon: "🏆"
     text: Ist- und Normalsätze verstehen, die Zuschlagskalkulation durchführen und den Listenverkaufspreis berechnen.
     module: [t1, t2, t3, tm]
+  - id: uebungen
+    name: Übungen und Vertiefung (freiwillig)
+    icon: "⭐"
+    text: Zusätzliche BABs der Produktionen Leder, Textil und Kunststoffe, den Maschinenstundensatz herleiten und Aussagen zum BAB prüfen.
+    module: [u1, u2, u3, u4, u5, u6]
 
 einstufung: {bestehen: 80}   # Einstufungstests aus den Kurz-Checks der vorigen Stufe
 
@@ -49,3 +54,13 @@ tests:
     versuche: 0
     feedback: nachher
     text: Zehn Fragen zu allen drei Stufen. Die Rechenaufgaben haben bei jedem Versuch andere Zahlen. Du kannst den Test wiederholen.
+
+  - id: test-ubung-bab
+    titel: "Test: Richtig oder falsch zum BAB"
+    stufe: uebungen
+    fragen: ubung-bab
+    punkte: 10
+    bestehen: 60
+    versuche: 0
+    feedback: sofort
+    text: Acht Aussagen zum BAB und zu den Kalkulationssätzen. Du kannst den Test beliebig oft wiederholen.

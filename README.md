@@ -3,7 +3,7 @@
 Lernpfad für Moodle (Abschnitt mit Unterabschnitten) und Web-Version, gebaut mit dem
 [Lernpfad-Baukasten](https://github.com/dclausen01/Lernpfad-baukasten).
 
-**Stand:** Stufe 1 „Von der GuV zu den Kosten“ , Stufe 2 „Der Betriebsabrechnungsbogen“ und Stufe 3 „Von den Kosten zum Verkaufspreis“ (alle Entwurf) mit Lernerfolgskontrolle (Moodle-Test).
+**Stand:** Stufe 1 „Von der GuV zu den Kosten“ , Stufe 2 „Der Betriebsabrechnungsbogen“ und Stufe 3 „Von den Kosten zum Verkaufspreis“ (alle Entwurf) mit Lernerfolgskontrolle (Moodle-Test) sowie die freiwillige Stufe 4 „Übungen und Vertiefung“.
 
 | Ordner | Inhalt |
 | --- | --- |
@@ -13,7 +13,7 @@ Lernpfad für Moodle (Abschnitt mit Unterabschnitten) und Web-Version, gebaut mi
 | `werkzeuge/` | Zahlengrundlage der Montelli GmbH (`daten.py`, rechnet und prüft alle Summen) und Erzeugung der Materialien |
 
 Alle Zahlen sind für die Montelli GmbH neu konstruiert. Das Westermann-Material (Crome KG) diente nur als Strukturvorlage.
-Neu bauen: `python3 werkzeuge/material_stufe1.py` und `werkzeuge/material_stufe2.py` und `werkzeuge/material_stufe3.py` und `werkzeuge/material_erweiterung.py`, dann `python3 <baukasten>/skripte/alles.py .`
+Neu bauen: `python3 werkzeuge/material_stufe1.py` und `werkzeuge/material_stufe2.py` und `werkzeuge/material_stufe3.py`, `werkzeuge/material_uebungen.py` und `werkzeuge/material_erweiterung.py`, dann `python3 <baukasten>/skripte/alles.py .`
 
 `vorschau/vorschau.zip` enthält die Web-Version zum Ansehen (entpacken, `web/index.html` öffnen).
 `vorschau/TESTKURS-ENTWURF-moodle5.mbz` ist eine Kurssicherung mit allen Entwürfen **nur zum Testen** in einem leeren Testkurs, nicht für Schüler:innen.

@@ -20,6 +20,12 @@ MODULE = [
     ("T2", "Zuschlagskalkulation bis zu den Selbstkosten", "45", "NEU, Entwurf: Ergebnis 108,60 € wie in der Lernsituation"),
     ("T3", "Vom Selbstkostenpreis zum Listenverkaufspreis (H)", "40", "NEU, Entwurf: „im Hundert“ bei Skonto und Rabatt; Ergebnis 149,28 €"),
     ("MS 3", "Kalkulation Explorer", "40", "geprüft: Zahlen (117,89 €) und Vergleich mit 149 € in der Artikelliste"),
+    ("U1", "Übungs-BAB 1: Produktion Leder (freiwillig)", "40", "NEU, Entwurf: eine allgemeine Kostenstelle (Fuhrpark), Zahlen frei konstruiert"),
+    ("U2", "Übungs-BAB 2: Produktion Textil (freiwillig)", "40", "NEU, Entwurf: Hilfskostenstelle Werkstatt, zwei Fertigungsstellen"),
+    ("U3", "Übungs-BAB 3: Produktion Kunststoffe (freiwillig)", "45", "NEU, Entwurf: Arbeitsvorbereitung, Bestandsminderung 15.000 €"),
+    ("U4", "Übungs-BAB 4: Zuschnittautomat (freiwillig)", "45", "NEU, Entwurf: Maschinenstundensatz, Restgemeinkosten, Bestandsmehrung 24.000 €"),
+    ("U5", "Übung 5: Maschinenstundensatz herleiten (freiwillig)", "40", "NEU, Entwurf: Vereinfachungen (Energie mit vollem Anschlusswert, Zinsen auf halbe Anschaffungskosten); Fachaussage bitte prüfen"),
+    ("U6", "Übung 6: Richtig oder falsch? (freiwillig)", "15", "NEU, Entwurf: acht Aussagen, dazu Moodle-Test"),
     ("Test", "Lernerfolgskontrolle (Moodle-Test)", "15", "10 Fragen, Zufallszahlen, Reihenfolge-Frage braucht Moodle ab 4.4"),
 ]
 OFFEN = [
