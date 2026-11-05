@@ -189,27 +189,6 @@
    "datei": "start.html",
    "art": "start",
    "titel": "🧭 Mein Lernpfad – hier geht's los"
-  },
-  {
-   "datei": "einstufung-bab.html",
-   "art": "einstufung",
-   "titel": "🎯 Einstufungstest: direkt zu Der Betriebsabrechnungsbogen",
-   "stufe": "bab",
-   "bestehen": 80
-  },
-  {
-   "datei": "einstufung-kostentraeger.html",
-   "art": "einstufung",
-   "titel": "🎯 Einstufungstest: direkt zu Von den Kosten zum Verkaufspreis",
-   "stufe": "kostentraeger",
-   "bestehen": 80
-  },
-  {
-   "datei": "einstufung-uebungen.html",
-   "art": "einstufung",
-   "titel": "🎯 Einstufungstest: direkt zu Übungen und Vertiefung (freiwillig)",
-   "stufe": "uebungen",
-   "bestehen": 80
   }
  ]
 }

@@ -37,11 +37,12 @@ stufen:
     text: Zusätzliche BABs der Produktionen Leder, Textil und Kunststoffe, den Maschinenstundensatz herleiten und Aussagen zum BAB prüfen.
     module: [u1, u2, u3, u4, u5, u6]
 
-einstufung: {bestehen: 80}   # Einstufungstests aus den Kurz-Checks der vorigen Stufe
+# Einstufungstests bewusst nicht verwendet: jede Stufe öffnet nur nach der Abgabe des Meilensteins davor.
+# Bauen deshalb mit  python3 werkzeuge/bauen_ohne_einstufung.py <baukasten>
 
 moodle:
   version: 4                 # BBZ-Moodle 4.5.12+ (keine Unterabschnitte, kein H5P)
-  freischaltung: einstufung  # Stufe frei nach Meilenstein ODER Einstufungstest
+  freischaltung: einstufung  # Stufe frei nach Abgabe des Meilensteins (Einstufungstests abgeschaltet, siehe oben)
   reihenfolge: nacheinander
 
 tests:

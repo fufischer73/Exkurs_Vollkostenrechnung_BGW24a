@@ -227,10 +227,6 @@ window.LP_KURS = {
  "varianten": null,
  "menueband": {},
  "selbstcheck": null,
- "einstufung": {
-  "bab": "einstufung-bab.html",
-  "kostentraeger": "einstufung-kostentraeger.html",
-  "uebungen": "einstufung-uebungen.html"
- },
+ "einstufung": {},
  "zugang": null
 };

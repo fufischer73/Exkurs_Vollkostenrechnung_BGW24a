@@ -22,9 +22,6 @@ Aktivität **Lernpaket** (SCORM) anlegen, ZIP aus `lernpakete/` hochladen, dann:
 ## Abschnitt „Allgemeines“ (ganz oben)
 
 - Lernpaket **🧭 Mein Lernpfad – hier geht's los** – `lernpakete/exkurs-vollkostenrechnung_start_scorm2004.zip`
-- Lernpaket **🎯 Einstufungstest: direkt zu Der Betriebsabrechnungsbogen** – `lernpakete/exkurs-vollkostenrechnung_einstufung-bab_scorm2004.zip`
-- Lernpaket **🎯 Einstufungstest: direkt zu Von den Kosten zum Verkaufspreis** – `lernpakete/exkurs-vollkostenrechnung_einstufung-kostentraeger_scorm2004.zip`
-- Lernpaket **🎯 Einstufungstest: direkt zu Übungen und Vertiefung (freiwillig)** – `lernpakete/exkurs-vollkostenrechnung_einstufung-uebungen_scorm2004.zip`
 
 ## Abschnitt „🌱 Von der GuV zu den Kosten“
 
@@ -41,7 +38,7 @@ Aktivität **Lernpaket** (SCORM) anlegen, ZIP aus `lernpakete/` hochladen, dann:
 
 ## Abschnitt „🚀 Der Betriebsabrechnungsbogen“
 
-Voraussetzung am Abschnitt (Einschränkung: Aktivitätsabschluss bzw. Bewertung, verknüpft mit „mindestens eine“): „📤 Kostenartenplan August abgeben“ abgeschlossen **oder** „🎯 Einstufungstest: direkt zu Der Betriebsabrechnungsbogen“ mit mindestens 80 % bewertet.
+Voraussetzung am Abschnitt (Einschränkung: Aktivitätsabschluss bzw. Bewertung, verknüpft mit „mindestens eine“): „📤 Kostenartenplan August abgeben“ abgeschlossen.
 
 - Lernpaket **B1 · Brücke: Wo fallen die Gemeinkosten an?** – `lernpakete/exkurs-vollkostenrechnung_b1_scorm2004.zip`
 - Lernpaket **B2 · BAB Schritt 1: Gemeinkosten auf die Kostenstellen verteilen** – `lernpakete/exkurs-vollkostenrechnung_b2_scorm2004.zip` – Voraussetzung: „B1 · Brücke: Wo fallen die Gemeinkosten an?“ abgeschlossen
@@ -60,7 +57,7 @@ Voraussetzung am Abschnitt (Einschränkung: Aktivitätsabschluss bzw. Bewertung,
 
 ## Abschnitt „🏆 Von den Kosten zum Verkaufspreis“
 
-Voraussetzung am Abschnitt (Einschränkung: Aktivitätsabschluss bzw. Bewertung, verknüpft mit „mindestens eine“): „📤 BAB und Auswertung abgeben“ abgeschlossen **oder** „🎯 Einstufungstest: direkt zu Von den Kosten zum Verkaufspreis“ mit mindestens 80 % bewertet.
+Voraussetzung am Abschnitt (Einschränkung: Aktivitätsabschluss bzw. Bewertung, verknüpft mit „mindestens eine“): „📤 BAB und Auswertung abgeben“ abgeschlossen.
 
 - Lernpaket **T1 · Ist- und Normalsätze** – `lernpakete/exkurs-vollkostenrechnung_t1_scorm2004.zip`
 - Lernpaket **T2 · Zuschlagskalkulation bis zu den Selbstkosten** – `lernpakete/exkurs-vollkostenrechnung_t2_scorm2004.zip` – Voraussetzung: „T1 · Ist- und Normalsätze“ abgeschlossen
@@ -78,7 +75,7 @@ Voraussetzung am Abschnitt (Einschränkung: Aktivitätsabschluss bzw. Bewertung,
 
 ## Abschnitt „⭐ Übungen und Vertiefung (freiwillig)“
 
-Voraussetzung am Abschnitt (Einschränkung: Aktivitätsabschluss bzw. Bewertung, verknüpft mit „mindestens eine“): „📤 Kalkulation Explorer abgeben“ abgeschlossen **oder** „🎯 Einstufungstest: direkt zu Übungen und Vertiefung (freiwillig)“ mit mindestens 80 % bewertet.
+Voraussetzung am Abschnitt (Einschränkung: Aktivitätsabschluss bzw. Bewertung, verknüpft mit „mindestens eine“): „📤 Kalkulation Explorer abgeben“ abgeschlossen.
 
 - Lernpaket **U1 · Übungs-BAB 1: Produktion Leder** – `lernpakete/exkurs-vollkostenrechnung_u1_scorm2004.zip`
 - Lernpaket **U2 · Übungs-BAB 2: Produktion Textil** – `lernpakete/exkurs-vollkostenrechnung_u2_scorm2004.zip` – Voraussetzung: „U1 · Übungs-BAB 1: Produktion Leder“ abgeschlossen
