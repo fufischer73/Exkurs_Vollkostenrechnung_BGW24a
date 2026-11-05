@@ -10,7 +10,8 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.enum.section import WD_ORIENT
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
-from docx.shared import Cm, Pt, RGBColor
+from docx.shared import Cm, Pt, RGBColor, Twips
+from docx.enum.text import WD_TAB_ALIGNMENT
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 
@@ -27,6 +28,97 @@ GROUPS = [
 
 
 # ---------------------------------------------------------------- docx-Helfer
+
+LOGO = Path(__file__).resolve().parent / "logo-bbz.png"
+
+
+def _feld(par, code, groesse=8):
+    """Fügt ein Feld (PAGE / NUMPAGES) in einen Absatz ein."""
+    r = par.add_run()
+    r.font.size = Pt(groesse)
+    r.font.color.rgb = RGBColor(0x80, 0x80, 0x80)
+    for typ, text in (("begin", None), (None, code), ("end", None)):
+        if typ:
+            e = OxmlElement("w:fldChar")
+            e.set(qn("w:fldCharType"), typ)
+        else:
+            e = OxmlElement("w:instrText")
+            e.set(qn("xml:space"), "preserve")
+            e.text = text
+        r._r.append(e)
+
+
+def kopfzeile(d, fach="Absatzprozesse", thema="Preiskalkulation", gruppe="BGW24a", kurs="BRC"):
+    """Kopfzeile wie in der Lernsituation „Preise kalkulieren“: Fach und Thema mittig, BBZ-Logo rechts,
+    darunter Lerngruppe und Kurs; Fußzeile „Seite x von y“."""
+    for sec in d.sections:
+        breite = sec.page_width - sec.left_margin - sec.right_margin
+        h = sec.header
+        h.is_linked_to_previous = False
+        for p in list(h.paragraphs)[1:]:
+            p._element.getparent().remove(p._element)
+        for t in list(h.tables):
+            t._element.getparent().remove(t._element)
+        p0 = h.paragraphs[0]
+        for r in list(p0.runs):
+            r._element.getparent().remove(r._element)
+        t = h.add_table(1, 3, breite)
+        t.autofit = False
+        links, mitte, rechts = t.rows[0].cells
+        for c, w in ((links, 0.2), (mitte, 0.6), (rechts, 0.2)):
+            c.width = int(breite * w)
+        mitte.text = ""
+        for i, zeile in enumerate((fach, thema)):
+            par = mitte.paragraphs[0] if i == 0 else mitte.add_paragraph()
+            par.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            par.paragraph_format.space_after = Pt(0)
+            run = par.add_run(zeile)
+            run.bold = True
+            run.font.size = Pt(12)
+            run.font.name = "Calibri"
+        rechts.text = ""
+        pr = rechts.paragraphs[0]
+        pr.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+        pr.add_run().add_picture(str(LOGO), width=Cm(2.4))
+        # Zeile mit Lerngruppe links und Kurs rechts, darunter eine Linie
+        h._element.remove(p0._element)
+        h._element.append(p0._element)
+        p0.text = ""
+        for tabs in p0._p.get_or_add_pPr().findall(qn("w:tabs")):
+            p0._p.pPr.remove(tabs)
+        for pos in (4680, 9360):
+            p0.paragraph_format.tab_stops.add_tab_stop(Twips(pos), WD_TAB_ALIGNMENT.CLEAR)
+        p0.paragraph_format.tab_stops.add_tab_stop(breite, WD_TAB_ALIGNMENT.RIGHT)
+        run = p0.add_run(f"{gruppe}\t{kurs}")
+        run.font.size = Pt(9)
+        run.font.name = "Calibri"
+        pPr = p0._p.get_or_add_pPr()
+        bd = OxmlElement("w:pBdr")
+        b = OxmlElement("w:bottom")
+        for k, v in (("val", "single"), ("sz", "6"), ("space", "1"), ("color", "000000")):
+            b.set(qn(f"w:{k}"), v)
+        bd.append(b)
+        pPr.append(bd)
+        try:
+            d.styles["Footer"].font.size = Pt(8)
+            d.styles["Footer"].font.color.rgb = RGBColor(0x80, 0x80, 0x80)
+        except KeyError:
+            pass
+        f = sec.footer
+        f.is_linked_to_previous = False
+        fp = f.paragraphs[0]
+        for r in list(fp.runs):
+            r._element.getparent().remove(r._element)
+        fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        r1 = fp.add_run("Seite ")
+        r1.font.size = Pt(8)
+        r1.font.color.rgb = RGBColor(0x80, 0x80, 0x80)
+        _feld(fp, "PAGE")
+        r2 = fp.add_run(" von ")
+        r2.font.size = Pt(8)
+        r2.font.color.rgb = RGBColor(0x80, 0x80, 0x80)
+        _feld(fp, "NUMPAGES")
+
 def schattieren(zelle, farbe="D9D9D9"):
     tcPr = zelle._tc.get_or_add_tcPr()
     shd = OxmlElement("w:shd")
@@ -52,6 +144,7 @@ def neues_dokument(titel, untertitel=None):
     if untertitel:
         p2 = d.add_paragraph(untertitel)
         p2.runs[0].font.size = Pt(9)
+    kopfzeile(d)
     d.add_paragraph("Name: ______________________________   Datum: ______________")
     return d
 
@@ -94,6 +187,24 @@ def ueberschrift(d, text):
     r = p.add_run(text)
     r.bold = True
     r.font.size = Pt(11)
+
+
+
+def rechenkasten(d, zeilen, breiten=(4.2, 5.2, 4.6, 3.0), hoehe=1.3, kopf=("Berechnung", "Formel", "Rechnung", "Ergebnis")):
+    """Übersichtlicher Kasten für Berechnungen: Formel vorgegeben, Lücken für Rechnung und Ergebnis.
+    zeilen: (Bezeichnung, Formel, Einheit)"""
+    rows = [(b, f, "", f"= ______ {e}".rstrip()) for b, f, e in zeilen]
+    t = tabelle(d, list(kopf), rows, list(breiten), rechts=(), leer_hoehe=hoehe)
+    for row in t.rows[1:]:
+        for c in row.cells[1:2]:
+            for par in c.paragraphs:
+                for run in par.runs:
+                    run.font.size = Pt(8)
+                    run.font.color.rgb = RGBColor(0x55, 0x55, 0x55)
+        for par in row.cells[0].paragraphs:
+            for run in par.runs:
+                run.bold = True
+    return t
 
 
 def guv_tabellen(d, m):
@@ -179,8 +290,12 @@ def ab_g1(pfad):
     rows = [(k, b, fmt(v), "", "") for k, b, v in zweckaufwand(JULI)] + [("", "Summe", "", "", "")]
     tabelle(d, ["Konto", "Bezeichnung", "Betrag", "Einzelkosten", "Gemeinkosten"], rows, [1.6, 6.2, 2.8, 3.0, 3.0],
             rechts=(2, 3, 4), fett_zeilen=(len(rows) - 1,), leer_hoehe=0.65)
-    d.add_paragraph("Einzelkosten: ____________ €     Gemeinkosten: ____________ €     Gesamt: ____________ €")
-    d.add_paragraph("Anteil der Gemeinkosten an den Gesamtkosten: ______ %  (Gemeinkosten ÷ Gesamtkosten × 100)")
+    rechenkasten(d, [
+        ("Einzelkosten", "Summe der Einzelkosten", "€"),
+        ("Gemeinkosten", "Summe der Gemeinkosten", "€"),
+        ("Gesamtkosten", "Einzelkosten + Gemeinkosten", "€"),
+        ("Anteil der Gemeinkosten", "Gemeinkosten × 100 ÷ Gesamtkosten", "%"),
+    ], breiten=(4.2, 5.6, 4.6, 2.9), hoehe=1.2)
     ueberschrift(d, "Aufgabe 2 · Das Problem der Gemeinkosten")
     d.add_paragraph("Kann Frau Petersen die Gemeinkosten einfach „pro Rucksack“ in der GuV ablesen? Was braucht sie stattdessen?")
     for _ in range(3):
@@ -268,6 +383,7 @@ def plakat(pfad):
     s.left_margin = s.right_margin = Cm(1.5)
     s.top_margin = s.bottom_margin = Cm(1.2)
     d.styles["Normal"].font.name = "Arial"
+    kopfzeile(d)
     p = d.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     r = p.add_run("Der Weg von der GuV zum Verkaufspreis")
@@ -301,9 +417,9 @@ def plakat(pfad):
             rr.font.size = Pt(groesse)
             if zeile < 2:
                 schattieren(c, "DDEBF7" if i < 2 else ("E2EFDA" if i < 4 else "FCE4D6"))
-    t.rows[0].height = Cm(2.0)
-    t.rows[1].height = Cm(2.6)
-    t.rows[2].height = Cm(5.2)
+    t.rows[0].height = Cm(1.6)
+    t.rows[1].height = Cm(2.0)
+    t.rows[2].height = Cm(3.8)
     d.add_paragraph()
     p = d.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER

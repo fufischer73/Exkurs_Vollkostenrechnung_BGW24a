@@ -53,7 +53,9 @@ def ab_t1(pfad):
     rows = []
     for i, n in enumerate(SAETZE_NAMEN):
         rows.append([n] + [f"{v[i]:.2f}".replace(".", ",") for v in ISTSAETZE.values()] + [""])
-    tabelle(d, ["Satz"] + list(ISTSAETZE) + ["Normalsatz"], rows, [5.4, 2.0, 2.0, 2.0, 2.0, 3.2], rechts=(1, 2, 3, 4, 5), leer_hoehe=0.8)
+    rows = [r[:-1] + ["", ""] for r in rows]
+    tabelle(d, ["Satz"] + list(ISTSAETZE) + ["Rechnung (Summe ÷ 4)", "Normalsatz"], rows, [4.6, 1.4, 1.4, 1.4, 1.4, 4.2, 2.6],
+            rechts=(1, 2, 3, 4, 6), leer_hoehe=1.3)
     ueberschrift(d, "Aufgabe 2 · Vergleich mit der Lernsituation")
     d.add_paragraph("Vergleiche deine Normalsätze mit Info 2 der Lernsituation „Preise kalkulieren“. Was fällt dir auf?")
     for _ in range(2):

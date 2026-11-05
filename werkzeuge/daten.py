@@ -89,7 +89,12 @@ AUGUST = {
 }
 
 ORDER = ["Hilfsstoffe", "Betriebsstoffe", "Gehälter", "Kalk. Abschreibungen", "Kalk. Zinsen",
-         "Fremdinstandhaltung", "Leasing", "Büromaterial"]
+         "Leasing", "Fremdinstandhaltung", "Büromaterial"]
+
+# Verteilungsgrundlage je Gemeinkostenart (wie in der Vorlage „Verteilung der Gemeinkosten“)
+GRUNDLAGE = {"Hilfsstoffe": "Belege", "Betriebsstoffe": "Schlüssel (kWh)", "Gehälter": "Gehaltsliste",
+             "Kalk. Abschreibungen": "Anlagendatei", "Kalk. Zinsen": "Schlüssel (Kapital)", "Leasing": "m²",
+             "Fremdinstandhaltung": "Belege", "Büromaterial": "Belege"}
 
 # Spalten des BAB (Schritt 1): zwei Vorkostenstellen und fünf Hauptkostenstellen
 SP7 = ["Fuhrpark", "Material", "Fertigungsplanung", "Fertigung I", "Fertigung II", "Verwaltung", "Vertrieb"]

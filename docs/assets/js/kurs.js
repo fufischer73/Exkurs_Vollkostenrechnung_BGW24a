@@ -93,17 +93,9 @@ window.LP_KURS = {
   {
    "id": "b6",
    "level": "bab",
-   "file": "b6-auswertung-des-bab.html",
-   "title": "Auswertung des BAB",
-   "min": 35,
-   "milestone": false
-  },
-  {
-   "id": "bm",
-   "level": "bab",
-   "file": "bm-meilenstein-2-bab-fur-august.html",
-   "title": "Meilenstein 2: BAB für August",
-   "min": 65,
+   "file": "b6-meilenstein-2-auswertung-des-bab.html",
+   "title": "Meilenstein 2: Auswertung des BAB",
+   "min": 45,
    "milestone": true
   },
   {

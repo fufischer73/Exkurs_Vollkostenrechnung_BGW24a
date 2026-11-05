@@ -1,6 +1,5 @@
-"""Erzeugt Arbeitsblätter (docx), Infoblätter (docx aus seiten/), Excel-Vorlage und Lehrkraft-Lösungen für Stufe 2 (BAB).
-Aufruf (aus dem Lernpfad-Ordner):  python3 werkzeuge/material_stufe2.py
-PDFs entstehen mit werkzeuge/pdfs.py.
+"""Erzeugt Arbeitsblätter (docx), Infoblätter (docx aus seiten/), BAB-Formular, Excel-Vorlage und Lehrkraft-Lösungen für Stufe 2.
+Aufruf (aus dem Lernpfad-Ordner):  python3 werkzeuge/material_stufe2.py      (PDFs danach mit werkzeuge/pdfs.py)
 """
 import re
 import subprocess
@@ -9,6 +8,8 @@ from pathlib import Path
 
 from docx import Document
 from docx.enum.section import WD_ORIENT
+from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt
@@ -16,13 +17,13 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Border, Side
 
 sys.path.insert(0, str(Path(__file__).parent))
-from daten import (JULI, AUGUST, ORDER, SP7, HAUPT, SCHLUESSEL, UMLAGE_FUHRPARK, UMLAGE_PLANUNG,  # noqa: E402
-                   MASCHINENABHAENGIG, auswerten, umlage, fmt)
-from material_stufe1 import neues_dokument, tabelle, ueberschrift  # noqa: E402
+from daten import (JULI, AUGUST, ORDER, SP7, SCHLUESSEL, GRUNDLAGE, UMLAGE_FUHRPARK, UMLAGE_PLANUNG,  # noqa: E402
+                   auswerten, umlage, fmt)
+from material_stufe1 import (neues_dokument, tabelle, ueberschrift, rechenkasten, kopfzeile, schattieren)  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-KURZ = ["Fuhrpark", "Material", "Fertigungs-planung", "Fertigung I", "Fertigung II", "Verwaltung", "Vertrieb"]
-DIREKT = [a for a in ORDER if a not in SCHLUESSEL]
+SP_KOPF = ["Fuhrpark", "Material", "Fertigungs-planung", "Fertigung I\nHandarbeit", "Fertigung II\nMaschinenplatz", "Verwaltung", "Vertrieb"]
+GRAU = "D9D9D9"
 
 
 def f0(x):
@@ -35,7 +36,8 @@ def quer(titel, untertitel="Montelli GmbH · Geschäftsbereich Outdoor · Exkurs
     s.orientation = WD_ORIENT.LANDSCAPE
     s.page_width, s.page_height = Cm(29.7), Cm(21)
     s.left_margin = s.right_margin = Cm(1.2)
-    s.top_margin = s.bottom_margin = Cm(1.2)
+    s.top_margin = s.bottom_margin = Cm(1.0)
+    kopfzeile(d)
     return d
 
 
@@ -48,62 +50,160 @@ def linien(d, n=2, breite=78):
         d.add_paragraph("_" * breite)
 
 
-# ---------------------------------------------------------------- Bausteine
-def bab_tabelle(d, m, voll=False):
-    bab = m["bab"]
-    zeilen = []
-    for art in ORDER:
-        v = bab[art]
-        zeilen.append([art, f0(sum(v))] + ([f0(x) for x in v] if voll else [""] * 7))
-    prim = [sum(v[i] for v in bab.values()) for i in range(7)]
-    zeilen.append(["Summe", f0(sum(prim))] + ([f0(x) for x in prim] if voll else [""] * 7))
-    tabelle(d, ["Gemeinkostenart", "Summe"] + KURZ, zeilen, [4.6, 2.4] + [2.9] * 7, rechts=tuple(range(1, 9)),
-            fett_zeilen=(len(zeilen) - 1,), leer_hoehe=None if voll else 0.8)
+# ---------------------------------------------------------------- Tabellenbau für den BAB (Layout wie in der Vorlage)
+def zelle(c, text="", fett=False, rechts=False, mitte=False, klein=False, grau=False):
+    c.text = ""
+    par = c.paragraphs[0]
+    par.paragraph_format.space_after = Pt(0)
+    zeilen = str(text).split("\n")
+    for i, z in enumerate(zeilen):
+        run = par.add_run(z)
+        run.bold = fett
+        run.font.size = Pt(8 if klein else 9)
+        if i < len(zeilen) - 1:
+            run.add_break()
+    par.alignment = WD_ALIGN_PARAGRAPH.RIGHT if rechts else (WD_ALIGN_PARAGRAPH.CENTER if mitte else WD_ALIGN_PARAGRAPH.LEFT)
+    if grau:
+        schattieren(c, GRAU)
 
 
-def belege_tabellen(d, m):
-    ueberschrift(d, "Direkte Zuordnung (Belegauswertung, Beträge in €)")
-    zeilen = [[k] + [f0(m["bab"][a][i]) for a in DIREKT] for i, k in enumerate(SP7)]
-    tabelle(d, ["Kostenstelle"] + DIREKT, zeilen, [5.4] + [4.3] * 5, rechts=(1, 2, 3, 4, 5))
-    ueberschrift(d, "Verteilungsschlüssel (Schlüsselzahlen)")
-    kopf = ["Kostenstelle"] + [f"{a}: {SCHLUESSEL[a][0]}" for a in SCHLUESSEL]
-    zeilen = [[k] + [str(SCHLUESSEL[a][1][i]) for a in SCHLUESSEL] for i, k in enumerate(SP7)]
-    tabelle(d, kopf, zeilen, [6, 6.5, 8, 6], rechts=(1, 2, 3))
+def bab_tabelle_start(d, links, breiten):
+    t = d.add_table(rows=0, cols=9)
+    t.style = "Table Grid"
+    t.alignment = WD_TABLE_ALIGNMENT.CENTER
+    t.autofit = False
+    for i, w in enumerate(breiten):
+        t.columns[i].width = Cm(w)
+    return t
 
 
-def umlage_schluessel_tabelle(d):
-    zeilen = [[k, str(UMLAGE_FUHRPARK.get(k, "")) if k != "Fuhrpark" else "", str(UMLAGE_PLANUNG[k]) if k in UMLAGE_PLANUNG else "–"]
-              for k in SP7 if k not in ("Fuhrpark",)]
-    zeilen = [[a, b if b != "" else "", c] for a, b, c in zeilen]
-    tabelle(d, ["Kostenstelle", "Fuhrpark: Transportaufträge", "Fertigungsplanung: Planungsstunden"], zeilen, [6, 7, 8], rechts=(1, 2))
+def bab_kopf(t, links, titel=None):
+    if titel:
+        r = t.add_row()
+        c = r.cells[0].merge(r.cells[8])
+        zelle(c, titel, fett=True, mitte=True)
+    r1, r2 = t.add_row(), t.add_row()
+    zelle(r1.cells[0].merge(r1.cells[1]), links[0], fett=True, mitte=True)
+    zelle(r1.cells[2], "Allgemeine\nKostenstelle", fett=True, mitte=True, klein=True)
+    zelle(r1.cells[3], "Haupt-\nkostenstelle", fett=True, mitte=True, klein=True)
+    zelle(r1.cells[4], "Hilfs-\nkostenstelle", fett=True, mitte=True, klein=True)
+    zelle(r1.cells[5].merge(r1.cells[6]), "Fertigungs-Hauptkostenstellen (FHS)", fett=True, mitte=True, klein=True)
+    zelle(r1.cells[7], "Haupt-\nkostenstelle", fett=True, mitte=True, klein=True)
+    zelle(r1.cells[8], "Haupt-\nkostenstelle", fett=True, mitte=True, klein=True)
+    zelle(r2.cells[0], links[1], fett=True, mitte=True)
+    zelle(r2.cells[1], links[2], fett=True, mitte=True)
+    for i, k in enumerate(SP_KOPF):
+        zelle(r2.cells[2 + i], k, fett=True, mitte=True, klein=True)
 
 
-def umlage_tabelle(d, m=None):
-    rows = []
-    if m:
-        prim, u1, zw, u2, end = umlage(m)
-        for k in SP7:
-            if k == "Fuhrpark":
-                rows.append([k, f0(prim[k]), f0(-prim[k]), "0", "", "0"])
-            elif k == "Fertigungsplanung":
-                rows.append([k, f0(prim[k]), "+" + f0(u1[k]), f0(zw[k]), f0(-zw[k]), "0"])
-            else:
-                rows.append([k, f0(prim[k]), "+" + f0(u1[k]) if u1.get(k) else "0", f0(zw[k]),
-                             "+" + f0(u2[k]) if u2.get(k) else "", f0(end[k])])
+def zeile(t, label, werte, fett=False, grau=(), hoehe=0.55, summe=None, label_breit=False):
+    r = t.add_row()
+    r.height = Cm(hoehe)
+    if label_breit:
+        zelle(r.cells[0].merge(r.cells[1]), label, fett=fett)
+        vorn = 2
     else:
-        rows = [[k, "", "", "", "", ""] for k in SP7]
-    tabelle(d, ["Kostenstelle", "Nach Schritt 1", "Umlage Fuhrpark", "Zwischensumme", "Umlage Fert.-planung", "Endsumme"],
-            rows, [5, 4.2, 4.2, 4.2, 4.6, 4.2], rechts=(1, 2, 3, 4, 5), leer_hoehe=None if m else 0.8)
+        zelle(r.cells[0], label, fett=fett)
+        zelle(r.cells[1], summe if summe is not None else "", rechts=True, fett=fett, grau=1 in grau)
+        vorn = 2
+    for i in range(7):
+        v = werte[i] if werte else ""
+        v = "" if v is None else v
+        zelle(r.cells[vorn + i], v, rechts=True, fett=fett, grau=(2 + i) in grau)
+    return r
+
+
+def bab_formular(d, m, voll=False, monat="Juli"):
+    """Der BAB wie in der Vorlage: Verteilung, Umlage, Zuschlagssätze, Maschinenstundensatz."""
+    breiten = [4.6, 2.2] + [2.9] * 7
+    t = bab_tabelle_start(d, None, breiten)
+    bab_kopf(t, ("Gemeinkosten", "Gemeinkostenart", "Summe"), f"Betriebsabrechnungsbogen (BAB I) {monat} 20.. (Geschäftsjahr)")
+    a = auswerten(m)
+    prim, u1, zw, u2, end = a["umlage"]
+    for art in ORDER:
+        v = m["bab"][art]
+        zeile(t, art, [f0(x) for x in v] if voll else None, summe=f0(sum(v)))
+    zeile(t, "Summen", [f0(prim[k]) for k in SP7] if voll else None, fett=True, summe=f0(sum(prim.values())) if voll else "")
+    z = zeile(t, "Umlage\nFuhrpark", None, grau=(1,), hoehe=0.75)
+    if voll:
+        for i, k in enumerate(SP7):
+            zelle(z.cells[2 + i], f0(-prim[k]) if k == "Fuhrpark" else (("+" + f0(u1[k])) if u1.get(k) else "0"), rechts=True)
+    else:
+        zelle(z.cells[2], "↳", mitte=True)
+    zeile(t, "Zwischensummen", [f0(zw[k]) for k in SP7] if voll else None, fett=True, grau=(1, 2))
+    z = zeile(t, "Umlage\nFertigungsplanung", None, grau=(1, 2), hoehe=0.75)
+    if voll:
+        for i, k in enumerate(SP7):
+            if k == "Fertigungsplanung":
+                zelle(z.cells[2 + i], f0(-zw[k]), rechts=True)
+            elif u2.get(k):
+                zelle(z.cells[2 + i], "+" + f0(u2[k]), rechts=True)
+    else:
+        zelle(z.cells[4], "↳", mitte=True)
+    zeile(t, "Summen", [f0(end[k]) for k in SP7] if voll else None, fett=True, grau=(1, 2, 4))
+    # Zuschlagsgrundlagen, Sätze, Maschinenstunden
+    r = a["saetze"]
+    gr = [None, f0(a["fm"]), None, f0(m["fl1"]), f0(m["fl2"]), f0(r["HKdU"]), f0(r["HKdU"])] if voll else None
+    zeile(t, "Zuschlagsgrundlagen (FM, FL, HKdU)", gr, grau=(2, 4), label_breit=True)
+    sa = [None, f"{r['MGK %']:.2f} %".replace(".", ","), None, f"{r['FGK I %']:.2f} %".replace(".", ","),
+          f"{r['Rest %']:.2f} %".replace(".", ","), f"{r['VwGK %']:.2f} %".replace(".", ","), f"{r['VtGK %']:.2f} %".replace(".", ",")] if voll else None
+    zeile(t, "Zuschlagssätze für MGK, FGK, RGK, VwGK, VtGK (Ist)", sa, fett=True, grau=(2, 4), label_breit=True, hoehe=0.75)
+    ms = [None] * 4 + [f"{m['masch_std']:,}".replace(",", "."), None, None] if voll else None
+    zeile(t, "Maschinenstunden gesamt (Std.)", ms, grau=(2, 3, 4, 5, 7, 8), label_breit=True)
+    msatz = [None] * 4 + [f"{r['Maschinenstundensatz']:.2f} €".replace(".", ","), None, None] if voll else None
+    zeile(t, "Maschinenstundensatz (Istwert)", msatz, fett=True, grau=(2, 3, 4, 5, 7, 8), label_breit=True)
+    d.add_paragraph()
+
+
+def verteilungs_tabelle(d, m):
+    """Kombinierte Tabelle wie in der Vorlage „Verteilung der Gemeinkosten“: Kostenstellen waagerecht, Gemeinkostenarten senkrecht."""
+    breiten = [4.6, 2.9] + [2.8] * 7
+    t = bab_tabelle_start(d, None, breiten)
+    bab_kopf(t, ("Gemeinkosten", "Gemeinkostenart", "Verteilungs-grundlage"))
+    for art in ORDER:
+        r = t.add_row()
+        r.height = Cm(0.62)
+        zelle(r.cells[0], art)
+        zelle(r.cells[1], GRUNDLAGE[art], mitte=True, klein=True)
+        werte = SCHLUESSEL[art][1] if art in SCHLUESSEL else m["bab"][art]
+        for i, v in enumerate(werte):
+            zelle(r.cells[2 + i], str(v) if art in SCHLUESSEL else f0(v), rechts=True)
+    d.add_paragraph()
+
+
+def umlage_schluessel(d):
+    """Umlageschlüssel wie in der Vorlage: Vorkostenstellen als Zeilen, graue Felder für nicht beteiligte Stellen."""
+    breiten = [4.6, 2.9] + [2.8] * 7
+    t = bab_tabelle_start(d, None, breiten)
+    bab_kopf(t, ("Vorkostenstellen", "Vorkosten-stelle", "Umlage-grundlage"))
+    r = t.add_row()
+    r.height = Cm(0.8)
+    zelle(r.cells[0], "Fuhrpark")
+    zelle(r.cells[1], "Transport-aufträge", mitte=True, klein=True)
+    zelle(r.cells[2], "", grau=True)
+    for i, k in enumerate(SP7[1:], start=1):
+        zelle(r.cells[2 + i], str(UMLAGE_FUHRPARK.get(k, 0)), mitte=True)
+    r = t.add_row()
+    r.height = Cm(0.8)
+    zelle(r.cells[0], "Fertigungsplanung")
+    zelle(r.cells[1], "Planungs-stunden", mitte=True, klein=True)
+    for i, k in enumerate(SP7):
+        if k in UMLAGE_PLANUNG:
+            zelle(r.cells[2 + i], str(UMLAGE_PLANUNG[k]), mitte=True)
+        else:
+            zelle(r.cells[2 + i], "", grau=True)
+    d.add_paragraph()
 
 
 def nebenrechnung(d, werte=None):
-    z = ["Fertigungsmaterial", "+ Materialgemeinkosten (MGK)", "= Materialkosten", "Fertigungslöhne (Handarbeit)",
+    z = ["Fertigungsmaterial (FM)", "+ Materialgemeinkosten (MGK)", "= Materialkosten (MK)", "Fertigungslöhne Handarbeit (FL)",
          "+ Fertigungsgemeinkosten (FGK)", "= Fertigungskosten I", "Maschinenabhängige Fertigungsgemeinkosten",
-         "+ Fertigungslöhne des Maschinenplatzes", "+ Restgemeinkosten", "= Fertigungskosten II", "= Herstellkosten der Erzeugung",
-         "+ Bestandsminderungen / − Bestandsmehrungen", "= Herstellkosten des Umsatzes"]
-    rows = [(t, werte[i] if werte else "") for i, t in enumerate(z)]
+         "+ Fertigungslöhne des Maschinenplatzes", "+ Restgemeinkosten", "= Fertigungskosten II", "= Herstellkosten der Erzeugung (HKdE)",
+         "+ Bestandsminderungen", "− Bestandsmehrungen", "= Herstellkosten des Umsatzes (HKdU)"]
+    rows = [(t, (werte[i] if werte else "")) for i, t in enumerate(z)]
     fett = tuple(i for i, t in enumerate(z) if t.startswith("="))
-    tabelle(d, ["Nebenrechnung", "Betrag in €"], rows, [10, 5], rechts=(1,), fett_zeilen=fett, leer_hoehe=None if werte else 0.7)
+    tabelle(d, ["Nebenrechnung: Herstellkosten des Umsatzes (HKdU)", "Betrag in €"], rows, [11, 5], rechts=(1,), fett_zeilen=fett,
+            leer_hoehe=None if werte else 0.75)
 
 
 def neben_werte(m):
@@ -113,7 +213,16 @@ def neben_werte(m):
     masch, rest = a["masch"]
     mk, fk1, fk2 = fm + mgk, fl1 + fgk1, masch + fl2 + rest
     return [fmt(fm), fmt(mgk), fmt(mk), fmt(fl1), fmt(fgk1), fmt(fk1), fmt(masch), fmt(fl2), fmt(rest), fmt(fk2),
-            fmt(mk + fk1 + fk2), fmt(0), fmt(a["saetze"]["HKdU"])]
+            fmt(mk + fk1 + fk2), fmt(0), fmt(0), fmt(a["saetze"]["HKdU"])]
+
+
+def bezug_tabelle(d, m):
+    a = auswerten(m)
+    tabelle(d, ["Bezugsgröße", "Wert"], [
+        ("Fertigungsmaterial (Rohstoffe + Vorprodukte/Fremdbauteile)", fmt(a["fm"]) + " €"),
+        ("Fertigungslöhne Handarbeit (Fertigung I)", fmt(m["fl1"]) + " €"),
+        ("Fertigungslöhne Maschinenplatz (Fertigung II)", fmt(m["fl2"]) + " €"),
+        ("Maschinenstunden Maschinenplatz", f"{m['masch_std']:,} h".replace(",", ".")), ("Bestandsveränderungen", "keine")], [11, 5], rechts=(1,))
 
 
 # ---------------------------------------------------------------- Arbeitsblätter
@@ -127,99 +236,104 @@ LOES_KST = [("Material", "Hauptkostenstelle"), ("Fuhrpark", "allgemeine Kostenst
 
 def ab_b1(pfad):
     d = hoch("Arbeitsblatt B1 · Brücke: Kostenstellen der Montelli")
-    ueberschrift(d, "Aufgabe 1 · Kostenstellen einordnen")
+    ueberschrift(d, "Aufgabe · Kostenstellen einordnen")
     d.add_paragraph("Ordne jeden Bereich einer Kostenstelle zu und gib die Art an: allgemeine Kostenstelle, Hilfskostenstelle "
                     "oder Hauptkostenstelle (Material, Fertigung, Verwaltung, Vertrieb).")
     tabelle(d, ["Nr.", "Bereich", "Kostenstelle", "Art"], [(str(i + 1), b, "", "") for i, b in enumerate(BEREICHE)],
             [1, 7.2, 4.5, 4.3], leer_hoehe=1.0)
-    ueberschrift(d, "Aufgabe 2 · Der Kopf des BAB")
-    d.add_paragraph("Schreibe die sieben Kostenstellen in der richtigen Reihenfolge von links nach rechts in den Kopf. "
-                    "Markiere die Hauptkostenstellen.")
-    t = d.add_table(rows=2, cols=7)
-    t.style = "Table Grid"
-    t.rows[0].height = Cm(1.6)
-    for c, txt in zip(t.rows[1].cells, ["Art:"] * 7):
-        c.text = txt
     d.save(pfad)
 
 
 def ab_b2(pfad):
-    d = quer("Arbeitsblatt B2 · BAB Schritt 1: Gemeinkosten verteilen (Juli)")
-    ueberschrift(d, "Gemeinkosten aus dem Kostenartenplan Juli")
-    tabelle(d, ["Gemeinkostenart", "Summe in €", "Verteilung"], [
-        ("Hilfsstoffe", "8.000", "direkt (Belege)"), ("Betriebsstoffe", "18.000", "Schlüssel: Verbrauch in kWh"),
-        ("Gehälter", "124.100", "direkt (Gehaltsliste)"), ("Kalk. Abschreibungen", "65.000", "direkt (Anlagendatei)"),
-        ("Kalk. Zinsen", "30.000", "Schlüssel: gebundenes Kapital"), ("Fremdinstandhaltung", "8.050", "direkt (Rechnungen)"),
-        ("Leasing", "10.200", "Schlüssel: Fläche in m²"), ("Büromaterial", "3.575", "direkt (Bestellungen)"),
-        ("Summe", "266.925", "")], [6, 3.5, 8], rechts=(1,), fett_zeilen=(8,))
-    belege_tabellen(d, JULI)
-    ueberschrift(d, "Aufgabe · BAB Juli, Schritt 1 (Beträge in €)")
-    d.add_paragraph("Verteile die Gemeinkosten auf die Kostenstellen. Probe: Zeilensummen = Kostenartenplan, Summe aller Spalten = 266.925 €.")
-    bab_tabelle(d, JULI)
+    d = quer("Arbeitsblatt B2 · BAB Schritt 1: Verteilen der Gemeinkosten auf die Kostenstellen (Juli)")
+    d.add_paragraph("Verteile mithilfe des Kostenartenplans, der folgenden Tabelle und der Verteilungsschlüssel alle Gemeinkosten des Juli auf die "
+                    "einzelnen Kostenstellen der Montelli GmbH. Ermittle anschließend für jede Kostenstelle die Summe der Gemeinkosten.")
+    ueberschrift(d, "Verteilung der Gemeinkosten im Monat Juli (Beträge in €, bei „Schlüssel“ und „m²“ Schlüsselzahlen)")
+    verteilungs_tabelle(d, JULI)
+    d.add_page_break()
+    bab_formular(d, JULI)
+    d.save(pfad)
+
+
+def ab_bab_formular(pfad):
+    d = quer("BAB-Formular Juli (Module B2 bis B5, Meilenstein 2)")
+    bab_formular(d, JULI)
     d.save(pfad)
 
 
 def ab_b3(pfad):
-    d = quer("Arbeitsblatt B3 · BAB Schritt 2: Innerbetriebliche Leistungen verrechnen (Juli)")
+    d = quer("Arbeitsblatt B3 · BAB Schritt 2: Verrechnen innerbetrieblicher Leistungen (Juli)")
+    d.add_paragraph("Da die Vorkostenstellen „Fuhrpark“ und „Fertigungsplanung“ die Hauptkostenstellen mit ihren Leistungen beliefern, legst du "
+                    "die damit verbundenen Gemeinkosten verursachungsgerecht auf die Hauptkostenstellen um. Lege mithilfe des Schlüssels die "
+                    "Gemeinkosten um und ermittle für jede Hauptkostenstelle die Summe der Gemeinkosten. Arbeite im BAB-Formular (Zeilen „Umlage“).")
+    ueberschrift(d, "Schlüssel zur Verrechnung innerbetrieblicher Leistungen")
+    umlage_schluessel(d)
     prim = umlage(JULI)[0]
-    ueberschrift(d, "Gemeinkosten nach Schritt 1 (aus B2, Beträge in €)")
-    tabelle(d, SP7_KOPF, [[f0(prim[k]) for k in SP7]], [3.9] * 7, rechts=tuple(range(7)))
-    ueberschrift(d, "Umlageschlüssel")
-    umlage_schluessel_tabelle(d)
-    ueberschrift(d, "Aufgabe · Umlage im Treppenstufenverfahren")
-    d.add_paragraph("1. Umlage Fuhrpark auf alle anderen Stellen, Zwischensummen bilden.  2. Umlage Fertigungsplanung auf Fertigung I und II.  "
-                    "Probe: Vorkostenstellen = 0 €, Summe der Hauptkostenstellen = 266.925 €.")
-    umlage_tabelle(d)
+    ueberschrift(d, "Rechnung zur Umlage")
+    rechenkasten(d, [
+        ("Summe der Schlüsselzahlen (Fuhrpark)", "Material + Planung + Fertigung I + Fertigung II + Verwaltung + Vertrieb", "Teile"),
+        ("Betrag je Teil (Fuhrpark)", "Kosten Fuhrpark ÷ Summe der Schlüsselzahlen", "€"),
+        ("Kosten Fertigungsplanung nach Umlage 1", "Kosten nach Schritt 1 + Anteil vom Fuhrpark", "€"),
+        ("Summe der Schlüsselzahlen (Planung)", "Fertigung I + Fertigung II", "Teile"),
+        ("Betrag je Teil (Planung)", "Kosten Fertigungsplanung ÷ Summe der Schlüsselzahlen", "€"),
+    ], breiten=(6.4, 7.2, 8.0, 4.5), hoehe=1.2)
+    d.add_paragraph("Falls dein BAB aus B2 nicht stimmt, nimm diese Summen (Schritt 1): " +
+                    ", ".join(f"{k} {fmt(prim[k], 0)} €" for k in SP7) + ".")
     d.save(pfad)
-
-
-SP7_KOPF = ["Fuhrpark", "Material", "Fertigungsplanung", "Fertigung I", "Fertigung II", "Verwaltung", "Vertrieb"]
-
-
-def bezug_tabelle(d, m):
-    a = auswerten(m)
-    tabelle(d, ["Bezugsgröße", "Wert"], [
-        ("Fertigungsmaterial (Rohstoffe + Vorprodukte/Fremdbauteile)", fmt(a["fm"]) + " €"),
-        ("Fertigungslöhne Handarbeit (Fertigung I)", fmt(m["fl1"]) + " €"),
-        ("Fertigungslöhne Maschinenplatz (Fertigung II)", fmt(m["fl2"]) + " €"),
-        ("Maschinenstunden Maschinenplatz", f"{m['masch_std']} h"), ("Bestandsveränderungen", "keine")], [11, 5], rechts=(1,))
 
 
 def ab_b4(pfad):
     d = hoch("Arbeitsblatt B4 · BAB Schritt 3: Zuschlagssätze und Maschinenplatz (Juli)")
-    ueberschrift(d, "Angaben")
-    bezug_tabelle(d, JULI)
-    d.add_paragraph("Gemeinkosten nach der Umlage: Material 39.400 € · Fertigung I 50.625 € · Fertigung II 85.200 €")
-    i2 = SP7.index("Fertigung II")
-    rows = [(a, fmt(JULI["bab"][a][i2], 0) + " €") for a in ORDER] + [("Umlage Fuhrpark und Fertigungsplanung", "2.000 €"), ("Summe nach Umlage", "85.200 €")]
-    tabelle(d, ["Fertigung II: Gemeinkostenart", "Betrag"], rows, [11, 5], rechts=(1,), fett_zeilen=(len(rows) - 1,))
+    d.add_paragraph("Ermittle in diesem Schritt mithilfe des Infotextes die Kalkulationssätze für die Angebotskalkulation. Dir liegen für den Juli "
+                    "diese Informationen vor:")
+    for b in ["Einzelkosten (Fertigungsmaterial und Löhne) gemäß Kostenartenplan, Löhne: Fertigung I (Handarbeit) 62.500 €, Fertigung II (Maschinenplatz) 14.000 €;",
+              "Fertigungsmaterial (Rohstoffe + Vorprodukte/Fremdbauteile): 200.000 €;",
+              "der Maschinenplatz (Fertigung II) war 1.000 Stunden im Einsatz;",
+              "keine Bestandsveränderungen an fertigen und unfertigen Erzeugnissen im Lager."]:
+        d.add_paragraph("• " + b)
     ueberschrift(d, "Aufgabe 1 · Material und Fertigung I")
-    d.add_paragraph("MGK-Satz = Gemeinkosten Material × 100 ÷ Fertigungsmaterial = ____________________ = ________ %")
-    d.add_paragraph("FGK-Satz (Fertigung I) = Gemeinkosten Fertigung I × 100 ÷ Fertigungslöhne Handarbeit = ____________________ = ________ %")
-    d.add_paragraph("Bedeutung: Auf 100 € ____________________ entfallen ________ € ____________________.")
-    d.add_paragraph("Auftrag: Fertigungsmaterial 4.200 €, Fertigungslöhne Handarbeit 2.600 €. MGK = __________ €, FGK = __________ €.")
-    ueberschrift(d, "Aufgabe 2 · Maschinenplatz")
-    d.add_paragraph("Denkanstoß: Gemeinkosten Fertigung II × 100 ÷ Maschinenplatzlöhne = ____________ %. Was fällt dir auf?")
-    linien(d, 1)
-    d.add_paragraph("Maschinenabhängige Gemeinkosten: __________ €   Restgemeinkosten: __________ €   (zusammen 85.200 €)")
-    d.add_paragraph("Maschinenstundensatz = maschinenabhängige Gemeinkosten ÷ Maschinenstunden = ____________________ = ________ € je h")
-    d.add_paragraph("Restgemeinkosten-Satz = Restgemeinkosten × 100 ÷ Maschinenplatzlöhne = ____________________ = ________ %")
-    d.add_paragraph("Auftrag: 2 Maschinenstunden, Maschinenplatzlöhne 28 €. Maschinenkosten = __________ €, Restgemeinkosten = __________ €.")
+    rechenkasten(d, [
+        ("MGK-Zuschlagssatz", "Gemeinkosten Material × 100 ÷ Fertigungsmaterial", "%"),
+        ("FGK-Zuschlagssatz (Fertigung I)", "Gemeinkosten Fertigung I × 100 ÷ Fertigungslöhne Handarbeit", "%"),
+    ], breiten=(4.2, 5.6, 4.6, 2.9), hoehe=1.5)
+    d.add_paragraph("Bedeutung: Auf 100 € ______________________________ entfallen ________ € ______________________________.")
+    rechenkasten(d, [
+        ("MGK des Auftrags", "Fertigungsmaterial 4.200 € × MGK-Satz ÷ 100", "€"),
+        ("FGK des Auftrags", "Fertigungslöhne 2.600 € × FGK-Satz ÷ 100", "€"),
+    ], breiten=(4.2, 5.6, 4.6, 2.9), hoehe=1.5, kopf=("Auftrag", "Formel", "Rechnung", "Ergebnis"))
+    ueberschrift(d, "Aufgabe 2 · Maschinenplatz (Fertigung II)")
+    d.add_paragraph("Gemeinkosten der Fertigung II nach der Umlage: 85.200 €")
+    rechenkasten(d, [
+        ("Denkanstoß: Satz auf Löhne", "Gemeinkosten Fertigung II × 100 ÷ Maschinenplatzlöhne", "%"),
+    ], breiten=(4.2, 5.6, 4.6, 2.9), hoehe=1.3)
+    d.add_paragraph("Was fällt dir auf? ______________________________________________________________")
+    rechenkasten(d, [
+        ("Maschinenabhängige Gemeinkosten", "Betriebsstoffe + Abschreibungen + Zinsen + Fremdinstandhaltung (Fertigung II)", "€"),
+        ("Restgemeinkosten", "Gemeinkosten Fertigung II − maschinenabhängige Gemeinkosten", "€"),
+        ("Maschinenstundensatz", "Maschinenabhängige Gemeinkosten ÷ Maschinenstunden", "€ je h"),
+        ("Restgemeinkosten-Zuschlagssatz", "Restgemeinkosten × 100 ÷ Maschinenplatzlöhne", "%"),
+    ], breiten=(4.2, 5.6, 4.6, 2.9), hoehe=1.5)
+    rechenkasten(d, [
+        ("Maschinenkosten des Auftrags", "2 Maschinenstunden × Maschinenstundensatz", "€"),
+        ("Restgemeinkosten des Auftrags", "Maschinenplatzlöhne 28 € × Restgemeinkosten-Satz ÷ 100", "€"),
+    ], breiten=(4.2, 5.6, 4.6, 2.9), hoehe=1.5, kopf=("Auftrag", "Formel", "Rechnung", "Ergebnis"))
     d.save(pfad)
 
 
 def ab_b5(pfad):
     d = hoch("Arbeitsblatt B5 · Herstellkosten des Umsatzes, Verwaltung und Vertrieb (Juli)")
-    ueberschrift(d, "Angaben")
+    d.add_paragraph("Für die Nebenrechnung zur Ermittlung der Herstellkosten des Umsatzes nutzt du das folgende Schema. Es gab im Juli keine "
+                    "Bestandsveränderungen.")
     bezug_tabelle(d, JULI)
-    d.add_paragraph("Gemeinkosten: Material 39.400 € · Fertigung I 50.625 € · Maschinenabhängig (Fertigung II) 81.000 € · Restgemeinkosten 4.200 € · "
+    d.add_paragraph("Gemeinkosten: Material 39.400 € · Fertigung I 50.625 € · maschinenabhängig (Fertigung II) 81.000 € · Restgemeinkosten 4.200 € · "
                     "Verwaltung 56.000 € · Vertrieb 35.700 €")
-    ueberschrift(d, "Aufgabe 1 · Nebenrechnung")
     nebenrechnung(d)
-    ueberschrift(d, "Aufgabe 2 · Verwaltung und Vertrieb")
-    d.add_paragraph("VwGK-Satz = Gemeinkosten Verwaltung × 100 ÷ Herstellkosten des Umsatzes = ____________________ = ________ %")
-    d.add_paragraph("VtGK-Satz = Gemeinkosten Vertrieb × 100 ÷ Herstellkosten des Umsatzes = ____________________ = ________ %")
-    d.add_paragraph("Summe beider Sätze: ________ %   (Lernsituation: 20 %)")
+    ueberschrift(d, "Verwaltung und Vertrieb")
+    rechenkasten(d, [
+        ("VwGK-Zuschlagssatz", "Gemeinkosten Verwaltung × 100 ÷ HKdU", "%"),
+        ("VtGK-Zuschlagssatz", "Gemeinkosten Vertrieb × 100 ÷ HKdU", "%"),
+        ("Summe beider Sätze", "VwGK + VtGK (Lernsituation: 20 %)", "%"),
+    ], breiten=(4.2, 5.6, 4.6, 2.9), hoehe=1.5)
     d.save(pfad)
 
 
@@ -256,79 +370,41 @@ ANTW = [
 
 
 def ab_b6(pfad):
-    d = hoch("Arbeitsblatt B6 · Auswertung des BAB (Juli)")
-    d.add_paragraph("Beantworte die Fragen mit deinem BAB aus den Modulen B2 bis B5. Rechenwege bitte notieren.")
-    for i, f in enumerate(FRAGEN):
-        d.add_paragraph(f"{i + 1}. {f}")
-        linien(d, 2)
-    d.save(pfad)
-
-
-def ab_bm(pfad):
-    d = quer("Arbeitsblatt Meilenstein 2 · BAB und Zuschlagssätze August")
-    ueberschrift(d, "Bezugsgrößen August")
-    bezug_tabelle(d, AUGUST)
-    belege_tabellen(d, AUGUST)
-    d.add_paragraph("Die Verteilungsschlüssel (Schlüsselzahlen) und die Umlageschlüssel gelten unverändert wie im Juli:")
-    umlage_schluessel_tabelle(d)
-    ueberschrift(d, "Aufgabe 1 · BAB August, Schritt 1 (Beträge in €)")
-    d.add_paragraph("Summen je Zeile aus dem Kostenartenplan August: Hilfsstoffe 7.200 · Betriebsstoffe 16.200 · Gehälter 124.100 · "
-                    "Kalk. Abschreibungen 65.000 · Kalk. Zinsen 30.000 · Fremdinstandhaltung 5.100 · Leasing 10.200 · Büromaterial 3.600")
-    bab_tabelle(d, AUGUST)
-    ueberschrift(d, "Aufgabe 2 · Umlage")
-    umlage_tabelle(d)
-    ueberschrift(d, "Aufgabe 3 · Maschinenplatz und Zuschlagssätze")
-    d.add_paragraph("Maschinenabhängige Gemeinkosten (Fertigung II): __________ €   Restgemeinkosten (inkl. Umlagen): __________ €")
-    tabelle(d, ["Satz", "Rechnung", "Ergebnis"], [("MGK-Satz", "", ""), ("FGK-Satz (Fertigung I)", "", ""), ("Maschinenstundensatz", "", ""),
-                                                   ("Restgemeinkosten-Satz", "", "")], [6, 15, 5], leer_hoehe=0.8)
-    ueberschrift(d, "Aufgabe 4 · Herstellkosten des Umsatzes, Verwaltung und Vertrieb")
-    nebenrechnung(d)
-    tabelle(d, ["Satz", "Rechnung", "Ergebnis"], [("VwGK-Satz", "", ""), ("VtGK-Satz", "", "")], [6, 15, 5], leer_hoehe=0.8)
-    ueberschrift(d, "Aufgabe 5 · Auswertung")
-    for f in ["1. In welcher Hauptkostenstelle fällt nach der Umlage der größte Gemeinkostenbetrag an? Wie hoch ist er?",
-              "2. Vergleiche die Sätze mit Juli. Welche sind gestiegen? Erkläre.",
-              "3. Ein Kunde bestellt Rucksäcke mit Fertigungsmaterial von 3.000 €. Wie hoch sind die Materialgemeinkosten?",
-              "4. Was bedeutet dein Maschinenstundensatz in einem Satz?"]:
-        d.add_paragraph(f)
-        linien(d, 2, 110)
+    d = hoch("Arbeitsblatt Meilenstein 2 · Auswertung des BAB (Juli)")
+    d.add_paragraph("Beantworte die Fragen mit deinem fertigen BAB aus den Modulen B2 bis B5. Notiere Rechnung und Antwort in den Feldern. "
+                    "Zur Abgabe gehören drei Teile: das BAB-Formular, die Nebenrechnung (HKdU) und dieses Arbeitsblatt.")
+    rows = [(str(i + 1), f, "", "") for i, f in enumerate(FRAGEN)]
+    tabelle(d, ["Nr.", "Frage", "Rechnung", "Antwort / Ergebnis"], rows, [0.9, 6.6, 4.8, 4.9], leer_hoehe=2.2)
     d.save(pfad)
 
 
 def loesungen(pfad):
     d = quer("Lehrkraft: Lösungen Stufe 2", "Nicht an Schüler:innen weitergeben.")
-    for m, titel in ((JULI, "Juli (B2 bis B6)"), (AUGUST, "August (Meilenstein 2)")):
-        a = auswerten(m)
-        r = a["saetze"]
-        ueberschrift(d, f"BAB {titel}: Schritt 1")
-        bab_tabelle(d, m, voll=True)
-        ueberschrift(d, f"BAB {titel}: Schritt 2 (Umlage)")
-        umlage_tabelle(d, m)
-        d.add_paragraph(f"Maschinenabhängig (Fertigung II): {fmt(a['masch'][0])} € · Rest einschließlich Umlagen: {fmt(a['masch'][1])} € · "
-                        f"Maschinenstunden: {m['masch_std']} h · Maschinenplatzlöhne: {fmt(m['fl2'])} €")
-        tabelle(d, ["Satz", "Wert"], [
-            ("MGK-Satz", f"{r['MGK %']:.2f} %".replace(".", ",")), ("FGK-Satz (Fertigung I)", f"{r['FGK I %']:.2f} %".replace(".", ",")),
-            ("Maschinenstundensatz", f"{r['Maschinenstundensatz']:.2f} € je h".replace(".", ",")),
-            ("Restgemeinkosten-Satz", f"{r['Rest %']:.2f} %".replace(".", ",")),
-            ("VwGK-Satz", f"{r['VwGK %']:.2f} %".replace(".", ",")), ("VtGK-Satz", f"{r['VtGK %']:.2f} %".replace(".", ","))], [8, 6], rechts=(1,))
-        nebenrechnung(d, neben_werte(m))
+    a = auswerten(JULI)
+    r = a["saetze"]
+    ueberschrift(d, "BAB Juli (B2 bis B5): Verteilung, Umlage, Zuschlagssätze")
+    bab_formular(d, JULI, voll=True)
+    tabelle(d, ["Satz", "Wert"], [
+        ("MGK-Satz", f"{r['MGK %']:.2f} %".replace(".", ",")), ("FGK-Satz (Fertigung I)", f"{r['FGK I %']:.2f} %".replace(".", ",")),
+        ("Maschinenstundensatz", f"{r['Maschinenstundensatz']:.2f} € je h".replace(".", ",")),
+        ("Restgemeinkosten-Satz", f"{r['Rest %']:.2f} %".replace(".", ",")),
+        ("VwGK-Satz", f"{r['VwGK %']:.2f} %".replace(".", ",")), ("VtGK-Satz", f"{r['VtGK %']:.2f} %".replace(".", ","))], [8, 6], rechts=(1,))
+    d.add_paragraph(f"Maschinenabhängig (Fertigung II): {fmt(a['masch'][0])} € · Restgemeinkosten einschließlich Umlagen: {fmt(a['masch'][1])} €")
+    nebenrechnung(d, neben_werte(JULI))
     ueberschrift(d, "B1: Lösung")
     tabelle(d, ["Nr.", "Bereich", "Kostenstelle", "Art"], [(str(i + 1), BEREICHE[i]) + LOES_KST[i] for i in range(7)], [1, 9, 5, 5])
-    d.add_paragraph("Reihenfolge im BAB-Kopf: Fuhrpark | Material | Fertigungsplanung | Fertigung I | Fertigung II | Verwaltung | Vertrieb")
-    ueberschrift(d, "B6: Auswertung Juli")
+    ueberschrift(d, "Meilenstein 2: Auswertung Juli")
     tabelle(d, ["Nr.", "Antwort"], [(str(i + 1), ANTW[i]) for i in range(13)], [1, 24])
-    mgk_aug = 3000 * auswerten(AUGUST)["saetze"]["MGK %"] / 100
-    d.add_paragraph("Meilenstein 2, Auswertung August (Erwartungshorizont): 1. Größter Betrag in Fertigung II (81.240 €). "
-                    "2. Alle Sätze sind höher als im Juli, weil die Menge (Fertigungsmaterial, Löhne, Maschinenstunden) sank und die Gemeinkosten "
-                    "kaum (Abschreibungen, Zinsen, Gehälter, Leasing bleiben gleich). "
-                    f"3. 3.000 € × 21,77 ÷ 100 = {fmt(round(mgk_aug, 2))} €. 4. Eine Maschinenstunde verursacht 85,61 € Maschinenkosten.")
+    b = auswerten(AUGUST)["saetze"]
+    d.add_paragraph("Hintergrund (nicht im Pfad berechnet): Für den August hat das Rechnungswesen MGK 21,77 %, FGK I 88,16 %, Maschinenstundensatz 85,61 € je h, "
+                    f"Restgemeinkosten {b['Rest %']:.2f} %, VwGK {b['VwGK %']:.2f} %, VtGK {b['VtGK %']:.2f} % ermittelt. T1 nutzt den MGK-Satz.".replace(".", ",", 0))
     d.add_paragraph("Hinweis: Bei Rundung der Sätze auf zwei Dezimalstellen kann die Nachrechnung um wenige Cent abweichen. Das ist in Ordnung.")
     d.save(pfad)
 
 
 # ---------------------------------------------------------------- Infoblätter aus seiten/*.md
 def rahmen(tabelle_):
-    tbl = tabelle_._tbl
-    pr = tbl.tblPr
+    pr = tabelle_._tbl.tblPr
     b = OxmlElement("w:tblBorders")
     for seite in ("top", "left", "bottom", "right", "insideH", "insideV"):
         e = OxmlElement(f"w:{seite}")
@@ -362,7 +438,10 @@ def info_docs():
         for t in d.tables:
             rahmen(t)
         s = d.sections[0]
+        s.page_width, s.page_height = Cm(21), Cm(29.7)
         s.left_margin = s.right_margin = Cm(2)
+        s.top_margin = s.bottom_margin = Cm(2)
+        kopfzeile(d)
         d.save(str(ziel))
 
 
@@ -378,7 +457,8 @@ def xlsx_bab(pfad):
     ws["A1"] = "Betriebsabrechnungsbogen (BAB) – Montelli GmbH, Geschäftsbereich Outdoor"
     ws["A1"].font = Font(bold=True, size=13)
     ws["A2"] = "Gelbe Felder ausfüllen. Summen, Umlage, Sätze und Herstellkosten rechnet die Tabelle (Beträge in €)."
-    heads = ["Gemeinkostenart", "Summe (Kostenartenplan)"] + SP7_KOPF + ["Probe"]
+    heads = ["Gemeinkostenart", "Summe (Kostenartenplan)", "Fuhrpark", "Material", "Fertigungsplanung", "Fertigung I Handarbeit",
+             "Fertigung II Maschinenplatz", "Verwaltung", "Vertrieb", "Probe"]
     for i, h in enumerate(heads):
         c = ws.cell(row=4, column=i + 1, value=h)
         c.font = Font(bold=True)
@@ -394,8 +474,8 @@ def xlsx_bab(pfad):
             c.border = rh
             c.number_format = fmt2
         ws.cell(row=r, column=10, value=f'=IF(B{r}="","",IF(ROUND(B{r}-SUM(C{r}:I{r}),2)=0,"stimmt","stimmt nicht"))')
-    rs = r0 + len(ORDER)  # Summenzeile (13)
-    ws.cell(row=rs, column=1, value="Summe (Schritt 1)").font = Font(bold=True)
+    rs = r0 + len(ORDER)
+    ws.cell(row=rs, column=1, value="Summen (Schritt 1)").font = Font(bold=True)
     for col in range(2, 10):
         L = "ABCDEFGHI"[col - 1]
         c = ws.cell(row=rs, column=col, value=f"=SUM({L}{r0}:{L}{rs - 1})")
@@ -403,22 +483,20 @@ def xlsx_bab(pfad):
         c.number_format = fmt2
         c.border = rh
     ws.cell(row=rs, column=10, value=f'=IF(ROUND(B{rs}-SUM(C{rs}:I{rs}),2)=0,"stimmt","stimmt nicht")')
-    # Umlage
     k1, u1, z1, k2, u2, en = rs + 2, rs + 3, rs + 4, rs + 5, rs + 6, rs + 7
-    ws.cell(row=k1, column=1, value="Schlüssel Umlage Fuhrpark (Transportaufträge)")
-    ws.cell(row=u1, column=1, value="Umlage Fuhrpark")
-    ws.cell(row=z1, column=1, value="Zwischensummen").font = Font(bold=True)
-    ws.cell(row=k2, column=1, value="Schlüssel Umlage Fertigungsplanung (Planungsstunden)")
-    ws.cell(row=u2, column=1, value="Umlage Fertigungsplanung")
-    ws.cell(row=en, column=1, value="Endsummen").font = Font(bold=True)
-    for col in range(4, 10):  # D..I: Schlüssel Fuhrpark
+    for r, t in ((k1, "Schlüssel Umlage Fuhrpark (Transportaufträge)"), (u1, "Umlage Fuhrpark"), (z1, "Zwischensummen"),
+                 (k2, "Schlüssel Umlage Fertigungsplanung (Planungsstunden)"), (u2, "Umlage Fertigungsplanung"), (en, "Summen (Endsummen)")):
+        ws.cell(row=r, column=1, value=t)
+    for r in (z1, en):
+        ws.cell(row=r, column=1).font = Font(bold=True)
+    for col in range(4, 10):
         L = "ABCDEFGHI"[col - 1]
         c = ws.cell(row=k1, column=col)
         c.fill = gelb
         c.border = rh
         ws.cell(row=u1, column=col, value=f'=IF({L}{k1}="",0,ROUND($C${rs}*{L}{k1}/SUM($D${k1}:$I${k1}),2))')
     ws.cell(row=u1, column=3, value=f"=-C{rs}")
-    for col in (6, 7):  # F, G: Schlüssel Planung
+    for col in (6, 7):
         c = ws.cell(row=k2, column=col)
         c.fill = gelb
         c.border = rh
@@ -435,10 +513,9 @@ def xlsx_bab(pfad):
         for col in range(3, 10):
             ws.cell(row=r, column=col).number_format = fmt2
             ws.cell(row=r, column=col).border = rh
-    # Bezugsgrößen
     b = en + 2
     ws.cell(row=b, column=1, value="Bezugsgrößen").font = Font(bold=True)
-    labels = ["Fertigungsmaterial (€)", "Fertigungslöhne Handarbeit, Fertigung I (€)", "Fertigungslöhne Maschinenplatz (€)",
+    labels = ["Fertigungsmaterial (€)", "Fertigungslöhne Handarbeit, Fertigung I (€)", "Fertigungslöhne Maschinenplatz, Fertigung II (€)",
               "Maschinenstunden (h)", "Bestandsveränderung (+ Minderung / − Mehrung, €)",
               "davon maschinenabhängige Gemeinkosten Fertigung II (€)"]
     for i, t in enumerate(labels):
@@ -451,7 +528,6 @@ def xlsx_bab(pfad):
     rest = b + 7
     ws.cell(row=rest, column=1, value="Restgemeinkosten Fertigung II inkl. Umlagen (€)")
     ws.cell(row=rest, column=2, value=f"=G{en}-{mab}").number_format = fmt2
-    # Nebenrechnung
     n = rest + 2
     ws.cell(row=n, column=1, value="Nebenrechnung Herstellkosten des Umsatzes").font = Font(bold=True)
     zeilen = [
@@ -490,11 +566,11 @@ def main():
     m = ROOT / "material"
     ab_b1(m / "AB-b1-kostenstellen.docx")
     ab_b2(m / "AB-b2-verteilung.docx")
+    ab_bab_formular(m / "BAB-Formular-Juli.docx")
     ab_b3(m / "AB-b3-umlage.docx")
     ab_b4(m / "AB-b4-saetze.docx")
     ab_b5(m / "AB-b5-herstellkosten.docx")
     ab_b6(m / "AB-b6-auswertung.docx")
-    ab_bm(m / "AB-bm-bab-august.docx")
     info_docs()
     xlsx_bab(m / "bab-vorlage.xlsx")
     loesungen(ROOT / "lehrkraft/Loesungen-Stufe-2.docx")

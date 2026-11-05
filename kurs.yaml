@@ -25,7 +25,7 @@ stufen:
     name: Der Betriebsabrechnungsbogen
     icon: "🚀"
     text: Kostenstellen kennenlernen, Gemeinkosten verteilen und umlegen, Kalkulationssätze berechnen und den BAB auswerten.
-    module: [b1, b2, b3, b4, b5, b6, bm]
+    module: [b1, b2, b3, b4, b5, b6]
   - id: kostentraeger
     name: Von den Kosten zum Verkaufspreis
     icon: "🏆"
