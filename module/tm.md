@@ -21,8 +21,8 @@ quellen: [q-lernsituation]
 
 Die Montelli GmbH will auch für den **Rucksack Explorer** (Kunstfaser, grün) einen kostenorientierten Preis berechnen. Frau Petersen bittet dich um die **Zuschlagskalkulation** mit den Normalsätzen.
 
-:::material material/AB-tm-kalkulation-explorer.docx Arbeitsblatt Meilenstein 3: Kalkulation Explorer
-Enthält die Angaben zum Explorer, das leere Kalkulationsschema und die Auswertungsfragen.
+:::material material/AB-tm-kalkulation-explorer.pdf Arbeitsblatt Meilenstein 3: Kalkulation Explorer (PDF)
+Enthält die Angaben zum Explorer, das leere Kalkulationsschema und die Auswertungsfragen. Als Word: [AB-tm-kalkulation-explorer.docx](material/AB-tm-kalkulation-explorer.docx)
 :::
 
 :::material material/kalkulation-vorlage.xlsx Excel-Vorlage: Zuschlagskalkulation

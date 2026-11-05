@@ -16,7 +16,7 @@ window.LP_KURS = {
    "id": "bab",
    "name": "Der Betriebsabrechnungsbogen",
    "icon": "🚀",
-   "start": "b1-der-bab-gemeinkosten-auf-kostenstellen-verteilen.html"
+   "start": "b1-brucke-wo-fallen-die-gemeinkosten-an.html"
   },
   {
    "id": "kostentraeger",
@@ -53,50 +53,58 @@ window.LP_KURS = {
   {
    "id": "b1",
    "level": "bab",
-   "file": "b1-der-bab-gemeinkosten-auf-kostenstellen-verteilen.html",
-   "title": "Der BAB – Gemeinkosten auf Kostenstellen verteilen",
-   "min": 60,
+   "file": "b1-brucke-wo-fallen-die-gemeinkosten-an.html",
+   "title": "Brücke: Wo fallen die Gemeinkosten an?",
+   "min": 25,
    "milestone": false
   },
   {
    "id": "b2",
    "level": "bab",
-   "file": "b2-zuschlagssatze-fur-material-und-fertigung-h.html",
-   "title": "Zuschlagssätze für Material und Fertigung (H)",
-   "min": 45,
+   "file": "b2-bab-schritt-1-gemeinkosten-auf-die-kostenstellen.html",
+   "title": "BAB Schritt 1: Gemeinkosten auf die Kostenstellen verteilen",
+   "min": 50,
    "milestone": false
   },
   {
    "id": "b3",
    "level": "bab",
-   "file": "b3-der-maschinenplatz-maschinenstundensatz-und-rest.html",
-   "title": "Der Maschinenplatz – Maschinenstundensatz und Restgemeinkosten",
-   "min": 45,
+   "file": "b3-bab-schritt-2-innerbetriebliche-leistungen-verre.html",
+   "title": "BAB Schritt 2: Innerbetriebliche Leistungen verrechnen",
+   "min": 40,
    "milestone": false
   },
   {
    "id": "b4",
    "level": "bab",
-   "file": "b4-herstellkosten-des-umsatzes-und-verwaltungs-und-.html",
-   "title": "Herstellkosten des Umsatzes und Verwaltungs- und Vertriebsgemeinkosten (H)",
-   "min": 45,
+   "file": "b4-bab-schritt-3-zuschlagssatze-und-maschinenstunde.html",
+   "title": "BAB Schritt 3: Zuschlagssätze und Maschinenstundensatz",
+   "min": 50,
+   "milestone": false
+  },
+  {
+   "id": "b5",
+   "level": "bab",
+   "file": "b5-bab-schritt-3-herstellkosten-des-umsatzes-verwal.html",
+   "title": "BAB Schritt 3: Herstellkosten des Umsatzes, Verwaltung und Vertrieb (H)",
+   "min": 35,
+   "milestone": false
+  },
+  {
+   "id": "b6",
+   "level": "bab",
+   "file": "b6-auswertung-des-bab.html",
+   "title": "Auswertung des BAB",
+   "min": 35,
    "milestone": false
   },
   {
    "id": "bm",
    "level": "bab",
-   "file": "bm-meilenstein-2-bab-und-zuschlagssatze-fur-august.html",
-   "title": "Meilenstein 2: BAB und Zuschlagssätze für August",
-   "min": 90,
+   "file": "bm-meilenstein-2-bab-fur-august.html",
+   "title": "Meilenstein 2: BAB für August",
+   "min": 65,
    "milestone": true
-  },
-  {
-   "id": "bx",
-   "level": "bab",
-   "file": "bx-erweiterung-freiwillig-vorkostenstellen-und-umla.html",
-   "title": "Erweiterung (freiwillig): Vorkostenstellen und Umlage",
-   "min": 45,
-   "milestone": false
   },
   {
    "id": "t1",
@@ -132,7 +140,24 @@ window.LP_KURS = {
   }
  ],
  "abgabeLink": "",
- "extras": [],
+ "extras": [
+  {
+   "file": "info-1-kostenstellen.html",
+   "title": "Info 1: Kostenstellen und der BAB"
+  },
+  {
+   "file": "info-2-verteilung.html",
+   "title": "Info 2: Gemeinkosten auf die Kostenstellen verteilen (Schritt 1)"
+  },
+  {
+   "file": "info-3-umlage.html",
+   "title": "Info 3: Innerbetriebliche Leistungen verrechnen (Schritt 2)"
+  },
+  {
+   "file": "info-4-kalkulationssaetze.html",
+   "title": "Info 4: Kalkulationssätze ermitteln (Schritt 3)"
+  }
+ ],
  "varianten": null,
  "menueband": {},
  "selbstcheck": null,

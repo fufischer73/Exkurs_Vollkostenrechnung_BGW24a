@@ -24,53 +24,60 @@
    "review": "geprueft"
   },
   {
-   "datei": "b1-der-bab-gemeinkosten-auf-kostenstellen-verteilen.html",
+   "datei": "b1-brucke-wo-fallen-die-gemeinkosten-an.html",
    "art": "modul",
    "id": "b1",
-   "titel": "Der BAB – Gemeinkosten auf Kostenstellen verteilen",
-   "review": "geprueft"
+   "titel": "Brücke: Wo fallen die Gemeinkosten an?",
+   "review": "entwurf"
   },
   {
-   "datei": "b2-zuschlagssatze-fur-material-und-fertigung-h.html",
+   "datei": "b2-bab-schritt-1-gemeinkosten-auf-die-kostenstellen.html",
    "art": "modul",
    "id": "b2",
-   "titel": "Zuschlagssätze für Material und Fertigung (H)",
-   "review": "geprueft"
+   "titel": "BAB Schritt 1: Gemeinkosten auf die Kostenstellen verteilen",
+   "review": "entwurf"
   },
   {
-   "datei": "b3-der-maschinenplatz-maschinenstundensatz-und-rest.html",
+   "datei": "b3-bab-schritt-2-innerbetriebliche-leistungen-verre.html",
    "art": "modul",
    "id": "b3",
-   "titel": "Der Maschinenplatz – Maschinenstundensatz und Restgemeinkosten",
-   "review": "geprueft"
+   "titel": "BAB Schritt 2: Innerbetriebliche Leistungen verrechnen",
+   "review": "entwurf"
   },
   {
-   "datei": "b4-herstellkosten-des-umsatzes-und-verwaltungs-und-.html",
+   "datei": "b4-bab-schritt-3-zuschlagssatze-und-maschinenstunde.html",
    "art": "modul",
    "id": "b4",
-   "titel": "Herstellkosten des Umsatzes und Verwaltungs- und Vertriebsgemeinkosten (H)",
-   "review": "geprueft"
+   "titel": "BAB Schritt 3: Zuschlagssätze und Maschinenstundensatz",
+   "review": "entwurf"
   },
   {
-   "datei": "bm-meilenstein-2-bab-und-zuschlagssatze-fur-august.html",
+   "datei": "b5-bab-schritt-3-herstellkosten-des-umsatzes-verwal.html",
+   "art": "modul",
+   "id": "b5",
+   "titel": "BAB Schritt 3: Herstellkosten des Umsatzes, Verwaltung und Vertrieb (H)",
+   "review": "entwurf"
+  },
+  {
+   "datei": "b6-auswertung-des-bab.html",
+   "art": "modul",
+   "id": "b6",
+   "titel": "Auswertung des BAB",
+   "review": "entwurf"
+  },
+  {
+   "datei": "bm-meilenstein-2-bab-fur-august.html",
    "art": "modul",
    "id": "bm",
-   "titel": "Meilenstein 2: BAB und Zuschlagssätze für August",
-   "review": "geprueft"
-  },
-  {
-   "datei": "bx-erweiterung-freiwillig-vorkostenstellen-und-umla.html",
-   "art": "modul",
-   "id": "bx",
-   "titel": "Erweiterung (freiwillig): Vorkostenstellen und Umlage",
-   "review": "geprueft"
+   "titel": "Meilenstein 2: BAB für August",
+   "review": "entwurf"
   },
   {
    "datei": "t1-ist-und-normalsatze.html",
    "art": "modul",
    "id": "t1",
    "titel": "Ist- und Normalsätze",
-   "review": "geprueft"
+   "review": "entwurf"
   },
   {
    "datei": "t2-zuschlagskalkulation-bis-zu-den-selbstkosten.html",
@@ -92,6 +99,26 @@
    "id": "tm",
    "titel": "Meilenstein 3: Kalkulation für den Rucksack Explorer",
    "review": "geprueft"
+  },
+  {
+   "datei": "info-1-kostenstellen.html",
+   "art": "seite",
+   "titel": "Info 1: Kostenstellen und der BAB"
+  },
+  {
+   "datei": "info-2-verteilung.html",
+   "art": "seite",
+   "titel": "Info 2: Gemeinkosten auf die Kostenstellen verteilen (Schritt 1)"
+  },
+  {
+   "datei": "info-3-umlage.html",
+   "art": "seite",
+   "titel": "Info 3: Innerbetriebliche Leistungen verrechnen (Schritt 2)"
+  },
+  {
+   "datei": "info-4-kalkulationssaetze.html",
+   "art": "seite",
+   "titel": "Info 4: Kalkulationssätze ermitteln (Schritt 3)"
   },
   {
    "datei": "index.html",

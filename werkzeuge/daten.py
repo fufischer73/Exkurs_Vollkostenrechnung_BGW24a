@@ -37,14 +37,14 @@ JULI = {
     "fm": {"Rohstoffe": 140000, "Vorprodukte/Fremdbauteile": 60000},
     "fl1": 62500, "fl2": 14000, "masch_std": 1000,
     "bab": {
-        "Hilfsstoffe":            [0, 7200, 800, 0, 0],
-        "Betriebsstoffe":         [1200, 4800, 10000, 800, 1200],
-        "Gehälter":               [28000, 20900, 2200, 46000, 27000],
-        "Kalk. Abschreibungen":   [3200, 8000, 46000, 4000, 3800],
-        "Kalk. Zinsen":           [3000, 4500, 18750, 2250, 1500],
-        "Leasing":                [3000, 3600, 1200, 1200, 1200],
-        "Fremdinstandhaltung":    [300, 1500, 6250, 0, 0],
-        "Büromaterial":           [700, 125, 0, 1750, 1000],
+        "Hilfsstoffe":            [0, 0, 0, 7600, 400, 0, 0],
+        "Betriebsstoffe":         [2000, 1600, 400, 4000, 8000, 800, 1200],
+        "Gehälter":               [500, 25150, 1400, 22000, 600, 47350, 27100],
+        "Kalk. Abschreibungen":   [4000, 2500, 0, 4000, 50000, 2500, 2000],
+        "Kalk. Zinsen":           [2400, 2100, 600, 3900, 16800, 2400, 1800],
+        "Fremdinstandhaltung":    [1500, 350, 0, 0, 6200, 0, 0],
+        "Leasing":                [600, 3000, 600, 3000, 1200, 1200, 600],
+        "Büromaterial":           [0, 700, 0, 125, 0, 1750, 1000],
     },
 }
 
@@ -77,26 +77,34 @@ AUGUST = {
     "fm": {"Rohstoffe": 126000, "Vorprodukte/Fremdbauteile": 54000},
     "fl1": 56000, "fl2": 12600, "masch_std": 900,
     "bab": {
-        "Hilfsstoffe":            [0, 6500, 700, 0, 0],
-        "Betriebsstoffe":         [1080, 4320, 9000, 720, 1080],
-        "Gehälter":               [28000, 20900, 2200, 46000, 27000],
-        "Kalk. Abschreibungen":   [3200, 8000, 46000, 4000, 3800],
-        "Kalk. Zinsen":           [3000, 4500, 18750, 2250, 1500],
-        "Leasing":                [3000, 3600, 1200, 1200, 1200],
-        "Fremdinstandhaltung":    [0, 900, 4200, 0, 0],
-        "Büromaterial":           [650, 100, 0, 1900, 950],
+        "Hilfsstoffe":            [0, 0, 0, 6800, 400, 0, 0],
+        "Betriebsstoffe":         [1800, 1440, 360, 3600, 7200, 720, 1080],
+        "Gehälter":               [500, 25150, 1400, 22000, 600, 47350, 27100],
+        "Kalk. Abschreibungen":   [4000, 2500, 0, 4000, 50000, 2500, 2000],
+        "Kalk. Zinsen":           [2400, 2100, 600, 3900, 16800, 2400, 1800],
+        "Fremdinstandhaltung":    [1700, 350, 0, 0, 3050, 0, 0],
+        "Leasing":                [600, 3000, 600, 3000, 1200, 1200, 600],
+        "Büromaterial":           [0, 650, 0, 100, 0, 1900, 950],
     },
 }
 
 ORDER = ["Hilfsstoffe", "Betriebsstoffe", "Gehälter", "Kalk. Abschreibungen", "Kalk. Zinsen",
          "Fremdinstandhaltung", "Leasing", "Büromaterial"]
 
-# Verteilungsschlüssel (gelten in Juli und August unverändert); alle übrigen Zeilen werden direkt (per Beleg) zugeordnet
+# Spalten des BAB (Schritt 1): zwei Vorkostenstellen und fünf Hauptkostenstellen
+SP7 = ["Fuhrpark", "Material", "Fertigungsplanung", "Fertigung I", "Fertigung II", "Verwaltung", "Vertrieb"]
+HAUPT = ["Material", "Fertigung I", "Fertigung II", "Verwaltung", "Vertrieb"]
+
+# Verteilungsschlüssel (Schlüsselzahlen je Kostenstelle in der Reihenfolge SP7; gelten in Juli und August unverändert).
+# Alle übrigen Zeilen werden direkt (per Beleg) zugeordnet.
 SCHLUESSEL = {
-    "Betriebsstoffe": ("Verbrauch in kWh (Schlüsselzahlen)", [3, 12, 25, 2, 3]),
-    "Kalk. Zinsen": ("Anteil am gebundenen Kapital (Schlüsselzahlen)", [4, 6, 25, 3, 2]),
-    "Leasing": ("genutzte Fläche in m²", [100, 120, 40, 40, 40]),
+    "Betriebsstoffe": ("Verbrauch in kWh", [10, 8, 2, 20, 40, 4, 6]),
+    "Kalk. Zinsen": ("gebundenes Kapital (Schlüsselzahlen)", [8, 7, 2, 13, 56, 8, 6]),
+    "Leasing": ("genutzte Fläche in m²", [20, 100, 20, 100, 40, 40, 20]),
 }
+# Umlage (Schritt 2, Treppenstufenverfahren): erst Fuhrpark auf alle anderen Stellen, dann Fertigungsplanung auf die Fertigung
+UMLAGE_FUHRPARK = {"Material": 4, "Fertigungsplanung": 1, "Fertigung I": 3, "Fertigung II": 1, "Verwaltung": 0, "Vertrieb": 2}
+UMLAGE_PLANUNG = {"Fertigung I": 3, "Fertigung II": 1}
 
 # Bezugsgrößen je Monat (aus dem Kostenartenplan, der Lohnbuchhaltung und dem Arbeitsplan)
 MASCHINENABHAENGIG = ["Betriebsstoffe", "Kalk. Abschreibungen", "Kalk. Zinsen", "Fremdinstandhaltung"]
@@ -108,8 +116,25 @@ def fmt(x, nk=2):
     return s
 
 
+def umlage(m):
+    """Schritt 2: Treppenstufenverfahren. Gibt (primär, Umlage Fuhrpark, Zwischensumme, Umlage Planung, Endsumme) je Stelle zurück."""
+    bab = m["bab"]
+    prim = {k: sum(v[i] for v in bab.values()) for i, k in enumerate(SP7)}
+    teile = sum(UMLAGE_FUHRPARK.values())
+    assert prim["Fuhrpark"] % teile == 0, (m["name"], prim["Fuhrpark"], teile)
+    u1 = {k: prim["Fuhrpark"] // teile * t for k, t in UMLAGE_FUHRPARK.items()}
+    zw = {k: prim[k] + u1.get(k, 0) for k in SP7}
+    zw["Fuhrpark"] = 0
+    teile2 = sum(UMLAGE_PLANUNG.values())
+    assert zw["Fertigungsplanung"] % teile2 == 0, (m["name"], zw["Fertigungsplanung"], teile2)
+    u2 = {k: zw["Fertigungsplanung"] // teile2 * t for k, t in UMLAGE_PLANUNG.items()}
+    end = {k: zw[k] + u2.get(k, 0) for k in SP7}
+    end["Fertigungsplanung"] = 0
+    return prim, u1, zw, u2, end
+
+
 def auswerten(m):
-    """Berechnet Kostenartenplan, BAB-Spalten und Kalkulationssätze eines Monats."""
+    """Berechnet Kostenartenplan, BAB (mit Umlage) und Kalkulationssätze eines Monats."""
     guv = m["guv"]
     auf = {k: v for k, _, v in guv["aufwand"]}
     kosten = {  # Kostenartenplan: (Gesamt, Einzel)
@@ -129,24 +154,26 @@ def auswerten(m):
     einzel = sum(e for _, e in kosten.values())
     gk = gesamt - einzel
     bab = m["bab"]
-    # Zeilen = Gemeinkostenarten müssen zum Kostenartenplan passen
     for art, vals in bab.items():
         assert sum(vals) == kosten[art][0], (m["name"], art, sum(vals), kosten[art])
-    spalten = [sum(v[i] for v in bab.values()) for i in range(5)]
+    prim, u1, zw, u2, end = umlage(m)
+    spalten = [end[k] for k in HAUPT]
     assert sum(spalten) == gk, (sum(spalten), gk)
     fm = sum(m["fm"].values())
     assert fm + m["fl1"] + m["fl2"] == einzel, (fm, m["fl1"], m["fl2"], einzel)
     assert m["fl1"] + m["fl2"] == kosten["Löhne"][0]
-    mask = [sum(bab[a][2] for a in MASCHINENABHAENGIG), sum(bab[a][2] for a in REST_FERTIGUNG2)]
-    assert sum(mask) == spalten[2]
+    # Fertigung II: maschinenabhängig = Kostenarten der Maschine (primär); Rest = alles übrige inkl. Umlagen
+    i2 = SP7.index("Fertigung II")
+    masch = sum(bab[a][i2] for a in MASCHINENABHAENGIG)
+    rest = end["Fertigung II"] - masch
     mgk, fgk1, _, vw, vt = spalten
     r = {
         "MGK %": mgk / fm * 100,
         "FGK I %": fgk1 / m["fl1"] * 100,
-        "Maschinenstundensatz": mask[0] / m["masch_std"],
-        "Rest %": mask[1] / m["fl2"] * 100,
+        "Maschinenstundensatz": masch / m["masch_std"],
+        "Rest %": rest / m["fl2"] * 100,
     }
-    hkdu = fm + mgk + m["fl1"] + fgk1 + mask[0] + m["fl2"] + mask[1]
+    hkdu = fm + mgk + m["fl1"] + fgk1 + masch + m["fl2"] + rest
     r["HKdU"] = hkdu
     r["VwGK %"] = vw / hkdu * 100
     r["VtGK %"] = vt / hkdu * 100
@@ -164,49 +191,7 @@ def auswerten(m):
     erg["Neutral Ertrag"] = neutral_ert
     erg["Neutrales Ergebnis"] = neutral_ert - neutral_auf
     return {"kosten": kosten, "gesamt": gesamt, "einzel": einzel, "gk": gk, "spalten": spalten,
-            "masch": mask, "saetze": r, "guv": erg, "fm": fm}
-
-
-# --- Erweiterung: Vorkostenstellen (Fuhrpark, Fertigungsplanung) mit Umlage im Treppenstufenverfahren ----------------
-VK_STELLEN = ["Fuhrpark", "Material", "Fertigungsplanung", "Fertigung I", "Fertigung II", "Verwaltung", "Vertrieb"]
-# Ergebnis von Schritt 1 (Verteilung der Gemeinkostenarten), Juli – Spalten wie VK_STELLEN
-VK_BAB = {
-    "Hilfsstoffe":          [0, 0, 0, 7200, 800, 0, 0],
-    "Betriebsstoffe":       [3000, 1200, 0, 3800, 8000, 800, 1200],
-    "Gehälter":             [1000, 25500, 6500, 15900, 2200, 46000, 27000],
-    "Kalk. Abschreibungen": [5000, 3200, 0, 8000, 43000, 4000, 1800],
-    "Kalk. Zinsen":         [0, 3000, 1500, 4000, 17750, 2250, 1500],
-    "Fremdinstandhaltung":  [1500, 300, 0, 0, 6250, 0, 0],
-    "Leasing":              [1500, 1500, 0, 3600, 1200, 1200, 1200],
-    "Büromaterial":         [0, 700, 0, 125, 0, 1750, 1000],
-}
-# Umlageschlüssel (Teile je Kostenstelle)
-VK_SCHL_FUHRPARK = {"Material": 4, "Fertigungsplanung": 1, "Fertigung I": 3, "Fertigung II": 2, "Verwaltung": 0, "Vertrieb": 2}
-VK_SCHL_PLANUNG = {"Fertigung I": 5, "Fertigung II": 4}
-
-
-def vorkostenumlage():
-    """Treppenstufenverfahren: erst Fuhrpark auf alle anderen Stellen, dann Fertigungsplanung auf die Fertigung."""
-    prim = [sum(v[i] for v in VK_BAB.values()) for i in range(7)]
-    z = dict(zip(VK_STELLEN, prim))
-    teile = sum(VK_SCHL_FUHRPARK.values())
-    u1 = {k: z["Fuhrpark"] * t / teile for k, t in VK_SCHL_FUHRPARK.items()}
-    zw = {k: z[k] + u1.get(k, 0) for k in VK_STELLEN}
-    zw["Fuhrpark"] = 0
-    teile2 = sum(VK_SCHL_PLANUNG.values())
-    u2 = {k: zw["Fertigungsplanung"] * t / teile2 for k, t in VK_SCHL_PLANUNG.items()}
-    end = {k: zw[k] + u2.get(k, 0) for k in VK_STELLEN}
-    end["Fertigungsplanung"] = 0
-    return prim, u1, zw, u2, end
-
-
-def pruefe_vorkosten():
-    for art, vals in VK_BAB.items():
-        assert sum(vals) == sum(JULI["bab"][art]), art
-    prim, u1, zw, u2, end = vorkostenumlage()
-    sp = auswerten(JULI)["spalten"]
-    assert [end["Material"], end["Fertigung I"], end["Fertigung II"], end["Verwaltung"], end["Vertrieb"]] == sp, (end, sp)
-    assert sum(prim) == 266925 and abs(sum(end.values()) - 266925) < 1e-9
+            "masch": [masch, rest], "saetze": r, "guv": erg, "fm": fm, "umlage": (prim, u1, zw, u2, end)}
 
 
 # --- Stufe 3: Ist-Sätze der letzten vier Monate und daraus gebildete Normalsätze ---------------------------------
@@ -282,7 +267,6 @@ if __name__ == "__main__":
     pruefe_schluessel(JULI)
     pruefe_schluessel(AUGUST)
     pruefe_normal()
-    pruefe_vorkosten()
     k = kalkulation(**BUSINESS_DELUXE)
     assert (k["Selbstkosten"], k["Barverkaufspreis"], k["Zielverkaufspreis"], k["Listenverkaufspreis"]) == (108.60, 130.32, 134.35, 149.28), k
     print("Business Deluxe:", {a: b for a, b in k.items() if a in ("Herstellkosten", "Selbstkosten", "Listenverkaufspreis")})

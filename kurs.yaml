@@ -24,8 +24,8 @@ stufen:
   - id: bab
     name: Der Betriebsabrechnungsbogen
     icon: "🚀"
-    text: Gemeinkosten auf Kostenstellen verteilen, Zuschlagssätze und den Maschinenstundensatz berechnen, Herstellkosten ermitteln.
-    module: [b1, b2, b3, b4, bm, bx]
+    text: Kostenstellen kennenlernen, Gemeinkosten verteilen und umlegen, Kalkulationssätze berechnen und den BAB auswerten.
+    module: [b1, b2, b3, b4, b5, b6, bm]
   - id: kostentraeger
     name: Von den Kosten zum Verkaufspreis
     icon: "🏆"

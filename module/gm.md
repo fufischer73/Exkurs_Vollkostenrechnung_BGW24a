@@ -20,8 +20,8 @@ quellen: [q-lehrwerk]
 
 Im **August** haben weniger Mitarbeiter:innen gearbeitet (Urlaubszeit), die Produktion lief auf niedrigerem Niveau. Frau Petersen bittet dich um den **Kostenartenplan für August**. Er ist die Grundlage für den Betriebsabrechnungsbogen in Stufe 2.
 
-:::material material/AB-gm-guv-august.docx Arbeitsblatt Meilenstein 1: GuV August und Kostenartenplan
-Zum Ausdrucken. Enthält die GuV August (neutrale Konten grau), einen leeren Kostenartenplan und Platz für deine Begründungen.
+:::material material/AB-gm-guv-august.pdf Arbeitsblatt Meilenstein 1: GuV August und Kostenartenplan (PDF)
+Zum Ausdrucken. Enthält die GuV August (neutrale Konten grau), einen leeren Kostenartenplan und Platz für deine Begründungen. Als Word: [AB-gm-guv-august.docx](material/AB-gm-guv-august.docx)
 :::
 
 :::material material/kostenartenplan-august.xlsx Excel-Vorlage: Kostenartenplan August
