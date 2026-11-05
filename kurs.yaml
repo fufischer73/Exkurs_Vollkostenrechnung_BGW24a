@@ -40,7 +40,7 @@ stufen:
 einstufung: {bestehen: 80}   # Einstufungstests aus den Kurz-Checks der vorigen Stufe
 
 moodle:
-  version: 5                 # 5 = mit Unterabschnitten und H5P (Standard)
+  version: 4                 # BBZ-Moodle 4.5.12+ (keine Unterabschnitte, kein H5P)
   freischaltung: einstufung  # Stufe frei nach Meilenstein ODER Einstufungstest
   reihenfolge: nacheinander
 

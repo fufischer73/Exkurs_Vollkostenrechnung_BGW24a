@@ -17,4 +17,4 @@ Neu bauen: `python3 werkzeuge/material_stufe1.py` und `werkzeuge/material_stufe2
 
 `vorschau/vorschau.zip` enthält die Web-Version zum Ansehen (entpacken, `web/index.html` öffnen).
 
-**Moodle:** `moodle/exkurs-vollkostenrechnung_VOLLSTAENDIG_moodle5.mbz` ist der vollständige Kurs (siehe `moodle/LIESMICH.md`).
+**Moodle:** `moodle/exkurs-vollkostenrechnung_VOLLSTAENDIG_moodle4.mbz` ist der vollständige Kurs (siehe `moodle/LIESMICH.md`).

@@ -60,13 +60,17 @@
   loesungsweg: "{{mk}} € ÷ {{h}} h = {{satz}} € je h"
 
 - id: ab-06
-  typ: reihenfolge
+  typ: zuordnung
   niveau: 2
   review: freigegeben
-  aufgabe: "Bring die Zeilen des Kalkulationsschemas in die richtige Reihenfolge (von oben nach unten)."
-  elemente: ["Selbstkosten", "Gewinnzuschlag", "Barverkaufspreis", "Kundenskonto", "Zielverkaufspreis", "Kundenrabatt", "Listenverkaufspreis (netto)"]
-  feedback_richtig: "Richtig. Vom Selbstkostenpreis geht es über Gewinn, Skonto und Rabatt zum Listenverkaufspreis."
-  feedback_falsch: "Denke an den Weg vom Selbstkostenpreis zum Listenverkaufspreis: Gewinn, dann Skonto, dann Rabatt."
+  aufgabe: "Wie wird im Kalkulationsschema gerechnet? Ordne zu: „vom Hundert“ (Anfangswert = 100 %) oder „im Hundert“ (Endwert = 100 %)."
+  kategorien: ["vom Hundert", "im Hundert"]
+  elemente:
+    - {text: "Gewinnzuschlag auf die Selbstkosten", kategorie: "vom Hundert"}
+    - {text: "Materialgemeinkosten auf das Fertigungsmaterial", kategorie: "vom Hundert"}
+    - {text: "Verwaltungs- und Vertriebsgemeinkosten auf die Herstellkosten", kategorie: "vom Hundert"}
+    - {text: "Kundenskonto (Zielverkaufspreis = 100 %)", kategorie: "im Hundert"}
+    - {text: "Kundenrabatt (Listenverkaufspreis = 100 %)", kategorie: "im Hundert"}
 
 - id: ab-07
   typ: lueckentext
