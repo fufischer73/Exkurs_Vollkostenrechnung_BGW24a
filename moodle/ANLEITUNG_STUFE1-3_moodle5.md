@@ -23,6 +23,7 @@ Aktivität **Lernpaket** (SCORM) anlegen, ZIP aus `lernpakete/` hochladen, dann:
 
 - Lernpaket **🧭 Mein Lernpfad – hier geht's los** – `lernpakete/exkurs-vollkostenrechnung_start_scorm2004.zip`
 - Lernpaket **🎯 Einstufungstest: direkt zu Der Betriebsabrechnungsbogen** – `lernpakete/exkurs-vollkostenrechnung_einstufung-bab_scorm2004.zip`
+- Lernpaket **🎯 Einstufungstest: direkt zu Von den Kosten zum Verkaufspreis** – `lernpakete/exkurs-vollkostenrechnung_einstufung-kostentraeger_scorm2004.zip`
 
 ## Abschnitt „🌱 Von der GuV zu den Kosten“
 
@@ -57,4 +58,22 @@ Voraussetzung am Abschnitt (Einschränkung: Aktivitätsabschluss bzw. Bewertung,
     - Herstellkosten und Verwaltung/Vertrieb: nicht erreicht (0 P.) · erreicht: Die Nebenrechnung ist vollständig und stimmig. VwGK- und VtGK-Satz sind richtig. (2 P.) · besonders gut: Du nennst die Wirkung von Bestandsveränderungen mit eigenem Beispiel. (3 P.)
     - Auswertung: nicht erreicht (0 P.) · erreicht: Alle 13 Fragen sind beantwortet. Die Bedeutung der Sätze ist richtig erklärt und die Auftragsrechnungen stimmen. (2 P.) · besonders gut: Du erklärst die Differenz der Kosten (Frage 13) mit eigenen Worten und Zahlen. (3 P.)
     - Darstellung: nicht erreicht (0 P.) · erreicht: Alle drei Teile sind lesbar und vollständig. (2 P.) · besonders gut: Die Rechenwege sind durchgehend nachvollziehbar. (3 P.)
+
+## Abschnitt „🏆 Von den Kosten zum Verkaufspreis“
+
+Voraussetzung am Abschnitt (Einschränkung: Aktivitätsabschluss bzw. Bewertung, verknüpft mit „mindestens eine“): „📤 BAB und Auswertung abgeben“ abgeschlossen **oder** „🎯 Einstufungstest: direkt zu Von den Kosten zum Verkaufspreis“ mit mindestens 80 % bewertet.
+
+- Lernpaket **T1 · Ist- und Normalsätze** – `lernpakete/exkurs-vollkostenrechnung_t1_scorm2004.zip`
+- Lernpaket **T2 · Zuschlagskalkulation bis zu den Selbstkosten** – `lernpakete/exkurs-vollkostenrechnung_t2_scorm2004.zip` – Voraussetzung: „T1 · Ist- und Normalsätze“ abgeschlossen
+- Lernpaket **T3 · Vom Selbstkostenpreis zum Listenverkaufspreis (H)** – `lernpakete/exkurs-vollkostenrechnung_t3_scorm2004.zip` – Voraussetzung: „T2 · Zuschlagskalkulation bis zu den Selbstkosten“ abgeschlossen
+- Unterabschnitt **★ Meilenstein 3: Kalkulation für den Rucksack Explorer** – Voraussetzung: „T3 · Vom Selbstkostenpreis zum Listenverkaufspreis (H)“ abgeschlossen
+  - Lernpaket **★ Meilenstein 3: Kalkulation für den Rucksack Explorer – Auftrag & Checkliste** – `lernpakete/exkurs-vollkostenrechnung_tm_scorm2004.zip`
+  - Aufgabe **📤 Kalkulation Explorer abgeben** – Dateiabgabe, höchstens 2 Datei(en), Dateitypen .pdf,.docx, 100 Punkte, Abschluss: „Abgabe erforderlich“
+    Beschreibung: Lade dein ausgefülltes Kalkulationsschema mit den Antworten auf die Auswertungsfragen als **PDF** (z. B. gescanntes Arbeitsblatt) oder als **Word-Datei** hoch. Keine Bilder. Wenn du in Excel gearbeitet hast, speichere die Tabelle als PDF.
+    Bewertungsmethode **Bewertungsraster** mit diesen Kriterien:
+    - Aufbau des Schemas: nicht erreicht (0 P.) · erreicht: Alle Zeilen stehen in der richtigen Reihenfolge. Die Zwischensummen (Materialkosten, Fertigungskosten I und II, Herstellkosten, Selbstkosten) sind enthalten. (2 P.) · besonders gut: Alle Zeilen sind ohne Hilfe und ohne Fehler aufgebaut. (3 P.)
+    - Gemeinkosten und Maschinenplatz: nicht erreicht (0 P.) · erreicht: Die Zuschläge beziehen sich auf die richtigen Grundlagen. Maschinenkosten und Restgemeinkosten sind richtig berechnet. (2 P.) · besonders gut: Du erklärst in einem Satz, warum der Maschinenplatz einen eigenen Stundensatz hat. (3 P.)
+    - Preisbildung: nicht erreicht (0 P.) · erreicht: Gewinn vom Hundert sowie Skonto und Rabatt im Hundert sind richtig gerechnet. Der Listenverkaufspreis stimmt. (2 P.) · besonders gut: Du führst eine Probe durch (rückwärts vom Listenpreis zum Barverkaufspreis). (3 P.)
+    - Bemerkungen und Auswertung: nicht erreicht (0 P.) · erreicht: In der Bemerkungsspalte steht bei jeder Berechnung der Rechenweg. Die Fragen sind beantwortet. (2 P.) · besonders gut: Du begründest die Einordnung des Preises nachvollziehbar. (3 P.)
+    - Darstellung: nicht erreicht (0 P.) · erreicht: Das Schema ist lesbar und vollständig. (2 P.) · besonders gut: Der Rechenweg ist durchgehend nachvollziehbar. (3 P.)
 

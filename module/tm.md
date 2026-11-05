@@ -2,7 +2,7 @@
 titel: "Meilenstein 3: Kalkulation für den Rucksack Explorer"
 minuten: 40
 meilenstein: true
-review: geprueft
+review: freigegeben
 abgabe:
   titel: Kalkulation Explorer abgeben
   text: Lade dein ausgefülltes Kalkulationsschema mit den Antworten auf die Auswertungsfragen als **PDF** (z. B. gescanntes Arbeitsblatt) oder als **Word-Datei** hoch. Keine Bilder. Wenn du in Excel gearbeitet hast, speichere die Tabelle als PDF.
