@@ -1,7 +1,7 @@
 ---
 titel: "Erweiterung (freiwillig): Vorkostenstellen und Umlage"
 minuten: 45
-review: entwurf
+review: geprueft
 lernziele:
   - Vorkostenstellen von Hauptkostenstellen unterscheiden,
   - die Kosten der Vorkostenstellen im Treppenstufenverfahren auf die Hauptkostenstellen umlegen,
@@ -22,7 +22,7 @@ kurzcheck:
     richtig: 1
     richtig_text: "Genau. Die Reihenfolge richtet sich danach, wer wem Leistungen liefert."
     falsch_text: "Die Reihenfolge hängt von den Leistungsbeziehungen ab: Der Fuhrpark beliefert auch die Fertigungsplanung, deshalb kommt er zuerst."
-quellen: [q-lehrwerk]
+quellen: [q-lehrwerk, q-stufenleiter]
 ---
 :::notiz Freiwillig
 Dieses Modul ist eine **Erweiterung**. Du brauchst es nicht für die Stufe 3. Wer schneller ist oder es genauer wissen möchte, bearbeitet es nach dem Meilenstein 2.

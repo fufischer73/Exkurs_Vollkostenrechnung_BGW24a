@@ -2,12 +2,12 @@
 titel: "Meilenstein 1: Kostenartenplan Montelli für August"
 minuten: 45
 meilenstein: true
-review: entwurf
+review: geprueft
 abgabe:
   titel: Kostenartenplan August abgeben
-  text: Lade deinen ausgefüllten Kostenartenplan als **PDF** (Scan oder Foto deines Arbeitsblatts) oder als **Excel-Datei** hoch.
-  dateitypen: .pdf,.xlsx,.jpg,.png
-  dateien: 3
+  text: Lade deinen ausgefüllten Kostenartenplan als **PDF** (z. B. gescanntes Arbeitsblatt) oder als **Word-Datei** hoch. Keine Bilder. Wenn du in Excel gearbeitet hast, speichere die Tabelle als PDF.
+  dateitypen: .pdf,.docx
+  dateien: 2
   punkte: 100
 raster:
   - {kriterium: Kostenarten und Zuordnung, erreicht: Alle Kostenarten stehen im Plan. Einzel- und Gemeinkosten sind richtig zugeordnet. Die neutralen Konten sind nicht enthalten. Statt der Konten 6520 und 7510 stehen die kalkulatorischen Werte., besonders_gut: Alles ist fehlerfrei und ohne Hilfe erstellt.}

@@ -21,3 +21,48 @@
   status: verifiziert
   geprueft_am: 2026-11-04
   belegt: Unternehmensprofil, Organigramm, Artikelliste
+
+# --- Websuche vom 05.11.2026: Stichprobe der Fachaussagen. Es wurden nur die Suchtreffer ausgewertet, die Seiten nicht
+# --- vollständig gelesen. Deshalb bleibt der Status bei zu_pruefen (siehe lehrkraft/Freigabe-Checkliste.docx).
+- id: q-stufenleiter
+  titel: Berufsschule Nürnberg, Lernfeld 4 „BAB Theorie“ (Lehrmaterial)
+  url: https://www.nuernberg.de/imperia/md/berufsschule_4/dokumente/b5/lf04_bab_theorie.pdf
+  art: fachliteratur
+  status: zu_pruefen
+  geprueft_am: 2026-11-05
+  belegt: Umlage zuerst der allgemeinen Kostenstellen auf alle übrigen, danach der Fertigungshilfskostenstellen auf die Hauptkostenstellen. Treppenstufenverfahren heißt auch Stufenleiterverfahren
+- id: q-maschinen
+  titel: Welt der BWL – Maschinenstundensatz; Steuerkurse – Maschinenstundensatz und Selbstkostenberechnung (Lehrmaterial)
+  url: https://www.welt-der-bwl.de/Maschinenstundensatz
+  art: fachliteratur
+  status: zu_pruefen
+  geprueft_am: 2026-11-05
+  belegt: Trennung in maschinenabhängige Gemeinkosten (Stundensatz) und Restgemeinkosten (Zuschlag auf Fertigungslöhne); jede Kostenart nur in einem der beiden Teile
+- id: q-normal
+  titel: ZUM-Unterrichten – Vollkostenrechnung mit Normalkosten (OER)
+  url: https://unterrichten.zum.de/images/5/5c/Vollkostenrechnung_mit_Normalkosten_1.pdf
+  art: fachliteratur
+  status: zu_pruefen
+  geprueft_am: 2026-11-05
+  belegt: Normalzuschlagssätze als Durchschnitt (arithmetisches Mittel) der Istzuschlagssätze vergangener Perioden. In der Praxis oft zwölf Monate
+- id: q-skonto
+  titel: ZUM – Zuschlagskalkulation, Kalkulationsschema (Lehrmaterial)
+  url: https://www.zum.de/Faecher/kurse/boeing/udb/klr/Zuschlagskalkulation-Kalkulationsschema.pdf
+  art: fachliteratur
+  status: zu_pruefen
+  geprueft_am: 2026-11-05
+  belegt: Schema Selbstkosten, Gewinn, Barverkaufspreis, Skonto, Zielverkaufspreis, Rabatt, Listenverkaufspreis; Skonto und Rabatt im Hundert (Division durch 1 minus Satz)
+- id: q-hkdu
+  titel: ISB Bayern – Merkhilfe Betriebswirtschaftliche Steuerung und Kontrolle, Wirtschaftsschule
+  url: https://www.isb.bayern.de/fileadmin/user_upload/Berufliche_Schulen/Wirtschaftsschule/Leistungserhebungen/Hilfsmittel_BSK/Merkhilfe_BSK_WS.pdf
+  art: lehrplan
+  status: zu_pruefen
+  geprueft_am: 2026-11-05
+  belegt: Herstellkosten des Umsatzes mit Bestandsveränderungen als Bezug für Verwaltungs- und Vertriebsgemeinkosten
+- id: q-unternehmerlohn
+  titel: WHK Controlling – Kalkulatorischer Unternehmerlohn
+  url: https://www.whk-controlling.de/wissen/unternehmerlohn-rechner
+  art: fachliteratur
+  status: zu_pruefen
+  geprueft_am: 2026-11-05
+  belegt: Kalkulatorischer Unternehmerlohn bei Einzelunternehmen und Personengesellschaften. Bei der GmbH ist das Geschäftsführergehalt Aufwand und normalerweise kein Unternehmerlohn nötig

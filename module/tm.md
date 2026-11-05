@@ -2,12 +2,12 @@
 titel: "Meilenstein 3: Kalkulation für den Rucksack Explorer"
 minuten: 45
 meilenstein: true
-review: entwurf
+review: geprueft
 abgabe:
   titel: Kalkulation Explorer abgeben
-  text: Lade dein ausgefülltes Kalkulationsschema mit den Antworten auf die Auswertungsfragen als **PDF** (Scan oder Foto) oder als **Excel-Datei** hoch.
-  dateitypen: .pdf,.xlsx,.jpg,.png
-  dateien: 3
+  text: Lade dein ausgefülltes Kalkulationsschema mit den Antworten auf die Auswertungsfragen als **PDF** (z. B. gescanntes Arbeitsblatt) oder als **Word-Datei** hoch. Keine Bilder. Wenn du in Excel gearbeitet hast, speichere die Tabelle als PDF.
+  dateitypen: .pdf,.docx
+  dateien: 2
   punkte: 100
 raster:
   - {kriterium: Aufbau des Schemas, erreicht: Alle Zeilen stehen in der richtigen Reihenfolge. Die Zwischensummen (Materialkosten, Fertigungskosten I und II, Herstellkosten, Selbstkosten) sind enthalten., besonders_gut: Alle Zeilen sind ohne Hilfe und ohne Fehler aufgebaut.}

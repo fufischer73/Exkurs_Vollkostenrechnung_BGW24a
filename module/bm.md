@@ -2,12 +2,12 @@
 titel: "Meilenstein 2: BAB und Zuschlagssätze für August"
 minuten: 90
 meilenstein: true
-review: entwurf
+review: geprueft
 abgabe:
   titel: BAB August abgeben
-  text: Lade deinen vollständigen BAB mit Zuschlagssätzen, der Nebenrechnung und den Antworten als **PDF** (Scan oder Foto) oder als **Excel-Datei** hoch.
-  dateitypen: .pdf,.xlsx,.jpg,.png
-  dateien: 3
+  text: Lade deinen vollständigen BAB mit Zuschlagssätzen, der Nebenrechnung und den Antworten als **PDF** (z. B. gescanntes Arbeitsblatt) oder als **Word-Datei** hoch. Keine Bilder. Wenn du in Excel gearbeitet hast, speichere die Tabelle als PDF.
+  dateitypen: .pdf,.docx
+  dateien: 2
   punkte: 100
 raster:
   - {kriterium: Verteilung im BAB, erreicht: Alle Gemeinkosten sind richtig auf die fünf Kostenstellen verteilt. Die Zeilen- und Spaltenprobe stimmt., besonders_gut: Die Rechenwege der Schlüssel sind notiert.}
