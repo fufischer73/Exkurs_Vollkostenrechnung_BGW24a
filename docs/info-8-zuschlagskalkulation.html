@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Info 8: Zuschlagskalkulation und Verkaufspreis – Exkurs Vollkostenrechnung</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/kurs.css">
+<script src="assets/js/kurs.js"></script>
+<script src="assets/js/medien.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body>
+<header id="topbar"></header>
+<div class="layout">
+<nav id="sidebar" aria-label="Lernpfad"></nav>
+<main>
+<h1>Info 8: Zuschlagskalkulation und Verkaufspreis</h1><h2>Das Kalkulationsschema</h2>
+<p>Die <strong>Zuschlagskalkulation</strong> führt von den Einzelkosten eines Produkts über die Gemeinkosten zu den Selbstkosten und weiter zum Verkaufspreis:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeile</th>
+<th>Berechnung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fertigungsmaterial</td>
+<td>Einzelkosten</td>
+</tr>
+<tr>
+<td>+ Materialgemeinkosten</td>
+<td>MGK-Satz auf das Fertigungsmaterial</td>
+</tr>
+<tr>
+<td><strong>= Materialkosten</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Fertigungslöhne</td>
+<td>Einzelkosten (Handarbeit)</td>
+</tr>
+<tr>
+<td>+ Fertigungsgemeinkosten</td>
+<td>FGK-Satz auf die Fertigungslöhne</td>
+</tr>
+<tr>
+<td><strong>= Fertigungskosten I</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Maschinenabhängige Fertigungsgemeinkosten</td>
+<td>Maschinenstunden × Maschinenstundensatz</td>
+</tr>
+<tr>
+<td>+ Fertigungslöhne des Maschinenplatzes</td>
+<td>Einzelkosten</td>
+</tr>
+<tr>
+<td>+ Restgemeinkosten</td>
+<td>Satz auf die Löhne des Maschinenplatzes</td>
+</tr>
+<tr>
+<td><strong>= Fertigungskosten II</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>= Herstellkosten</strong></td>
+<td>Materialkosten + Fertigungskosten I + II</td>
+</tr>
+<tr>
+<td>+ Verwaltungs- und Vertriebsgemeinkosten</td>
+<td>Satz auf die Herstellkosten</td>
+</tr>
+<tr>
+<td><strong>= Selbstkosten</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>+ Gewinnzuschlag</td>
+<td>vom Hundert auf die Selbstkosten</td>
+</tr>
+<tr>
+<td><strong>= Barverkaufspreis</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>+ Kundenskonto</td>
+<td>im Hundert</td>
+</tr>
+<tr>
+<td><strong>= Zielverkaufspreis</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>+ Kundenrabatt</td>
+<td>im Hundert</td>
+</tr>
+<tr>
+<td><strong>= Listenverkaufspreis (netto)</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>Sondereinzelkosten (zum Beispiel Fracht für einen einzelnen Auftrag) kämen in einer eigenen Zeile dazu. Hier fallen sie nicht an.</p>
+<h2>„Vom Hundert“ und „im Hundert“</h2>
+<ul>
+<li><strong>Vom Hundert:</strong> Der Anfangswert ist 100 %. Der Zuschlag wird auf ihn gerechnet. Beispiel: Gewinn 20 % auf die Selbstkosten.</li>
+<li><strong>Im Hundert:</strong> Der <strong>höhere Endwert</strong> ist 100 %. Der Abzug (Skonto, Rabatt) bezieht sich auf ihn. Deshalb rechnet man rückwärts mit <strong>÷ (1 − Satz)</strong>.</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeile</th>
+<th>Rechnung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zielverkaufspreis</td>
+<td>Barverkaufspreis ÷ (1 − Skontosatz)</td>
+</tr>
+<tr>
+<td>Listenverkaufspreis</td>
+<td>Zielverkaufspreis ÷ (1 − Rabattsatz)</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Beispiel mit anderen Zahlen</h2>
+<p>Selbstkosten 200,00 €, Gewinn 10 %, Skonto 2 %, Rabatt 5 %.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zeile</th>
+<th>Rechnung</th>
+<th>Betrag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Selbstkosten</td>
+<td></td>
+<td>200,00 €</td>
+</tr>
+<tr>
+<td>+ Gewinn</td>
+<td>10 % von 200,00 €</td>
+<td>20,00 €</td>
+</tr>
+<tr>
+<td>= Barverkaufspreis</td>
+<td></td>
+<td>220,00 €</td>
+</tr>
+<tr>
+<td>+ Skonto</td>
+<td>Zielverkaufspreis = 220,00 € ÷ 0,98 = 224,49 €</td>
+<td>4,49 €</td>
+</tr>
+<tr>
+<td>= Zielverkaufspreis</td>
+<td></td>
+<td>224,49 €</td>
+</tr>
+<tr>
+<td>+ Rabatt</td>
+<td>Listenverkaufspreis = 224,49 € ÷ 0,95 = 236,31 €</td>
+<td>11,82 €</td>
+</tr>
+<tr>
+<td>= Listenverkaufspreis</td>
+<td></td>
+<td>236,31 €</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Probe:</strong> 236,31 € − 5 % Rabatt ≈ 224,49 €, davon 2 % Skonto abgezogen ≈ 220,00 €.</p>
+<div class="box download"><div class="box-title">📥 Diese Info als PDF herunterladen</div><p>Zum Ausdrucken und Abheften.</p>
+<p><a class="btn" href="material/Info-8-zuschlagskalkulation.pdf" download>Info-8-zuschlagskalkulation.pdf herunterladen</a></p></div>
+</main>
+</div>
+<footer class="site">Exkurs Vollkostenrechnung · BGW24a · Entwurf Stand 11/2026</footer>
+</body>
+</html>

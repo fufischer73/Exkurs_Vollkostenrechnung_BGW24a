@@ -420,7 +420,8 @@ def info_docs():
         text = md.read_text(encoding="utf-8")
         m = re.match(r"---\n(.*?)\n---\n(.*)", text, flags=re.S)
         titel = re.search(r'titel: "?(.*?)"?\n', m.group(1)).group(1)
-        body = f"# {titel}\n\n*Montelli GmbH · Exkurs Vollkostenrechnung*\n\n" + m.group(2)
+        text_ohne = re.sub(r":::material.*?\n:::\n", "", m.group(2), flags=re.S)
+        body = f"# {titel}\n\n*Montelli GmbH · Exkurs Vollkostenrechnung*\n\n" + text_ohne
         nummer = md.stem.split("-")[1]
         name = "-".join(md.stem.split("-")[2:])
         ziel = ROOT / "material" / f"Info-{nummer}-{name}.docx"

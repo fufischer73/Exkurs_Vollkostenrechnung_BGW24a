@@ -7,19 +7,19 @@ from material_stufe1 import neues_dokument, tabelle, ueberschrift  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 MODULE = [
-    ("G1", "Von der GuV zu den Einzel- und Gemeinkosten", "40", "geprüft (wird noch auf Situation + Arbeitsauftrag zuerst angepasst)"),
-    ("G2", "Kostenarten, Einzel- und Gemeinkosten vertiefen (H)", "50", "geprüft (wird noch angepasst)"),
-    ("MS 1", "Kostenartenplan August", "35", "geprüft"),
-    ("B1", "Brücke: Wo fallen die Gemeinkosten an?", "25", "NEU, Entwurf: Fuhrpark und Fertigungsplanung sind für den Exkurs ergänzt (nicht im Organigramm der Einführung)"),
-    ("B2", "BAB Schritt 1: Verteilung", "50", "NEU, Entwurf: drei Hilfestufen, Schlüsselzahlen sind eigene Annahmen"),
-    ("B3", "BAB Schritt 2: Umlage", "40", "NEU, Entwurf: Treppenstufenverfahren, Umlagen zählen zu den Restgemeinkosten"),
-    ("B4", "BAB Schritt 3: Zuschlagssätze und Maschinenplatz", "50", "NEU, Entwurf: Zuschlagsgrundlage Fertigung I nur Handarbeit, 608,57 %-Denkanstoß"),
-    ("B5", "Herstellkosten des Umsatzes, Verwaltung/Vertrieb (H)", "35", "NEU, Entwurf: keine Bestandsveränderungen, 20,30 % statt 20 %"),
-    ("MS 2", "Auswertung des BAB (B6)", "45", "NEU, Entwurf: Abgabe von BAB-Formular, Nebenrechnung und 13 Antworten"),
-    ("T1", "Ist- und Normalsätze", "30", "Entwurf (August-Zahlen angepasst); vier Monate statt üblicher zwölf"),
-    ("T2", "Zuschlagskalkulation bis zu den Selbstkosten", "45", "geprüft (wird noch angepasst)"),
-    ("T3", "Vom Selbstkostenpreis zum Listenverkaufspreis (H)", "45", "geprüft (wird noch angepasst)"),
-    ("MS 3", "Kalkulation Explorer", "45", "geprüft"),
+    ("G1", "Von der GuV zu den Einzel- und Gemeinkosten", "45", "NEU, Entwurf: Situation und Arbeitsauftrag zuerst, Info als Hilfe; neutrale Posten nur als Info (Zinsen betriebsfremd)"),
+    ("G2", "Kostenarten und Kostenartenplan (H)", "55", "NEU, Entwurf: kalkulatorische Kosten und Überleitung 229.925 → 266.925 €; kein Unternehmerlohn bei der GmbH"),
+    ("MS 1", "Kostenartenplan August", "40", "geprüft: Raster, Abgabe als PDF oder Word"),
+    ("B1", "Brücke: Wo fallen die Gemeinkosten an?", "25", "Entwurf: Fuhrpark und Fertigungsplanung sind für den Exkurs ergänzt (nicht im Organigramm der Einführung)"),
+    ("B2", "BAB Schritt 1: Verteilung", "50", "Entwurf: BAB-Formular nach deiner Vorlage, Schlüsselzahlen sind eigene Annahmen"),
+    ("B3", "BAB Schritt 2: Umlage", "40", "Entwurf: Treppenstufenverfahren, Umlagen zählen zu den Restgemeinkosten"),
+    ("B4", "BAB Schritt 3: Zuschlagssätze und Maschinenplatz", "50", "Entwurf: Zuschlagsgrundlage Fertigung I nur Handarbeit, 608,57 %-Denkanstoß"),
+    ("B5", "Herstellkosten des Umsatzes, Verwaltung/Vertrieb (H)", "35", "Entwurf: keine Bestandsveränderungen, 20,30 % statt 20 %"),
+    ("MS 2", "Auswertung des BAB (B6)", "45", "Entwurf: Abgabe von BAB-Formular, Nebenrechnung und 13 Antworten"),
+    ("T1", "Ist- und Normalsätze", "30", "NEU, Entwurf: vier Monate statt üblicher zwölf; Plus zur Kostenunterdeckung ist weiterführend"),
+    ("T2", "Zuschlagskalkulation bis zu den Selbstkosten", "45", "NEU, Entwurf: Ergebnis 108,60 € wie in der Lernsituation"),
+    ("T3", "Vom Selbstkostenpreis zum Listenverkaufspreis (H)", "40", "NEU, Entwurf: „im Hundert“ bei Skonto und Rabatt; Ergebnis 149,28 €"),
+    ("MS 3", "Kalkulation Explorer", "40", "geprüft: Zahlen (117,89 €) und Vergleich mit 149 € in der Artikelliste"),
     ("Test", "Lernerfolgskontrolle (Moodle-Test)", "15", "10 Fragen, Zufallszahlen, Reihenfolge-Frage braucht Moodle ab 4.4"),
 ]
 OFFEN = [
@@ -33,7 +33,7 @@ OFFEN = [
 
 
 def main():
-    d = neues_dokument("Freigabe-Checkliste: Exkurs Vollkostenrechnung", "Stand 05.11.2026 · Stufe 2 neu aufgebaut (Entwurf), noch kein Modul freigegeben")
+    d = neues_dokument("Freigabe-Checkliste: Exkurs Vollkostenrechnung", "Stand 05.11.2026 · alle Stufen im neuen Aufbau (Entwurf), noch kein Modul freigegeben")
     ueberschrift(d, "So gibst du frei")
     d.add_paragraph("Lies ein Modul in der Web-Version, prüfe die Punkte rechts und sage Claude: „Modul G1 ist freigegeben“ (oder „alles“). "
                     "Nur freigegebene Module kommen in den Moodle-Kurs. Nach einer größeren Änderung geht ein Modul zurück auf „geprüft“.")

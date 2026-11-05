@@ -1,6 +1,6 @@
 ---
 titel: "Meilenstein 1: Kostenartenplan Montelli für August"
-minuten: 45
+minuten: 40
 meilenstein: true
 review: geprueft
 abgabe:

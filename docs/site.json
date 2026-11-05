@@ -7,14 +7,14 @@
    "art": "modul",
    "id": "g1",
    "titel": "Von der GuV zu den Einzel- und Gemeinkosten",
-   "review": "geprueft"
+   "review": "entwurf"
   },
   {
-   "datei": "g2-kostenarten-einzel-und-gemeinkosten-vertiefen-h.html",
+   "datei": "g2-kostenarten-und-kostenartenplan-h.html",
    "art": "modul",
    "id": "g2",
-   "titel": "Kostenarten, Einzel- und Gemeinkosten vertiefen (H)",
-   "review": "geprueft"
+   "titel": "Kostenarten und Kostenartenplan (H)",
+   "review": "entwurf"
   },
   {
    "datei": "gm-meilenstein-1-kostenartenplan-montelli-fur-augus.html",
@@ -77,14 +77,14 @@
    "art": "modul",
    "id": "t2",
    "titel": "Zuschlagskalkulation bis zu den Selbstkosten",
-   "review": "geprueft"
+   "review": "entwurf"
   },
   {
    "datei": "t3-vom-selbstkostenpreis-zum-listenverkaufspreis-h.html",
    "art": "modul",
    "id": "t3",
    "titel": "Vom Selbstkostenpreis zum Listenverkaufspreis (H)",
-   "review": "geprueft"
+   "review": "entwurf"
   },
   {
    "datei": "tm-meilenstein-3-kalkulation-fur-den-rucksack-explo.html",
@@ -94,24 +94,44 @@
    "review": "geprueft"
   },
   {
-   "datei": "info-1-kostenstellen.html",
+   "datei": "info-1-aufwand-kosten.html",
    "art": "seite",
-   "titel": "Info 1: Kostenstellen und der BAB"
+   "titel": "Info 1: Aufwand, Kosten und neutrale Posten"
   },
   {
-   "datei": "info-2-verteilung.html",
+   "datei": "info-2-kostenarten.html",
    "art": "seite",
-   "titel": "Info 2: Gemeinkosten auf die Kostenstellen verteilen (Schritt 1)"
+   "titel": "Info 2: Kostenarten, Einzel- und Gemeinkosten, kalkulatorische Kosten"
   },
   {
-   "datei": "info-3-umlage.html",
+   "datei": "info-3-kostenstellen.html",
    "art": "seite",
-   "titel": "Info 3: Innerbetriebliche Leistungen verrechnen (Schritt 2)"
+   "titel": "Info 3: Kostenstellen und der BAB"
   },
   {
-   "datei": "info-4-kalkulationssaetze.html",
+   "datei": "info-4-verteilung.html",
    "art": "seite",
-   "titel": "Info 4: Kalkulationssätze ermitteln (Schritt 3)"
+   "titel": "Info 4: Gemeinkosten auf die Kostenstellen verteilen (Schritt 1)"
+  },
+  {
+   "datei": "info-5-umlage.html",
+   "art": "seite",
+   "titel": "Info 5: Innerbetriebliche Leistungen verrechnen (Schritt 2)"
+  },
+  {
+   "datei": "info-6-kalkulationssaetze.html",
+   "art": "seite",
+   "titel": "Info 6: Kalkulationssätze ermitteln (Schritt 3)"
+  },
+  {
+   "datei": "info-7-normalsaetze.html",
+   "art": "seite",
+   "titel": "Info 7: Ist- und Normalsätze"
+  },
+  {
+   "datei": "info-8-zuschlagskalkulation.html",
+   "art": "seite",
+   "titel": "Info 8: Zuschlagskalkulation und Verkaufspreis"
   },
   {
    "datei": "index.html",

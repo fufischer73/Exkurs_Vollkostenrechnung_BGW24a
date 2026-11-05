@@ -1,6 +1,6 @@
 ---
 titel: "Meilenstein 3: Kalkulation für den Rucksack Explorer"
-minuten: 45
+minuten: 40
 meilenstein: true
 review: geprueft
 abgabe:

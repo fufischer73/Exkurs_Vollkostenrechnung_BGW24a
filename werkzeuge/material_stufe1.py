@@ -330,7 +330,7 @@ KST_FAELLE = [
 
 
 def ab_g2(pfad):
-    d = neues_dokument("Arbeitsblatt G2 · Zuordnung, Kostenartenplan Juli, Kostenstellen",
+    d = neues_dokument("Arbeitsblatt G2 · Zuordnung und Kostenartenplan Juli",
                        "Montelli GmbH · Geschäftsbereich Outdoor · Exkurs Vollkostenrechnung")
     ueberschrift(d, "Aufgabe 1 · Fälle zuordnen")
     d.add_paragraph("Einzelkosten oder Gemeinkosten? Begründe mit einem Stichwort.")
@@ -346,10 +346,6 @@ def ab_g2(pfad):
     d.add_paragraph("Trage Gesamtkosten, Einzelkosten und Gemeinkosten ein und bilde die Summen. "
                     "Probe: Einzelkosten + Gemeinkosten = Gesamtkosten.")
     plan_tabelle(d)
-    ueberschrift(d, "Aufgabe 3 · Kostenstellen zuordnen")
-    d.add_paragraph("Welche Kostenstelle? Direkt (Beleg) oder über einen Schlüssel? Nenne bei Schlüssel einen passenden Schlüssel.")
-    rows = [(chr(97 + i), f[0], "", "") for i, f in enumerate(KST_FAELLE)]
-    tabelle(d, ["", "Fall", "Kostenstelle", "direkt / Schlüssel"], rows, [0.8, 7.4, 3.6, 4.8], leer_hoehe=0.9)
     d.save(pfad)
 
 
@@ -457,8 +453,6 @@ def loesungen(pfad):
     plan_tabelle(d, JULI, True)
     d.add_paragraph("Überleitung: Gemeinkosten G1 (GuV-Werte) 229.925,00 € − 58.000,00 € (bilanzielle Abschreibung) + 65.000,00 € "
                     "(kalk. Abschreibung) + 30.000,00 € (kalk. Zinsen) = 266.925,00 €.")
-    ueberschrift(d, "G2 · Aufgabe 3: Kostenstellen")
-    tabelle(d, ["", "Fall", "Kostenstelle", "direkt / Schlüssel"], [(chr(97 + i),) + f for i, f in enumerate(KST_FAELLE)], [0.8, 7, 3.4, 5])
     ueberschrift(d, "Meilenstein 1 · Kostenartenplan August")
     plan_tabelle(d, AUGUST, True)
     d.add_paragraph("Begründungen: Hilfsstoffe gehen ins Produkt ein, sind aber nicht einzeln messbar. Gehälter bekommen Mitarbeiter:innen, "
