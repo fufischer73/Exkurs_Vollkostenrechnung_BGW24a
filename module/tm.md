@@ -10,11 +10,21 @@ abgabe:
   dateien: 2
   punkte: 100
 raster:
-  - {kriterium: Aufbau des Schemas, erreicht: Alle Zeilen stehen in der richtigen Reihenfolge. Die Zwischensummen (Materialkosten, Fertigungskosten I und II, Herstellkosten, Selbstkosten) sind enthalten., besonders_gut: Alle Zeilen sind ohne Hilfe und ohne Fehler aufgebaut.}
-  - {kriterium: Gemeinkosten und Maschinenplatz, erreicht: Die Zuschläge beziehen sich auf die richtigen Grundlagen. Maschinenkosten und Restgemeinkosten sind richtig berechnet., besonders_gut: Du erklärst in einem Satz, warum der Maschinenplatz einen eigenen Stundensatz hat.}
-  - {kriterium: Preisbildung, erreicht: Gewinn vom Hundert sowie Skonto und Rabatt im Hundert sind richtig gerechnet. Der Listenverkaufspreis stimmt., besonders_gut: Du führst eine Probe durch (rückwärts vom Listenpreis zum Barverkaufspreis).}
-  - {kriterium: Bemerkungen und Auswertung, erreicht: In der Bemerkungsspalte steht bei jeder Berechnung der Rechenweg. Die Fragen sind beantwortet., besonders_gut: Du begründest die Einordnung des Preises nachvollziehbar.}
-  - {kriterium: Darstellung, erreicht: Das Schema ist lesbar und vollständig., besonders_gut: Der Rechenweg ist durchgehend nachvollziehbar.}
+  - kriterium: "Aufbau des Schemas"
+    erreicht: "Alle Zeilen stehen in der richtigen Reihenfolge. Die Zwischensummen (Materialkosten, Fertigungskosten I und II, Herstellkosten, Selbstkosten) sind enthalten."
+    besonders_gut: "Alle Zeilen sind ohne Hilfe und ohne Fehler aufgebaut."
+  - kriterium: "Gemeinkosten und Maschinenplatz"
+    erreicht: "Die Zuschläge beziehen sich auf die richtigen Grundlagen. Maschinenkosten und Restgemeinkosten sind richtig berechnet."
+    besonders_gut: "Du erklärst in einem Satz, warum der Maschinenplatz einen eigenen Stundensatz hat."
+  - kriterium: "Preisbildung"
+    erreicht: "Gewinn vom Hundert sowie Skonto und Rabatt im Hundert sind richtig gerechnet. Der Listenverkaufspreis stimmt."
+    besonders_gut: "Du führst eine Probe durch (rückwärts vom Listenpreis zum Barverkaufspreis)."
+  - kriterium: "Bemerkungen und Auswertung"
+    erreicht: "In der Bemerkungsspalte steht bei jeder Berechnung der Rechenweg. Die Fragen sind beantwortet."
+    besonders_gut: "Du begründest die Einordnung des Preises nachvollziehbar."
+  - kriterium: "Darstellung"
+    erreicht: "Das Schema ist lesbar und vollständig."
+    besonders_gut: "Der Rechenweg ist durchgehend nachvollziehbar."
 quellen: [q-lernsituation]
 ---
 ## Auftrag

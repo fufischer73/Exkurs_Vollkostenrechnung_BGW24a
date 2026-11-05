@@ -2,7 +2,7 @@
 titel: "Meilenstein 1: Kostenartenplan Montelli für August"
 minuten: 40
 meilenstein: true
-review: geprueft
+review: freigegeben
 abgabe:
   titel: Kostenartenplan August abgeben
   text: Lade deinen ausgefüllten Kostenartenplan als **PDF** (z. B. gescanntes Arbeitsblatt) oder als **Word-Datei** hoch. Keine Bilder. Wenn du in Excel gearbeitet hast, speichere die Tabelle als PDF.
@@ -10,10 +10,18 @@ abgabe:
   dateien: 2
   punkte: 100
 raster:
-  - {kriterium: Kostenarten und Zuordnung, erreicht: Alle Kostenarten stehen im Plan. Einzel- und Gemeinkosten sind richtig zugeordnet. Die neutralen Konten sind nicht enthalten. Statt der Konten 6520 und 7510 stehen die kalkulatorischen Werte., besonders_gut: Alles ist fehlerfrei und ohne Hilfe erstellt.}
-  - {kriterium: Begründung der Zuordnung, erreicht: Für Hilfsstoffe und Gehälter steht je ein Satz, warum sie Gemeinkosten sind., besonders_gut: Du nennst zusätzlich ein Beispiel für Sondereinzelkosten und erklärst es.}
-  - {kriterium: Rechnung, erreicht: Alle Summen stimmen. Die Probe (Einzelkosten + Gemeinkosten = Gesamtkosten) ist gemacht., besonders_gut: Du erklärst, warum die Gesamtkosten niedriger sind als im Juli.}
-  - {kriterium: Darstellung, erreicht: Der Plan ist lesbar und vollständig., besonders_gut: Der Rechenweg ist nachvollziehbar notiert.}
+  - kriterium: "Kostenarten und Zuordnung"
+    erreicht: "Alle Kostenarten stehen im Plan. Einzel- und Gemeinkosten sind richtig zugeordnet. Die neutralen Konten sind nicht enthalten. Statt der Konten 6520 und 7510 stehen die kalkulatorischen Werte."
+    besonders_gut: "Alles ist fehlerfrei und ohne Hilfe erstellt."
+  - kriterium: "Begründung der Zuordnung"
+    erreicht: "Für Hilfsstoffe und Gehälter steht je ein Satz, warum sie Gemeinkosten sind."
+    besonders_gut: "Du nennst zusätzlich ein Beispiel für Sondereinzelkosten und erklärst es."
+  - kriterium: "Rechnung"
+    erreicht: "Alle Summen stimmen. Die Probe (Einzelkosten + Gemeinkosten = Gesamtkosten) ist gemacht."
+    besonders_gut: "Du erklärst, warum die Gesamtkosten niedriger sind als im Juli."
+  - kriterium: "Darstellung"
+    erreicht: "Der Plan ist lesbar und vollständig."
+    besonders_gut: "Der Rechenweg ist nachvollziehbar notiert."
 quellen: [q-lehrwerk]
 ---
 ## Auftrag
