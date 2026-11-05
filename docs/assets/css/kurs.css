@@ -1,0 +1,12 @@
+/* Erzeugt von bauen.py: Farben der Stufen und Varianten dieses Kurses. */
+:root {
+  --lv-von-guv-zu-kosten: var(--lv-1); --lv-von-guv-zu-kosten-soft: var(--lv-1-soft);
+  --lv-bab: var(--lv-2); --lv-bab-soft: var(--lv-2-soft);
+  --lv-kostentraeger: var(--lv-3); --lv-kostentraeger-soft: var(--lv-3-soft);
+}
+.badge.lv-von-guv-zu-kosten { background: var(--lv-von-guv-zu-kosten-soft); color: var(--deep); box-shadow: inset 3px 0 0 var(--lv-von-guv-zu-kosten); }
+.level-card.von-guv-zu-kosten { border-top-color: var(--lv-von-guv-zu-kosten); }
+.badge.lv-bab { background: var(--lv-bab-soft); color: var(--deep); box-shadow: inset 3px 0 0 var(--lv-bab); }
+.level-card.bab { border-top-color: var(--lv-bab); }
+.badge.lv-kostentraeger { background: var(--lv-kostentraeger-soft); color: var(--deep); box-shadow: inset 3px 0 0 var(--lv-kostentraeger); }
+.level-card.kostentraeger { border-top-color: var(--lv-kostentraeger); }
