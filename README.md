@@ -3,7 +3,7 @@
 Lernpfad für Moodle (Abschnitt mit Unterabschnitten) und Web-Version, gebaut mit dem
 [Lernpfad-Baukasten](https://github.com/dclausen01/Lernpfad-baukasten).
 
-**Stand:** Stufe 1 „Von der GuV zu den Kosten“ , Stufe 2 „Der Betriebsabrechnungsbogen“ und Stufe 3 „Von den Kosten zum Verkaufspreis“ (alle Entwurf) mit Lernerfolgskontrolle (Moodle-Test) sowie die freiwillige Stufe 4 „Übungen und Vertiefung“.
+**Stand:** Stufe 1 „Von der GuV zu den Kosten“ , Stufe 2 „Der Betriebsabrechnungsbogen“ und Stufe 3 „Von den Kosten zum Verkaufspreis“ (alle freigegeben) mit Lernerfolgskontrolle (Moodle-Test) sowie die freiwillige Stufe 4 „Übungen und Vertiefung“.
 
 | Ordner | Inhalt |
 | --- | --- |
@@ -16,4 +16,5 @@ Alle Zahlen sind für die Montelli GmbH neu konstruiert. Das Westermann-Material
 Neu bauen: `python3 werkzeuge/material_stufe1.py` und `werkzeuge/material_stufe2.py` und `werkzeuge/material_stufe3.py`, `werkzeuge/material_uebungen.py` und `werkzeuge/material_erweiterung.py`, dann `python3 <baukasten>/skripte/alles.py .`
 
 `vorschau/vorschau.zip` enthält die Web-Version zum Ansehen (entpacken, `web/index.html` öffnen).
-`vorschau/TESTKURS-ENTWURF-moodle5.mbz` ist eine Kurssicherung mit allen Entwürfen **nur zum Testen** in einem leeren Testkurs, nicht für Schüler:innen.
+
+**Moodle:** `moodle/exkurs-vollkostenrechnung_VOLLSTAENDIG_moodle5.mbz` ist der vollständige Kurs (siehe `moodle/LIESMICH.md`).

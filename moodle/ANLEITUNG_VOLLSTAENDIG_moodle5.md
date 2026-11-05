@@ -24,6 +24,7 @@ Aktivität **Lernpaket** (SCORM) anlegen, ZIP aus `lernpakete/` hochladen, dann:
 - Lernpaket **🧭 Mein Lernpfad – hier geht's los** – `lernpakete/exkurs-vollkostenrechnung_start_scorm2004.zip`
 - Lernpaket **🎯 Einstufungstest: direkt zu Der Betriebsabrechnungsbogen** – `lernpakete/exkurs-vollkostenrechnung_einstufung-bab_scorm2004.zip`
 - Lernpaket **🎯 Einstufungstest: direkt zu Von den Kosten zum Verkaufspreis** – `lernpakete/exkurs-vollkostenrechnung_einstufung-kostentraeger_scorm2004.zip`
+- Lernpaket **🎯 Einstufungstest: direkt zu Übungen und Vertiefung (freiwillig)** – `lernpakete/exkurs-vollkostenrechnung_einstufung-uebungen_scorm2004.zip`
 
 ## Abschnitt „🌱 Von der GuV zu den Kosten“
 
@@ -77,4 +78,16 @@ Voraussetzung am Abschnitt (Einschränkung: Aktivitätsabschluss bzw. Bewertung,
     - Bemerkungen und Auswertung: nicht erreicht (0 P.) · erreicht: In der Bemerkungsspalte steht bei jeder Berechnung der Rechenweg. Die Fragen sind beantwortet. (2 P.) · besonders gut: Du begründest die Einordnung des Preises nachvollziehbar. (3 P.)
     - Darstellung: nicht erreicht (0 P.) · erreicht: Das Schema ist lesbar und vollständig. (2 P.) · besonders gut: Der Rechenweg ist durchgehend nachvollziehbar. (3 P.)
 - Test **📝 Lernerfolgskontrolle: Von der GuV zum Verkaufspreis** – Voraussetzung: „★ Meilenstein 3: Kalkulation für den Rucksack Explorer – Auftrag & Checkliste“ abgeschlossen – 10 Fragen aus `fragen/` (Moodle-XML importieren, dann in den Test einfügen; Rechenaufgaben mit Varianten als Zufallsfrage aus ihrer Kategorie), Bewertung 10 Punkte, bestanden ab 60 %, Abschluss: „Bestehensgrenze erreichen“, Versuche unbegrenzt, Frageverhalten „Spätere Auswertung“
+
+## Abschnitt „⭐ Übungen und Vertiefung (freiwillig)“
+
+Voraussetzung am Abschnitt (Einschränkung: Aktivitätsabschluss bzw. Bewertung, verknüpft mit „mindestens eine“): „📤 Kalkulation Explorer abgeben“ abgeschlossen **oder** „🎯 Einstufungstest: direkt zu Übungen und Vertiefung (freiwillig)“ mit mindestens 80 % bewertet.
+
+- Lernpaket **U1 · Übungs-BAB 1: Produktion Leder** – `lernpakete/exkurs-vollkostenrechnung_u1_scorm2004.zip`
+- Lernpaket **U2 · Übungs-BAB 2: Produktion Textil** – `lernpakete/exkurs-vollkostenrechnung_u2_scorm2004.zip` – Voraussetzung: „U1 · Übungs-BAB 1: Produktion Leder“ abgeschlossen
+- Lernpaket **U3 · Übungs-BAB 3: Produktion Kunststoffe** – `lernpakete/exkurs-vollkostenrechnung_u3_scorm2004.zip` – Voraussetzung: „U2 · Übungs-BAB 2: Produktion Textil“ abgeschlossen
+- Lernpaket **U4 · Übungs-BAB 4: Zuschnittautomat und Bestandsmehrung** – `lernpakete/exkurs-vollkostenrechnung_u4_scorm2004.zip` – Voraussetzung: „U3 · Übungs-BAB 3: Produktion Kunststoffe“ abgeschlossen
+- Lernpaket **U5 · Übung 5: Maschinenstundensatz herleiten** – `lernpakete/exkurs-vollkostenrechnung_u5_scorm2004.zip` – Voraussetzung: „U4 · Übungs-BAB 4: Zuschnittautomat und Bestandsmehrung“ abgeschlossen
+- Lernpaket **U6 · Übung 6: Richtig oder falsch?** – `lernpakete/exkurs-vollkostenrechnung_u6_scorm2004.zip` – Voraussetzung: „U5 · Übung 5: Maschinenstundensatz herleiten“ abgeschlossen
+- Test **📝 Test: Richtig oder falsch zum BAB** – Voraussetzung: „U6 · Übung 6: Richtig oder falsch?“ abgeschlossen – 8 Fragen aus `fragen/` (Moodle-XML importieren, dann in den Test einfügen; Rechenaufgaben mit Varianten als Zufallsfrage aus ihrer Kategorie), Bewertung 10 Punkte, bestanden ab 60 %, Abschluss: „Bestehensgrenze erreichen“, Versuche unbegrenzt, Frageverhalten „Direkte Auswertung“
 

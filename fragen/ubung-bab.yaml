@@ -2,7 +2,7 @@
 - id: ub-01
   typ: single_choice
   niveau: 1
-  review: entwurf
+  review: freigegeben
   aufgabe: "Richtig oder falsch? Mit dem BAB werden die Einzelkosten je Kostenstelle ermittelt."
   optionen:
     - {text: "richtig", korrekt: false}
@@ -12,7 +12,7 @@
 - id: ub-02
   typ: single_choice
   niveau: 1
-  review: entwurf
+  review: freigegeben
   aufgabe: "Richtig oder falsch? Gemeinkosten werden stets mit einem Verteilungsschlüssel auf die Kostenstellen verteilt."
   optionen:
     - {text: "richtig", korrekt: false}
@@ -22,7 +22,7 @@
 - id: ub-03
   typ: single_choice
   niveau: 1
-  review: entwurf
+  review: freigegeben
   aufgabe: "Richtig oder falsch? Mit dem BAB werden zunächst die Ist-Kalkulationssätze ermittelt."
   optionen:
     - {text: "richtig", korrekt: true}
@@ -32,7 +32,7 @@
 - id: ub-04
   typ: single_choice
   niveau: 1
-  review: entwurf
+  review: freigegeben
   aufgabe: "Richtig oder falsch? Prozentuale Zuschlagssätze sind Kalkulationssätze."
   optionen:
     - {text: "richtig", korrekt: true}
@@ -42,7 +42,7 @@
 - id: ub-05
   typ: single_choice
   niveau: 1
-  review: entwurf
+  review: freigegeben
   aufgabe: "Richtig oder falsch? Maschinenstundensätze sind keine Kalkulationssätze."
   optionen:
     - {text: "richtig", korrekt: false}
@@ -52,7 +52,7 @@
 - id: ub-06
   typ: single_choice
   niveau: 1
-  review: entwurf
+  review: freigegeben
   aufgabe: "Richtig oder falsch? Mit dem BAB wird die Entwicklung der Gemeinkosten in den Kostenstellen kontrolliert."
   optionen:
     - {text: "richtig", korrekt: true}
@@ -62,7 +62,7 @@
 - id: ub-07
   typ: single_choice
   niveau: 1
-  review: entwurf
+  review: freigegeben
   aufgabe: "Richtig oder falsch? Zuschlagsgrundlage für die Vertriebsgemeinkosten sind die Herstellkosten des Umsatzes."
   optionen:
     - {text: "richtig", korrekt: true}
@@ -72,7 +72,7 @@
 - id: ub-08
   typ: single_choice
   niveau: 1
-  review: entwurf
+  review: freigegeben
   aufgabe: "Richtig oder falsch? Die Kosten der Vorkostenstellen bleiben im BAB bei den Vorkostenstellen stehen."
   optionen:
     - {text: "richtig", korrekt: false}

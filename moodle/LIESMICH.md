@@ -1,14 +1,12 @@
-# Moodle-Kurs: Stand Stufe 1 bis 3 mit Lernerfolgskontrolle
+# Moodle-Kurs: vollständig
 
-`exkurs-vollkostenrechnung_STUFE1-3-mit-Test_moodle5.mbz` enthält nur die **freigegebenen** Module:
+`exkurs-vollkostenrechnung_VOLLSTAENDIG_moodle5.mbz` enthält **alle freigegebenen Module**:
 
-- Startseite „Mein Lernpfad“ und Einstufungstests zu Stufe 2 und 3
+- Startseite „Mein Lernpfad“ und Einstufungstests zu Stufe 2, 3 und 4
 - **Stufe 1:** G1, G2, Meilenstein 1 (mit Abgabe)
 - **Stufe 2:** B1 bis B5, Meilenstein 2 (mit Abgabe)
-- **Stufe 3:** T1 bis T3, Meilenstein 3 (mit Abgabe)
-- **Lernerfolgskontrolle:** Moodle-Test mit 10 Fragen am Ende von Stufe 3 (Rechenaufgaben mit Zufallszahlen, automatisch bewertet)
-
-Stufe 4 (Übungen) und der Übungstest folgen nach der Freigabe.
+- **Stufe 3:** T1 bis T3, Meilenstein 3 (mit Abgabe), **Lernerfolgskontrolle** (Moodle-Test, 10 Fragen)
+- **Stufe 4 (freiwillig):** Übungen U1 bis U6 und der Test „Richtig oder falsch zum BAB“ (8 Fragen)
 
 ## Einspielen (Moodle 5)
 
@@ -17,6 +15,6 @@ Stufe 4 (Übungen) und der Übungstest folgen nach der Freigabe.
 3. **„In diesen Kurs, Inhalte hinzufügen“** wählen, dann Weiter, Weiter, Wiederherstellen.
 4. Mit einem **Schüler:innen-Testkonto** durchklicken („Rolle wechseln“ zeigt keine Abschlüsse).
 
-Nur **einmal** in einen Kurs wiederherstellen, sonst entsteht alles doppelt. Wenn du schon eine frühere Sicherung (Stufe 1 oder 1 und 2) eingespielt hast, nimm für diese Sicherung einen **neuen, leeren Testkurs**.
+Nur **einmal** in einen Kurs wiederherstellen, sonst entsteht alles doppelt. Wenn du früher schon eine Teilsicherung (Stufe 1 bis 3) eingespielt hast, nimm einen **neuen, leeren Testkurs**.
 
-Der Einstufungstest läuft im Browser der Schüler:innen und dient nur der Freischaltung, nicht als sichere Prüfung. Wer ihn mit mindestens 80 % besteht, kann die nächste Stufe öffnen, ohne den Meilenstein der vorigen abzugeben. Wenn du das nicht möchtest, sag Bescheid, dann stelle ich die Freischaltung auf „nur nach Meilenstein“.
+Die Einstufungstests laufen im Browser der Schüler:innen und dienen nur der Freischaltung, nicht als sichere Prüfung. Wer einen mit mindestens 80 % besteht, kann die nächste Stufe öffnen, ohne den Meilenstein der vorigen abzugeben. Stufe 4 öffnet sonst nach dem Meilenstein 3.
