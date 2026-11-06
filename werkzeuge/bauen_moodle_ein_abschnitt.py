@@ -4,8 +4,9 @@ Ohne Einstufungstests (jede Stufe öffnet nur nach der Abgabe des Meilensteins d
 Gedacht für Moodle 4.5 (BBZ-Moodle 4.5.12+) mit Unterabschnitten. Der Baukasten selbst bleibt unverändert; dieses Skript arbeitet
 mit einer temporären, angepassten Kopie seiner Skripte.
 
-Aufruf (aus dem Lernpfad-Ordner):  python3 werkzeuge/bauen_moodle_ein_abschnitt.py <pfad-zum-baukasten>
+Aufruf (aus dem Lernpfad-Ordner):  python3 werkzeuge/bauen_moodle_ein_abschnitt.py <pfad-zum-baukasten> [--flach]
 Ergebnis: ausgabe/moodle/<kurzname>_EIN-ABSCHNITT_moodle4-5.mbz
+          mit --flach: <kurzname>_EIN-ABSCHNITT-FLACH_moodle4-5.mbz (ein Abschnitt, KEINE Unterabschnitte, alles untereinander)
 """
 import shutil
 import subprocess
@@ -16,6 +17,7 @@ from pathlib import Path
 if len(sys.argv) < 2:
     sys.exit(__doc__)
 baukasten = Path(sys.argv[1])
+FLACH = "--flach" in sys.argv[2:]
 root = Path(__file__).resolve().parent.parent
 
 
@@ -26,6 +28,8 @@ def ersetze(datei, alt, neu, anzahl=1):
 
 
 WRAPPER = '''
+FLACH = __FLACH__
+
 def ein_abschnitt(b, kurs):
     """Alle Stufen in einen Abschnitt: Startseite direkt, jede Stufe als Unterabschnitt mit allen Aktivitäten darin."""
     stufen = []
@@ -34,6 +38,8 @@ def ein_abschnitt(b, kurs):
         nacheinander = a.get("reihenfolge", "nacheinander") == "nacheinander"
         for e in a["einheiten"]:
             ref = e.get("freischalten_nach") or (vorige if nacheinander else None)
+            if FLACH and ref is None and vorige is None:
+                ref = a.get("freischalten_nach")  # erstes Modul der Stufe: Freischaltung der Stufe
             for j, inh in enumerate(e["inhalte"]):
                 inh = dict(inh)
                 if ref:
@@ -42,12 +48,14 @@ def ein_abschnitt(b, kurs):
                 if j == 0:
                     vorige = inh["id"]
         st = dict(titel=a["titel"], text=a.get("text", ""), inhalte=inhalte)
-        if a.get("freischalten_nach"):
+        if a.get("freischalten_nach") and not FLACH:
             st["freischalten_nach"] = a["freischalten_nach"]
         stufen.append(st)
     einheiten = [dict(titel=i["titel"], inhalte=[i]) for i in b["allgemein"]["inhalte"]] + stufen
     b["allgemein"]["inhalte"] = []
-    b["abschnitte"] = [dict(titel=kurs.titel, text=f"<p>{kurs.k.get('untertitel', '')}</p>", reihenfolge="frei", einheiten=einheiten)]
+    liste = "".join(f"<li><b>{x['titel']}</b>" + (f": {x['text']}" if x.get("text") else "") + "</li>" for x in stufen)
+    text = f"<p>{kurs.k.get('untertitel', '')}</p>" + (f"<p>Die Stufen in dieser Reihenfolge:</p><ul>{liste}</ul>" if FLACH else "")
+    b["abschnitte"] = [dict(titel=kurs.titel, text=text, reihenfolge="frei", einheiten=einheiten)]
     return b
 
 
@@ -81,7 +89,18 @@ with tempfile.TemporaryDirectory() as tmp:
                     if j == 0:
                         vorige_haupt = inh["id"]''')
     # 4) Umbau der Kursbeschreibung
-    ersetze(sk / "moodle_kurs.py", "def anleitung(kurs, b, version, mbz_name):", WRAPPER + "def anleitung(kurs, b, version, mbz_name):")
+    ersetze(sk / "moodle_kurs.py", "def anleitung(kurs, b, version, mbz_name):",
+            WRAPPER.replace("__FLACH__", repr(FLACH)) + "def anleitung(kurs, b, version, mbz_name):")
+    if FLACH:
+        ersetze(sk / "mbz.py", "backup_release=\"4.5\", unterabschnitte=True,", "backup_release=\"4.5\", unterabschnitte=False,")
+        ersetze(sk / "mbz.py", """                        if ref:
+                            verzoegert.append((akt, ref))
+                        if j == 0:
+                            vorige_haupt = inh["id"]""", """                        r_ = inh.get("voraus") or ref
+                        if r_:
+                            verzoegert.append((akt, r_))
+                        if j == 0:
+                            vorige_haupt = inh["id"]""")
     ersetze(sk / "moodle_kurs.py", 'sub = version == "5" and len(e["inhalte"]) > 1', "sub = len(e[\"inhalte\"]) > 1")
     for skript, extra in (("pruefen.py", []), ("bauen.py", []), ("moodle_kurs.py", ["--moodle", "4"])):
         r = subprocess.run([sys.executable, str(sk / skript), str(root), *extra])
@@ -89,9 +108,10 @@ with tempfile.TemporaryDirectory() as tmp:
             sys.exit(r.returncode)
     out = root / "ausgabe" / "moodle"
     quelle = next(out.glob("*_moodle4.mbz"))
-    ziel = out / quelle.name.replace("_moodle4.mbz", "_EIN-ABSCHNITT_moodle4-5.mbz")
+    suffix = "_EIN-ABSCHNITT-FLACH_moodle4-5" if FLACH else "_EIN-ABSCHNITT_moodle4-5"
+    ziel = out / quelle.name.replace("_moodle4.mbz", suffix + ".mbz")
     shutil.move(quelle, ziel)
     anl = out / "ANLEITUNG_moodle4.md"
     if anl.exists():
-        shutil.move(anl, out / "ANLEITUNG_EIN-ABSCHNITT_moodle4-5.md")
+        shutil.move(anl, out / f"ANLEITUNG{suffix.replace('_moodle4-5', '')}_moodle4-5.md")
     print("✓", ziel)

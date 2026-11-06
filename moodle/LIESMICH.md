@@ -1,10 +1,11 @@
-# Moodle-Kurs: zwei Varianten für Moodle 4.5
+# Moodle-Kurs: drei Varianten für Moodle 4.5
 
-Beide Sicherungen enthalten **alle Module** (Stufe 1 bis 4, Meilensteine mit Abgabe, beide Tests), ohne Einstufungstests: Jede Stufe öffnet erst nach der **Abgabe des Meilensteins** der vorigen Stufe.
+Alle Sicherungen enthalten **alle Module** (Stufe 1 bis 4, Meilensteine mit Abgabe, beide Tests), ohne Einstufungstests: Jede Stufe öffnet erst nach der **Abgabe des Meilensteins** der vorigen Stufe.
 
 | Datei | Aufbau | Wann nehmen? |
 | --- | --- | --- |
 | `exkurs-vollkostenrechnung_EIN-ABSCHNITT_moodle4-5.mbz` | **Ein Abschnitt**, darin die Startseite und **vier Unterabschnitte** (je Stufe einer) | wenn der Lernpfad nur einen Abschnitt eines Kurses belegen soll |
+| `exkurs-vollkostenrechnung_EIN-ABSCHNITT-FLACH_moodle4-5.mbz` | **Genau ein Abschnitt**, alle Aktivitäten untereinander, **keine Unterabschnitte**; Sperren je Aktivität | wenn der Kurs kaum noch Abschnitte oder Unterabschnitte zulässt (braucht **1** Abschnitt; Ein-Abschnitt-Variante braucht 5, Vier-Abschnitte-Variante 4) |
 | `exkurs-vollkostenrechnung_VOLLSTAENDIG_moodle4.mbz` | **Vier Abschnitte** (je Stufe einer) plus „Allgemeines“ für die Startseite | Rückfallebene, falls Unterabschnitte nicht funktionieren |
 
 ## Voraussetzung für die Variante „ein Abschnitt“
@@ -27,4 +28,5 @@ Einstufungstests gibt es nicht. Innerhalb einer Stufe öffnen die Module nachein
 ## Neu bauen
 
 - Ein Abschnitt: `python3 werkzeuge/bauen_moodle_ein_abschnitt.py <pfad-zum-baukasten>`
+- Ein Abschnitt, flach: `python3 werkzeuge/bauen_moodle_ein_abschnitt.py <pfad-zum-baukasten> --flach`
 - Vier Abschnitte: `python3 werkzeuge/bauen_ohne_einstufung.py <pfad-zum-baukasten> --moodle 4`
