@@ -17,4 +17,4 @@ Neu bauen: `werkzeuge/material_*.py` (Arbeitsblätter) und dann `python3 werkzeu
 
 `vorschau/vorschau.zip` enthält die Web-Version zum Ansehen (entpacken, `web/index.html` öffnen).
 
-**Moodle:** `moodle/exkurs-vollkostenrechnung_VOLLSTAENDIG_moodle4.mbz` ist der vollständige Kurs (siehe `moodle/LIESMICH.md`).
+**Moodle:** Zwei Sicherungen für Moodle 4.5 unter `moodle/` (ein Abschnitt mit Unterabschnitten oder vier Abschnitte, siehe `moodle/LIESMICH.md`).
